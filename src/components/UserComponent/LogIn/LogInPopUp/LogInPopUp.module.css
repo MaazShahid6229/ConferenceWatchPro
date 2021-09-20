@@ -1,0 +1,7 @@
+.txt{
+    text-align: center;
+}
+.action{
+    display: flex;
+    justify-content: flex-end;
+}

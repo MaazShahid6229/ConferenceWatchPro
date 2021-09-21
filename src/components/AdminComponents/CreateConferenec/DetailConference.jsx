@@ -27,55 +27,58 @@ const DetailConference = (props) => {
       <br />
       <hr></hr>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form}>
-        <div className={classes.control}>
-          <label>CID</label>
-          <input
-            {...register("ConferenceId")}
-            type="text"
-            placeholder="CID"
-            required
-          />
+        <div className={classes.controls}>
+          <div className={classes.control}>
+            <label>CID</label>
+            <input
+              {...register("ConferenceId")}
+              type="text"
+              placeholder="CID"
+              required
+            />
+          </div>
+          <div className={classes.control}>
+            <label>Company</label>
+            <input
+              {...register("Company")}
+              type="text"
+              placeholder="Enter Company"
+              required
+            />
+          </div>
+          <div className={classes.control}>
+            <label>Moderator</label>
+            <input
+              {...register("Moderator")}
+              type="text"
+              placeholder="Moderator "
+              required
+            />
+          </div>
         </div>
-        <div className={classes.control}>
-          <label>Company</label>
-          <input
-            {...register("Company")}
-            type="text"
-            placeholder="Enter Company"
-            required
-          />
-        </div>
-        <div className={classes.control}>
-          <label>Moderator</label>
-          <input
-            {...register("Moderator")}
-            type="text"
-            placeholder="Moderator "
-            required
-          />
-        </div>
+        <div className={classes.controls}>
+          <div className={classes.control}>
+            <label>Start Date</label>
+            <input {...register("StartDate")} type="date" required />
+          </div>
+          <div className={classes.control}>
+            <label>End Date</label>
+            <input {...register("EndDate")} type="date" required />
+          </div>
 
-        <div className={classes.control}>
-          <label>Start Date</label>
-          <input {...register("StartDate")} type="date" required />
+          <div className={classes.control}>
+            <label>Series</label>
+            <input
+              {...register("Series")}
+              type="number"
+              placeholder="Enter Series Number"
+              min="0"
+              step="1"
+              required
+            />
+          </div>
         </div>
-        <div className={classes.control}>
-          <label>End Date</label>
-          <input {...register("EndDate")} type="date" required />
-        </div>
-
-        <div className={classes.control}>
-          <label>Series</label>
-          <input
-            {...register("Series")}
-            type="number"
-            placeholder="Enter Series Number"
-            min="0"
-            step="1"
-            required
-          />
-        </div>
-        <div className={classes.section2}>
+        <div className={classes.controls2}>
           <div className={classes.control}>
             <label htmlFor="Branding">Branding</label>
             <select {...register("Branding")} name="Branding">
@@ -93,32 +96,44 @@ const DetailConference = (props) => {
               required
             />
           </div>
-        </div>
-        <div className={classes.EmailSection}>
           <div className={classes.control}>
-            <label>Email 1</label>
+            <label>Confirm Password</label>
+            <input
+              {...register("ConfirmPasswords")}
+              type="password"
+              placeholder="Enter Again Password"
+              required
+            />
+          </div>
+        </div>
+        <div className={classes.controls3}>
+          <div className={classes.control}>
+            <label htmlFor="email1">Email 1</label>
             <input
               {...register("Email1")}
-              type="password"
+              type="email"
               placeholder="Enter First Participant Email"
+              name="email1"
               required
             />
           </div>
           <div className={classes.control}>
-            <label>Email 2</label>
+            <label htmlFor="email2">Email 2</label>
             <input
               {...register("Email2")}
-              type="password"
+              type="email2"
               placeholder="Enter Second Participant Email"
+              name="email2"
               required
             />
           </div>
           <div className={classes.control}>
-            <label>Email 3</label>
+            <label htmlFor="email3">Email 3</label>
             <input
               {...register("Email3")}
-              type="password"
+              type="email"
               placeholder="Enter Third Participant Email"
+              name="email3"
               required
             />
           </div>

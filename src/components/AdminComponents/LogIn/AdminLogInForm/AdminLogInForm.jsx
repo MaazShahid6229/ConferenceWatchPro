@@ -40,7 +40,7 @@ const LogInForm = (props) => {
         </div>
         <div className={classes.actions}>
           <Link to="/connexadmin/home">
-            <Button type="submit">Sign In</Button>
+          <Button type="submit">Sign In</Button>
           </Link>
         </div>
       </form>

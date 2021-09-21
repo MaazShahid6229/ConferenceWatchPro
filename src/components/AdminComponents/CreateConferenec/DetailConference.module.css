@@ -1,19 +1,12 @@
-.login {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 80%;
-  max-width: 70rem;
+.find_form {
   margin: 1rem auto;
   padding: 1rem;
-}
-.find_form {
+  max-width: 80rem;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1rem;
   text-align: left;
 }
 
@@ -24,7 +17,7 @@
   display: block;
 }
 
-.control input {
+.control input,select{
   font: inherit;
   padding: 0.5rem;
   border-radius: 6px;
@@ -37,7 +30,26 @@
   border-color: #323362;
   background: #dad5d5;
 }
+.section2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.EmailSection{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+.EmailSection div{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
 
 .actions {
   align-self: flex-end;
 }
+

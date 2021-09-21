@@ -9,8 +9,10 @@ const CreateConference = (props) => {
 
   const { register, handleSubmit } = useForm();
   const [result, setResult] = useState("");
+  const [showForm, setShowForm]= useState(false)
   
   const onSubmit = (data) => {
+    setShowForm(true)
     setResult(JSON.stringify(data));
     console.log(result);
   };
@@ -44,6 +46,7 @@ const CreateConference = (props) => {
           <Button type="submit">Find</Button>
         </div>
       </form>
+      {showForm && <h1>Hello</h1>}
     </Card>
   );
 };

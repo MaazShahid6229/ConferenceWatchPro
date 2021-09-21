@@ -1,7 +1,7 @@
 import Wrapper from "../../components/UI/Wrapper/Wrapper";
 import { Fragment, useState } from "react";
-import AdminLogInPopUp from "../../components/AdminComponents/AdminLogInPopUp/AdminLogInPopUp";
-import AdminLogInForm from "../../components/AdminComponents/AdminLogInForm/AdminLogInForm";
+import AdminLogInPopUp from "../../components/AdminComponents/LogIn/AdminLogInPopUp/AdminLogInPopUp";
+import AdminLogInForm from "../../components/AdminComponents/LogIn/AdminLogInForm/AdminLogInForm";
 
 const AdminLogin = () => {
   const [popUpIsShown, setPopUpIsShown] = useState(false);

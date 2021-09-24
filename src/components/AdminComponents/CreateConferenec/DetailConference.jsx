@@ -2,14 +2,28 @@ import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 
 const DetailConference = (props) => {
-  const { register, handleSubmit } = useForm();
-  const [result, setResult] = useState("");
+  // console.log(props.defaultV)
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
+  const [result, setResult] = useState("");
   const brands = ["maaz", "ali", "ahmed"];
+
+  const disablePastDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
 
   const Branding = brands.map((brand, index) => (
     <option key={index} value={brand}>
@@ -17,9 +31,15 @@ const DetailConference = (props) => {
     </option>
   ));
 
+  useEffect(() => {
+    for (const key in props.defaultV) {
+      setValue(key, props.defaultV[key]);
+    }
+  }, [props.defaultV]);
+
   const onSubmit = (data) => {
     setResult(JSON.stringify(data));
-    console.log(result);
+    console.log(data);
   };
 
   return (
@@ -31,39 +51,75 @@ const DetailConference = (props) => {
           <div className={classes.control}>
             <label>CID</label>
             <input
-              {...register("ConferenceId")}
+              {...register("ConferenceId", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Conference Id Cannot Exceed 20 Characters ",
+                },
+              })}
               type="text"
               placeholder="CID"
-              required
+              readOnly
             />
+            {errors.ConferenceId && <p>{errors.ConferenceId.message}</p>}
           </div>
+
           <div className={classes.control}>
             <label>Company</label>
             <input
-              {...register("Company")}
+              {...register("Company", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 50,
+                  message: "Company Name Cannot Exceed 50 Characters ",
+                },
+                pattern: {
+                  value: /^[A-Za-z ]+$/,
+                  message: "Alphabetical Characters only",
+                },
+              })}
               type="text"
               placeholder="Enter Company"
-              required
             />
+            {errors.Company && <p>{errors.Company.message}</p>}
           </div>
           <div className={classes.control}>
             <label>Moderator</label>
             <input
-              {...register("Moderator")}
+              {...register("Moderator", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Conference Id Cannot Exceed 20 Characters ",
+                },
+                pattern: {
+                  value: /^[A-Za-z ]+$/,
+                  message: "Alphabetical Characters only",
+                },
+              })}
               type="text"
               placeholder="Moderator "
-              required
             />
+            {errors.Moderator && <p>{errors.Moderator.message}</p>}
           </div>
         </div>
         <div className={classes.controls}>
           <div className={classes.control}>
             <label>Start Date</label>
-            <input {...register("StartDate")} type="date" required />
+            <input
+              {...register("StartDate")}
+              type="date"
+              min={disablePastDate()}
+            />
           </div>
           <div className={classes.control}>
             <label>End Date</label>
-            <input {...register("EndDate")} type="date" required />
+            <input
+              {...register("EndDate")}
+              type="date"
+              min={disablePastDate()}
+            />
           </div>
 
           <div className={classes.control}>
@@ -74,7 +130,6 @@ const DetailConference = (props) => {
               placeholder="Enter Series Number"
               min="0"
               step="1"
-              required
             />
           </div>
         </div>
@@ -90,20 +145,32 @@ const DetailConference = (props) => {
           <div className={classes.control}>
             <label>Password</label>
             <input
-              {...register("Passwords")}
+              {...register("Password", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Password Cannot Exceed 20 Characters ",
+                },
+              })}
               type="password"
               placeholder="Enter Password"
-              required
             />
+            {errors.Password && <p>{errors.Password.message}</p>}
           </div>
           <div className={classes.control}>
             <label>Confirm Password</label>
             <input
-              {...register("ConfirmPasswords")}
+              {...register("ConfirmPassword", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Password Cannot Exceed 20 Characters ",
+                },
+              })}
               type="password"
               placeholder="Enter Again Password"
-              required
             />
+            {errors.ConfirmPassword && <p>{errors.ConfirmPassword.message}</p>}
           </div>
         </div>
         <div className={classes.controls3}>
@@ -114,7 +181,6 @@ const DetailConference = (props) => {
               type="email"
               placeholder="Enter First Participant Email"
               name="email1"
-              required
             />
           </div>
           <div className={classes.control}>
@@ -124,7 +190,6 @@ const DetailConference = (props) => {
               type="email2"
               placeholder="Enter Second Participant Email"
               name="email2"
-              required
             />
           </div>
           <div className={classes.control}>
@@ -134,7 +199,6 @@ const DetailConference = (props) => {
               type="email"
               placeholder="Enter Third Participant Email"
               name="email3"
-              required
             />
           </div>
         </div>

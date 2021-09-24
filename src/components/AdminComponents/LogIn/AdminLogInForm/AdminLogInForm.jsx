@@ -3,14 +3,20 @@ import classes from "./AdminLogInform.module.css";
 import Button from "../../../UI/Button/Button";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const LogInForm = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [result, setResult] = useState("");
+  const {push} =useHistory();
   const onSubmit = (data) => {
     setResult(JSON.stringify(data));
     console.log(result);
+    push("/connexadmin/home")
   };
 
   return (
@@ -21,27 +27,37 @@ const LogInForm = (props) => {
           <div className={classes.control}>
             <label>Username</label>
             <input
-              {...register("Name")}
+              {...register("username", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Value Cannot Exceed 20 Characters ",
+                },
+              })}
               type="text"
               placeholder="Enter Your username"
-              required
             />
+            {errors.username && <p>{errors.username.message}</p>}
           </div>
 
           <div className={classes.control}>
             <label>Password</label>
             <input
-              {...register("Password")}
+              {...register("password", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Password Cannot Exceed 20 Characters ",
+                },
+              })}
               type="password"
               placeholder="Enter Password"
-              required
             />
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
         </div>
         <div className={classes.actions}>
-          <Link to="/connexadmin/home">
           <Button type="submit">Sign In</Button>
-          </Link>
         </div>
       </form>
       <h3 className={classes.pointer} onClick={props.onClick}>

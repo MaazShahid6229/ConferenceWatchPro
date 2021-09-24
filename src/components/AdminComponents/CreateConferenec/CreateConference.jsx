@@ -1,20 +1,70 @@
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
 import classes from "./CreateConference.module.css";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import DetailConference from "./DetailConference";
 
+const baseURL =
+  "https://18eb-116-90-122-10.ngrok.io/connex/conferenece/find_conference/";
+
 const CreateConference = (props) => {
-  const { register, handleSubmit } = useForm();
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState({});
+  const [error, setError] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const onSubmit = (data) => {
+    axios
+      .post(baseURL, {
+        dash_cid: data.ConferenceId,
+      })
+      .then((response) => {
+        setResult({
+          ConferenceId: data.ConferenceId,
+          Company: response.data.Conference.company_field,
+          Moderator: response.data.Conference.dash_moderator_name,
+          StartDate: response.data.Conference.start_date,
+          EndDate: response.data.Conference.end_date,
+          Series: response.data.Conference.series,
+          Branding: response.data.Conference.brand,
+          Password: response.data.Conference.password,
+          ConfirmPassword: response.data.Conference.password,
+        });
+      })
+      .catch((error) => {
+        setResult({
+          ConferenceId: data.ConferenceId,
+          Company: "",
+          Moderator: "",
+          StartDate: "",
+          EndDate: "",
+          Series: "",
+          Branding: "",
+          Password: "",
+          ConfirmPassword: "",
+        });
+        setError(error);
+        toast.error("No Record Found", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
     setShowForm(true);
-    setResult(JSON.stringify(data));
-    console.log(result);
   };
 
   return (
@@ -24,21 +74,42 @@ const CreateConference = (props) => {
         <div className={classes.control}>
           <label>Conference Id</label>
           <input
-            {...register("ConferenceId")}
+            {...register("ConferenceId", {
+              required: { value: true, message: "This Field is Required" },
+              maxLength: {
+                value: 20,
+                message: "Conference Id Cannot Exceed 20 Characters ",
+              },
+              pattern: {
+                value: /^[A-Za-z]+$/,
+                message: "Alphabetical Characters only",
+              },
+            })}
             type="text"
             placeholder="Enter Conference Id"
-            required
           />
+          {errors.ConferenceId && <p>{errors.ConferenceId.message}</p>}
         </div>
         <div className={classes.control}>
           <label>Date</label>
-          <input {...register("Date")} type="date" required />
+          <input {...register("Date")} type="date" />
         </div>
         <div className={classes.actions}>
-            <Button type="submit">Find Order</Button>
+          <Button type="submit">Find Order</Button>
         </div>
       </form>
-      {showForm && <DetailConference/>}
+      {showForm && <DetailConference defaultV={result} />}
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Card>
   );
 };

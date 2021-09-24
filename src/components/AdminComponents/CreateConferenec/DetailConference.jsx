@@ -1,12 +1,17 @@
-import classes from "./DetailConference.module.css";
-import Button from "../../UI/Button/Button";
-
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
+import axios from "axios";
+
+import classes from "./DetailConference.module.css";
+import Button from "../../UI/Button/Button";
+
+import BaseUrl from "../../BaseUrl";
+
+const baseURL = BaseUrl.url + "connex/branding/update_brand/";
 
 const DetailConference = (props) => {
-  // console.log(props.defaultV)
+  console.log(props.find);
   const {
     register,
     handleSubmit,
@@ -25,11 +30,21 @@ const DetailConference = (props) => {
     return yyyy + "-" + mm + "-" + dd;
   };
 
+  useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      console.log(response.data);
+    });
+  }, []);
+
   const Branding = brands.map((brand, index) => (
     <option key={index} value={brand}>
       {brand}
     </option>
   ));
+
+  const AddBrand = () => {
+    console.log("add");
+  };
 
   useEffect(() => {
     for (const key in props.defaultV) {
@@ -110,7 +125,7 @@ const DetailConference = (props) => {
             <input
               {...register("StartDate")}
               type="date"
-              min={disablePastDate()}
+              min={`${!props.find && disablePastDate()}`}
             />
           </div>
           <div className={classes.control}>
@@ -118,7 +133,7 @@ const DetailConference = (props) => {
             <input
               {...register("EndDate")}
               type="date"
-              min={disablePastDate()}
+              min={`${!props.find && disablePastDate()}`}
             />
           </div>
 
@@ -133,13 +148,15 @@ const DetailConference = (props) => {
             />
           </div>
         </div>
-        <div className={classes.controls2}>
+        <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor="Branding">Branding</label>
-            <select {...register("Branding")} name="Branding">
-              <option value="None">None</option>
+            <select name="Branding" {...register("Branding")}>
+              <option value="" disabled>
+                Chose Brand
+              </option>
               {Branding}
-              <option value="audi">Add New</option>
+              {/* <option value="" onClick={AddBrand}>Add New</option> */}
             </select>
           </div>
           <div className={classes.control}>

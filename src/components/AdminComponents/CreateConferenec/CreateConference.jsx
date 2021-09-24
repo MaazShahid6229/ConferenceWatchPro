@@ -1,6 +1,7 @@
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
 import classes from "./CreateConference.module.css";
+import BaseUrl from "../../BaseUrl";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,12 +10,11 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import DetailConference from "./DetailConference";
 
-const baseURL =
-  "https://18eb-116-90-122-10.ngrok.io/connex/conferenece/find_conference/";
+const baseURL = BaseUrl.url + "connex/conferenece/find_conference/";
 
 const CreateConference = (props) => {
   const [result, setResult] = useState({});
-  const [error, setError] = useState(false);
+  const [find, setFind] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   const {
@@ -40,6 +40,7 @@ const CreateConference = (props) => {
           Password: response.data.Conference.password,
           ConfirmPassword: response.data.Conference.password,
         });
+        setFind(true);
       })
       .catch((error) => {
         setResult({
@@ -53,7 +54,7 @@ const CreateConference = (props) => {
           Password: "",
           ConfirmPassword: "",
         });
-        setError(error);
+        setFind(false);
         toast.error("No Record Found", {
           position: "top-right",
           autoClose: 5000,
@@ -81,8 +82,8 @@ const CreateConference = (props) => {
                 message: "Conference Id Cannot Exceed 20 Characters ",
               },
               pattern: {
-                value: /^[A-Za-z]+$/,
-                message: "Alphabetical Characters only",
+                value: /^[a-z0-9]+$/,
+                message: "Small Alphabetical and Numbers Characters only",
               },
             })}
             type="text"
@@ -98,7 +99,7 @@ const CreateConference = (props) => {
           <Button type="submit">Find Order</Button>
         </div>
       </form>
-      {showForm && <DetailConference defaultV={result} />}
+      {showForm && <DetailConference defaultV={result} find={find} />}
       <ToastContainer
         position="top-left"
         autoClose={5000}

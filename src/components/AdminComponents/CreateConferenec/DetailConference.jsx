@@ -2,6 +2,10 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
@@ -9,9 +13,9 @@ import Button from "../../UI/Button/Button";
 import BaseUrl from "../../BaseUrl";
 
 const baseURL = BaseUrl.url + "connex/branding/update_brand/";
+const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 
 const DetailConference = (props) => {
-  console.log(props.find);
   const {
     register,
     handleSubmit,
@@ -19,8 +23,8 @@ const DetailConference = (props) => {
     formState: { errors },
   } = useForm();
 
-  const [result, setResult] = useState("");
-  const brands = ["maaz", "ali", "ahmed"];
+  const [brand, setBrand] = useState([]);
+  const { push } = useHistory();
 
   const disablePastDate = () => {
     const today = new Date();
@@ -32,19 +36,20 @@ const DetailConference = (props) => {
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {
-      console.log(response.data);
+      const obj = response.data["All Brand"];
+      let brands = [];
+      for (const i in obj) {
+        brands.push(obj[i]);
+      }
+      setBrand(brands);
     });
-  }, []);
+  }, [props.defaultV]);
 
-  const Branding = brands.map((brand, index) => (
-    <option key={index} value={brand}>
-      {brand}
+  const Branding = brand.map((brand, index) => (
+    <option key={index} value={brand.id}>
+      {brand.text}
     </option>
   ));
-
-  const AddBrand = () => {
-    console.log("add");
-  };
 
   useEffect(() => {
     for (const key in props.defaultV) {
@@ -52,9 +57,37 @@ const DetailConference = (props) => {
     }
   }, [props.defaultV]);
 
+  const AddBrand = () => {
+    console.log("Add Brand");
+  };
+
   const onSubmit = (data) => {
-    setResult(JSON.stringify(data));
-    console.log(data);
+    if (!props.find) {
+      axios
+        .post(baseURL1, {
+          dash_cid: data.ConferenceId,
+          dash_company_name: data.Company,
+          dash_moderator_name: data.Moderator,
+          start_date: data.StartDate,
+          end_date: data.EndDate,
+          series: data.Series,
+          brand: data.Branding,
+          password: data.Password,
+          email_addresses: [],
+        })
+        .then((response) => {
+          toast.success(response.data.Message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          push("/connexadmin/create");
+        });
+    }
   };
 
   return (
@@ -156,7 +189,9 @@ const DetailConference = (props) => {
                 Chose Brand
               </option>
               {Branding}
-              {/* <option value="" onClick={AddBrand}>Add New</option> */}
+              {/* <option>
+                <div onClick={AddBrand}>Add New</div>
+              </option> */}
             </select>
           </div>
           <div className={classes.control}>
@@ -223,6 +258,17 @@ const DetailConference = (props) => {
           <Button type="submit">Submit</Button>
         </div>
       </form>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Fragment>
   );
 };

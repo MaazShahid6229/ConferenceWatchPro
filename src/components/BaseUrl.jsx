@@ -1,4 +1,4 @@
 const BaseUrl = {
-  url: "https://9a96-116-90-122-10.ngrok.io/",
+  url: "http://127.0.0.1:8000/",
 };
 export default BaseUrl;

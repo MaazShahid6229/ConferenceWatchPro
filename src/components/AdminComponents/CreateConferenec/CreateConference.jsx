@@ -23,6 +23,10 @@ const CreateConference = (props) => {
     formState: { errors },
   } = useForm();
 
+  const hideFom = () => {
+    setShowForm(false);
+  };
+
   const onSubmit = (data) => {
     axios
       .post(baseURL, {
@@ -31,7 +35,7 @@ const CreateConference = (props) => {
       .then((response) => {
         setResult({
           ConferenceId: data.ConferenceId,
-          Company: response.data.Conference.company_field,
+          Company: response.data.Conference.dash_company_name,
           Moderator: response.data.Conference.dash_moderator_name,
           StartDate: response.data.Conference.start_date,
           EndDate: response.data.Conference.end_date,
@@ -99,7 +103,9 @@ const CreateConference = (props) => {
           <Button type="submit">Find Order</Button>
         </div>
       </form>
-      {showForm && <DetailConference defaultV={result} find={find} />}
+      {showForm && (
+        <DetailConference defaultV={result} find={find} onSubmit={hideFom} />
+      )}
       <ToastContainer
         position="top-left"
         autoClose={5000}

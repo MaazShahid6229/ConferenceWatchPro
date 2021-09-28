@@ -14,8 +14,10 @@ import BaseUrl from "../../BaseUrl";
 
 const baseURL = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
+const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
+  console.log(props.defaultV.id)
   const {
     register,
     handleSubmit,
@@ -76,16 +78,25 @@ const DetailConference = (props) => {
           email_addresses: [],
         })
         .then((response) => {
-          toast.success(response.data.Message, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          push("/connexadmin/create");
+          push("/connexadmin/home");
+        });
+    } 
+    else {
+      axios
+        .put(baseURL2, {
+          conference_id:props.defaultV.id,
+          dash_cid: data.ConferenceId,
+          dash_company_name: data.Company,
+          dash_moderator_name: data.Moderator,
+          start_date: data.StartDate,
+          end_date: data.EndDate,
+          series: data.Series,
+          brand: data.Branding,
+          password: data.Password,
+          email_addresses: [],
+        })
+        .then((response) => {
+          push("/connexadmin/home");
         });
     }
   };

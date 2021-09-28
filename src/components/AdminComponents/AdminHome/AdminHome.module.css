@@ -1,0 +1,9 @@
+.CardDataTable {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 90rem;
+  margin: 1rem auto;
+  padding: 2rem;
+}

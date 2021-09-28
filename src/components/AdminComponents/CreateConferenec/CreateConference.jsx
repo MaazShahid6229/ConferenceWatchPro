@@ -34,6 +34,7 @@ const CreateConference = (props) => {
       })
       .then((response) => {
         setResult({
+          id:response.data.Conference.id,
           ConferenceId: data.ConferenceId,
           Company: response.data.Conference.dash_company_name,
           Moderator: response.data.Conference.dash_moderator_name,

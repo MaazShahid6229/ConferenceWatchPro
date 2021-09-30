@@ -64,8 +64,15 @@
     flex-direction: column;
     align-content: flex-start;
 }
-
-.actions {
-  align-self: flex-end;
+.action{
+  margin: 4px;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
 }
+.action:hover{
+  background-color: #4CAF50;
+  color: white;
+}
+
 

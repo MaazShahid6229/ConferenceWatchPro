@@ -4,7 +4,7 @@ import { Fragment } from "react/cjs/react.production.min";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import classes from "./DetailConference.module.css";
@@ -12,12 +12,11 @@ import Button from "../../UI/Button/Button";
 
 import BaseUrl from "../../BaseUrl";
 
-const baseURL = BaseUrl.url + "connex/branding/update_brand/";
+const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
-  console.log(props.defaultV.id)
   const {
     register,
     handleSubmit,
@@ -37,7 +36,7 @@ const DetailConference = (props) => {
   };
 
   useEffect(() => {
-    axios.get(baseURL).then((response) => {
+    axios.get(all_brands).then((response) => {
       const obj = response.data["All Brand"];
       let brands = [];
       for (const i in obj) {
@@ -57,11 +56,7 @@ const DetailConference = (props) => {
     for (const key in props.defaultV) {
       setValue(key, props.defaultV[key]);
     }
-  }, [props.defaultV]);
-
-  const AddBrand = () => {
-    console.log("Add Brand");
-  };
+  }, [props.defaultV],setValue);
 
   const onSubmit = (data) => {
     if (!props.find) {
@@ -200,9 +195,6 @@ const DetailConference = (props) => {
                 Chose Brand
               </option>
               {Branding}
-              {/* <option>
-                <div onClick={AddBrand}>Add New</div>
-              </option> */}
             </select>
           </div>
           <div className={classes.control}>
@@ -266,20 +258,9 @@ const DetailConference = (props) => {
           </div>
         </div>
         <div className={classes.section2}>
-          <Button type="submit">Submit</Button>
+          <Button className={classes.action} type="submit">Submit</Button>
         </div>
       </form>
-      <ToastContainer
-        position="top-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </Fragment>
   );
 };

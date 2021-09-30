@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import DetailConference from "./DetailConference";
 
-const baseURL = BaseUrl.url + "connex/conferenece/find_conference/";
+const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 
 const CreateConference = (props) => {
   const [result, setResult] = useState({});
@@ -29,7 +29,7 @@ const CreateConference = (props) => {
 
   const onSubmit = (data) => {
     axios
-      .post(baseURL, {
+      .post(find_conference, {
         dash_cid: data.ConferenceId,
       })
       .then((response) => {
@@ -101,11 +101,11 @@ const CreateConference = (props) => {
           <input {...register("Date")} type="date" />
         </div>
         <div className={classes.actions}>
-          <Button type="submit">Find Order</Button>
+          <Button className={classes.action} type="submit">Find Order</Button>
         </div>
       </form>
       {showForm && (
-        <DetailConference defaultV={result} find={find} onSubmit={hideFom} />
+        <DetailConference defaultV={result} find={find} />
       )}
       <ToastContainer
         position="top-left"

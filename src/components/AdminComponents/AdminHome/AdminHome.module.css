@@ -7,3 +7,18 @@
   margin: 1rem auto;
   padding: 2rem;
 }
+.iconDiv{
+  margin: 4px 4px;
+
+
+}
+.deleteIcon{
+  cursor: pointer;
+  width: 30px;
+  margin-right: 2px;
+}
+.editIcon{
+  cursor: pointer;
+  width: 30px;
+  margin-left: 2px;
+}

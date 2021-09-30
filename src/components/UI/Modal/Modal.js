@@ -8,7 +8,7 @@ const BackDrop = (props) => {
 
 const ModalOverLay = (props) => {
   return (
-    <div className={classes.modal}>
+    <div className={`${props.className ?classes.UpdateModal :classes.modal}`}>
       <div className={classes.content}>{props.children}</div>
     </div>
   );
@@ -20,7 +20,7 @@ const Modal = (props) => {
     <Fragment>
       {ReactDOM.createPortal(<BackDrop onClick={props.onClick}></BackDrop>, portalElement)}
       {ReactDOM.createPortal(
-        <ModalOverLay>{props.children}</ModalOverLay>,
+        <ModalOverLay className={props.className}>{props.children}</ModalOverLay>,
         portalElement
       )}
     </Fragment>

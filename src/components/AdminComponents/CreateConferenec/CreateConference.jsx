@@ -22,10 +22,10 @@ const CreateConference = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const hideFom = () => {
-    setShowForm(false);
-  };
+  
+  const closeHandle = () =>{
+    setShowForm(false)
+  }
 
   const onSubmit = (data) => {
     axios
@@ -105,7 +105,7 @@ const CreateConference = (props) => {
         </div>
       </form>
       {showForm && (
-        <DetailConference defaultV={result} find={find} />
+        <DetailConference defaultV={result} find={find} closeHandle={closeHandle} />
       )}
       <ToastContainer
         position="top-left"

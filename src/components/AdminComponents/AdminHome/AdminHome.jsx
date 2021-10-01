@@ -33,6 +33,7 @@ const AdminHome = (props) => {
       cid: state.target.attributes.cid.nodeValue,
     });
   };
+
   const handleUpdateButton = (state) => {
     setUpdatePopUp(true);
     console.log(state.target);
@@ -57,11 +58,6 @@ const AdminHome = (props) => {
     setDeletePopUp(false);
   };
 
-  const updateHandle = () => {
-    setUpdatePopUp(false);
-    console.log("Update");
-  };
-
   const closeHandle = () => {
     setUpdatePopUp(false);
   };
@@ -83,9 +79,9 @@ const AdminHome = (props) => {
           Password: obj[i].password,
         });
       }
-      setData(data);
+      setData(data1);
     });
-  }, [page, deletePopUp]);
+  }, [page, deletePopUp, all_conferences]);
 
   const columns = [
     {
@@ -169,13 +165,9 @@ const AdminHome = (props) => {
           value={deleteObj.cid}
         />
       )}
-      {/* {updatePopUp && (
-        <UpdatePopUp
-          updateHandle={updateHandle}
-          closeHandle={closeHandle}
-          value={updateObj.cid}
-        />
-      )} */}
+      {updatePopUp && (
+        <UpdatePopUp closeHandle={closeHandle} value={updateObj.cid} />
+      )}
     </Fragment>
   );
 };

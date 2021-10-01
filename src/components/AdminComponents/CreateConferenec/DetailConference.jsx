@@ -3,20 +3,27 @@ import { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@material-ui/core/IconButton";
 
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
+import closeIcon from "../../../assets/close.png";
 
 import BaseUrl from "../../BaseUrl";
+import { generate } from "generate-password";
 
 const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
+  console.log(props.closeHandle);
   const {
     register,
     handleSubmit,
@@ -25,6 +32,7 @@ const DetailConference = (props) => {
   } = useForm();
 
   const [brand, setBrand] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
   const { push } = useHistory();
 
   const disablePastDate = () => {
@@ -56,7 +64,24 @@ const DetailConference = (props) => {
     for (const key in props.defaultV) {
       setValue(key, props.defaultV[key]);
     }
-  }, [props.defaultV],setValue);
+  }, [props.defaultV, setValue]);
+  const generatePassword = () => {
+    var generator = require("generate-password");
+
+    var password = generator.generate({
+      length: 10,
+      numbers: true,
+      symbols: true,
+      lowercase: true,
+      uppercase: true,
+    });
+    setValue("Password", password);
+  };
+
+  const handleClickShowPassword=()=>{
+    setShowPassword(!showPassword);
+
+  }
 
   const onSubmit = (data) => {
     if (!props.find) {
@@ -75,11 +100,10 @@ const DetailConference = (props) => {
         .then((response) => {
           push("/connexadmin/home");
         });
-    } 
-    else {
+    } else {
       axios
         .put(baseURL2, {
-          conference_id:props.defaultV.id,
+          conference_id: props.defaultV.id,
           dash_cid: data.ConferenceId,
           dash_company_name: data.Company,
           dash_moderator_name: data.Moderator,
@@ -91,6 +115,7 @@ const DetailConference = (props) => {
           email_addresses: [],
         })
         .then((response) => {
+          push("/connexadmin/create");
           push("/connexadmin/home");
         });
     }
@@ -99,7 +124,16 @@ const DetailConference = (props) => {
   return (
     <Fragment>
       <br />
-      <hr></hr>
+      {props.popUp && (
+        <div className={classes.divCloseIcon}>
+          <img
+            onClick={props.closeHandle}
+            className={classes.closeIcon}
+            src={closeIcon}
+            alt="Close Icon"
+          />
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form}>
         <div className={classes.controls}>
           <div className={classes.control}>
@@ -203,29 +237,34 @@ const DetailConference = (props) => {
               {...register("Password", {
                 required: { value: true, message: "This Field is Required" },
                 maxLength: {
-                  value: 20,
-                  message: "Password Cannot Exceed 20 Characters ",
+                  value: 15,
+                  message: "Password Cannot Exceed 15 Characters ",
+                },
+                pattern: {
+                  value:
+                    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
+                  message: "Password Format A-Z,a-z,0-9,@#$",
                 },
               })}
-              type="password"
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton onClick={handleClickShowPassword}>
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
               placeholder="Enter Password"
             />
             {errors.Password && <p>{errors.Password.message}</p>}
           </div>
           <div className={classes.control}>
-            <label>Confirm Password</label>
-            <input
-              {...register("ConfirmPassword", {
-                required: { value: true, message: "This Field is Required" },
-                maxLength: {
-                  value: 20,
-                  message: "Password Cannot Exceed 20 Characters ",
-                },
-              })}
-              type="password"
-              placeholder="Enter Again Password"
-            />
-            {errors.ConfirmPassword && <p>{errors.ConfirmPassword.message}</p>}
+            <Button
+              className={classes.generatePassword}
+              onClick={generatePassword}
+            >
+              Generate
+            </Button>
           </div>
         </div>
         <div className={classes.controls3}>
@@ -258,7 +297,16 @@ const DetailConference = (props) => {
           </div>
         </div>
         <div className={classes.section2}>
-          <Button className={classes.action} type="submit">Submit</Button>
+          <Button
+            onClick={props.closeHandle}
+            className={classes.action_close}
+            type="button"
+          >
+            Close
+          </Button>
+          <Button className={classes.action} type="submit">
+            Submit
+          </Button>
         </div>
       </form>
     </Fragment>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../../UI/Modal/Modal";
-import Button from "../../UI/Button/Button";
 import DetailConference from "../CreateConferenec/DetailConference";
 import axios from "axios";
 import BaseUrl from "../../BaseUrl";
@@ -8,9 +7,10 @@ import BaseUrl from "../../BaseUrl";
 const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 
 const DeletePopUp = (props) => {
-  console.log("Delete Pop");
+  console.log("UpdatePopUp")
   const [result, setResult] = useState({});
   const find = true;
+  
   useEffect(() => {
     axios
       .post(find_conference, {
@@ -30,11 +30,11 @@ const DeletePopUp = (props) => {
           ConfirmPassword: response.data.Conference.password,
         });
       });
-  });
+  },[props.value]);
 
   return (
     <Modal className="classes.UpdateModal">
-      <DetailConference defaultV={result} find={find} />
+      <DetailConference defaultV={result} find={find} closeHandle={props.closeHandle} popUp="true"/>
     </Modal>
   );
 };

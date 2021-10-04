@@ -4,9 +4,8 @@ import { Fragment } from "react/cjs/react.production.min";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Visibility from "@material-ui/icons/Visibility";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import IconButton from "@material-ui/core/IconButton";
+import IconButton from "@mui/material/IconButton";
 
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,16 +13,13 @@ import "react-toastify/dist/ReactToastify.css";
 import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
 import closeIcon from "../../../assets/close.png";
-
 import BaseUrl from "../../BaseUrl";
-import { generate } from "generate-password";
 
 const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
-  console.log(props.closeHandle);
   const {
     register,
     handleSubmit,
@@ -74,15 +70,19 @@ const DetailConference = (props) => {
       symbols: true,
       lowercase: true,
       uppercase: true,
+      strict: true,
     });
     setValue("Password", password);
+    setShowPassword(true);
   };
 
-  const handleClickShowPassword=()=>{
+  const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
+  };
 
-  }
-
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const onSubmit = (data) => {
     if (!props.find) {
       axios
@@ -233,6 +233,14 @@ const DetailConference = (props) => {
           </div>
           <div className={classes.control}>
             <label>Password</label>
+            <i className={classes.passwordIcon}>
+              <IconButton
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </i>
             <input
               {...register("Password", {
                 required: { value: true, message: "This Field is Required" },
@@ -247,17 +255,11 @@ const DetailConference = (props) => {
                 },
               })}
               type={showPassword ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton onClick={handleClickShowPassword}>
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
               placeholder="Enter Password"
             />
             {errors.Password && <p>{errors.Password.message}</p>}
           </div>
+          {/* <IconButton/> */}
           <div className={classes.control}>
             <Button
               className={classes.generatePassword}

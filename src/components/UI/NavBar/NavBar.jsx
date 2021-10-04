@@ -18,18 +18,18 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName={classes.active} to="/Hello">
+            <NavLink activeClassName={classes.active} to="/connexadmin/search">
               Search
             </NavLink>
           </li>
 
           <li>
-            <NavLink activeClassName={classes.active} to="/products">
+            <NavLink activeClassName={classes.active} to="/connexadmin/branding">
               Branding
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName={classes.active} to="/products">
+            <NavLink to="/connexadmin">
               Logout
             </NavLink>
           </li>

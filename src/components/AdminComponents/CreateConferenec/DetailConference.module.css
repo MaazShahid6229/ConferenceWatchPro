@@ -109,3 +109,7 @@ select {
 p {
   color: red;
 }
+.passwordIcon{
+  position: absolute;
+  margin-left: 280px;
+}

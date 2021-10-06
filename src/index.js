@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Index from "./routes/index";
+import Route from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
      <BrowserRouter>
-      <Index />
+      <Route />
     </BrowserRouter>,
   document.getElementById("root")
 );

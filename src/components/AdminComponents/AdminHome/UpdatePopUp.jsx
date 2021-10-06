@@ -6,8 +6,7 @@ import BaseUrl from "../../BaseUrl";
 
 const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 
-const DeletePopUp = (props) => {
-  console.log("UpdatePopUp")
+const UpdatePopUp = (props) => {
   const [result, setResult] = useState({});
   const find = true;
   
@@ -39,4 +38,4 @@ const DeletePopUp = (props) => {
   );
 };
 
-export default DeletePopUp;
+export default UpdatePopUp;

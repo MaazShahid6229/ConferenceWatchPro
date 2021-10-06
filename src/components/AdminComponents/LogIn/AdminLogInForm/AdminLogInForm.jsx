@@ -2,7 +2,6 @@ import Card from "../../../UI/Card/Card";
 import classes from "./AdminLogInform.module.css";
 import Button from "../../../UI/Button/Button";
 import { useForm } from "react-hook-form";
-import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 const LogInForm = (props) => {
@@ -15,7 +14,7 @@ const LogInForm = (props) => {
   const { push } = useHistory();
 
   const onSubmit = (data) => {
-    if (data.username == "fusiondev" && data.password == "123") {
+    if (data.username === "fusiondev" && data.password === "123") {
       push("/connexadmin/home");
     }
   };

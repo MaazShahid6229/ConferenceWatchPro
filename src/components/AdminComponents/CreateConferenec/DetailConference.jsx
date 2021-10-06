@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -14,12 +14,15 @@ import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
 import closeIcon from "../../../assets/close.png";
 import BaseUrl from "../../BaseUrl";
+import {closePopUpContext} from "../../Context/ClosePopUpContext";
 
 const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
+  const {setUpdatePopUp} = useContext(closePopUpContext);
+
   const {
     register,
     handleSubmit,
@@ -55,6 +58,10 @@ const DetailConference = (props) => {
       {brand.text}
     </option>
   ));
+
+  const AddBrand = () => {
+    console.log("Add Brand");
+  };
 
   useEffect(() => {
     for (const key in props.defaultV) {
@@ -115,8 +122,7 @@ const DetailConference = (props) => {
           email_addresses: [],
         })
         .then((response) => {
-          push("/connexadmin/create");
-          push("/connexadmin/home");
+          setUpdatePopUp(false)
         });
     }
   };
@@ -229,6 +235,10 @@ const DetailConference = (props) => {
                 Chose Brand
               </option>
               {Branding}
+              <option onChange={AddBrand}>Add New</option>
+              {/* <button onClick={AddBrand}>
+                <option value="">Add New</option>
+              </button> */}
             </select>
           </div>
           <div className={classes.control}>

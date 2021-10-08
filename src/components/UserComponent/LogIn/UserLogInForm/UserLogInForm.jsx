@@ -9,7 +9,6 @@ const LogInForm = (props) => {
   const [result, setResult] = useState("");
   const onSubmit = (data) => {
     setResult(JSON.stringify(data));
-    console.log(result);
   };
 
   return (

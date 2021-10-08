@@ -5,10 +5,11 @@ import Home from "../views/AdminViews/Home";
 import Create from "../views/AdminViews/Create";
 import Search from "../views/AdminViews/Search";
 import Branding from "../views/AdminViews/Branding";
+// import PageNotFound from "../views/AdminViews/PgaeNotFound";
 import PrivateRoute from "./PrivateRoute";
 
 import { useState } from "react";
-import {closePopUpContext} from "../components/Context/ClosePopUpContext"
+import { closePopUpContext } from "../components/Context/ClosePopUpContext";
 
 const Routes = () => {
   const [updatePopUp, setUpdatePopUp] = useState(false);
@@ -20,7 +21,9 @@ const Routes = () => {
           value={{ updatePopUp, deletePopUp, setUpdatePopUp, setDeletePopUp }}
         >
           <Route path="/" component={UserLogin} exact />
+
           <Route path="/connexadmin" component={AdminLogIn} exact />
+
           <PrivateRoute path="/connexadmin/home" exact>
             <Home />
           </PrivateRoute>

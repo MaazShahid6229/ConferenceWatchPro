@@ -42,10 +42,17 @@ const CreateConference = (props) => {
   };
 
   useEffect(() => {
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+
+    var data = { dash_cid: result.ConferenceId };
+
     if (Object.entries(result).length !== 0) {
       axios
-        .post(search_conferences, {
-          dash_cid: result.ConferenceId,
+        .post(search_conferences, data, {
+          headers: {
+            Authorization: `jwt ${token}`,
+          },
         })
         .then((response) => {
           const obj = response.data["All Conference"];
@@ -66,8 +73,7 @@ const CreateConference = (props) => {
           if (data1.length !== 0) {
             setData(data1);
             setShowForm(true);
-          } 
-          else {
+          } else {
             setData([]);
             setShowForm(false);
             toast.error("No Record Found", {

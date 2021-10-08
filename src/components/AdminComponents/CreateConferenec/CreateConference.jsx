@@ -22,19 +22,26 @@ const CreateConference = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
-  const closeHandle = () =>{
-    setShowForm(false)
-  }
+
+  const closeHandle = () => {
+    setShowForm(false);
+  };
 
   const onSubmit = (data) => {
+    var data1 = {
+      dash_cid: data.ConferenceId,
+    };
+
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+
     axios
-      .post(find_conference, {
-        dash_cid: data.ConferenceId,
+      .post(find_conference, data1, {
+        headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
         setResult({
-          id:response.data.Conference.id,
+          id: response.data.Conference.id,
           ConferenceId: data.ConferenceId,
           Company: response.data.Conference.dash_company_name,
           Moderator: response.data.Conference.dash_moderator_name,
@@ -101,11 +108,17 @@ const CreateConference = (props) => {
           <input {...register("Date")} type="date" />
         </div>
         <div className={classes.actions}>
-          <Button className={classes.action} type="submit">Find Order</Button>
+          <Button className={classes.action} type="submit">
+            Find Order
+          </Button>
         </div>
       </form>
       {showForm && (
-        <DetailConference defaultV={result} find={find} closeHandle={closeHandle} />
+        <DetailConference
+          defaultV={result}
+          find={find}
+          closeHandle={closeHandle}
+        />
       )}
       <ToastContainer
         position="top-left"

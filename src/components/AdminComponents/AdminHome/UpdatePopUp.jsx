@@ -9,11 +9,16 @@ const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 const UpdatePopUp = (props) => {
   const [result, setResult] = useState({});
   const find = true;
-  
+
   useEffect(() => {
+    var data1 = {
+      dash_cid: props.value,
+    };
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
     axios
-      .post(find_conference, {
-        dash_cid: props.value,
+      .post(find_conference, data1, {
+        headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
         setResult({
@@ -29,11 +34,16 @@ const UpdatePopUp = (props) => {
           ConfirmPassword: response.data.Conference.password,
         });
       });
-  },[props.value]);
+  }, [props.value]);
 
   return (
     <Modal className="classes.UpdateModal">
-      <DetailConference defaultV={result} find={find} closeHandle={props.closeHandle} popUp="true"/>
+      <DetailConference
+        defaultV={result}
+        find={find}
+        closeHandle={props.closeHandle}
+        popUp="true"
+      />
     </Modal>
   );
 };

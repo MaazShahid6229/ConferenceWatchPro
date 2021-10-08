@@ -14,14 +14,14 @@ import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
 import closeIcon from "../../../assets/close.png";
 import BaseUrl from "../../BaseUrl";
-import {closePopUpContext} from "../../Context/ClosePopUpContext";
+import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
 const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
-  const {setUpdatePopUp} = useContext(closePopUpContext);
+  const { setUpdatePopUp } = useContext(closePopUpContext);
 
   const {
     register,
@@ -43,14 +43,19 @@ const DetailConference = (props) => {
   };
 
   useEffect(() => {
-    axios.get(all_brands).then((response) => {
-      const obj = response.data["All Brand"];
-      let brands = [];
-      for (const i in obj) {
-        brands.push(obj[i]);
-      }
-      setBrand(brands);
-    });
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+
+    axios
+      .get(all_brands, { headers: { Authorization: `jwt ${token}` } })
+      .then((response) => {
+        const obj = response.data["All Brand"];
+        let brands = [];
+        for (const i in obj) {
+          brands.push(obj[i]);
+        }
+        setBrand(brands);
+      });
   }, [props.defaultV]);
 
   const Branding = brand.map((brand, index) => (
@@ -60,7 +65,7 @@ const DetailConference = (props) => {
   ));
 
   const AddBrand = () => {
-    console.log("Add Brand");
+    // console.log("Add Brand");
   };
 
   useEffect(() => {
@@ -91,38 +96,49 @@ const DetailConference = (props) => {
     event.preventDefault();
   };
   const onSubmit = (data) => {
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+
     if (!props.find) {
+      var data1 = {
+        dash_cid: data.ConferenceId,
+        dash_company_name: data.Company,
+        dash_moderator_name: data.Moderator,
+        start_date: data.StartDate,
+        end_date: data.EndDate,
+        series: data.Series,
+        brand: data.Branding,
+        password: data.Password,
+        email_addresses: [],
+      };
       axios
-        .post(baseURL1, {
-          dash_cid: data.ConferenceId,
-          dash_company_name: data.Company,
-          dash_moderator_name: data.Moderator,
-          start_date: data.StartDate,
-          end_date: data.EndDate,
-          series: data.Series,
-          brand: data.Branding,
-          password: data.Password,
-          email_addresses: [],
+        .post(baseURL1, data1, {
+          headers: {
+            Authorization: `jwt ${token}`,
+          },
         })
         .then((response) => {
           push("/connexadmin/home");
         });
     } else {
+      var data2 = {
+        conference_id: props.defaultV.id,
+        dash_cid: data.ConferenceId,
+        dash_company_name: data.Company,
+        dash_moderator_name: data.Moderator,
+        start_date: data.StartDate,
+        end_date: data.EndDate,
+        series: data.Series,
+        brand: data.Branding,
+        password: data.Password,
+        email_addresses: [],
+      };
       axios
-        .put(baseURL2, {
-          conference_id: props.defaultV.id,
-          dash_cid: data.ConferenceId,
-          dash_company_name: data.Company,
-          dash_moderator_name: data.Moderator,
-          start_date: data.StartDate,
-          end_date: data.EndDate,
-          series: data.Series,
-          brand: data.Branding,
-          password: data.Password,
-          email_addresses: [],
+        .put(baseURL2, data2, {
+          headers: { Authorization: `jwt ${token}` },
         })
         .then((response) => {
-          setUpdatePopUp(false)
+          setUpdatePopUp(false);
         });
     }
   };

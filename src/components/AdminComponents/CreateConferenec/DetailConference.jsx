@@ -139,6 +139,7 @@ const DetailConference = (props) => {
         })
         .then((response) => {
           setUpdatePopUp(false);
+          push("/connexadmin/home");
         });
     }
   };

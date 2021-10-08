@@ -1,7 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const isAuth = true;
+  let store = JSON.parse(localStorage.getItem("login"));
+  let isAuth = store?.Token && true;
   return (
     <Route
       {...rest}
@@ -10,3 +11,5 @@ const PrivateRoute = ({ children, ...rest }) => {
   );
 };
 export default PrivateRoute;
+
+// intersepter

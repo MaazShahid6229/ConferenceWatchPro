@@ -14,7 +14,7 @@ import { closePopUpContext } from "../../Context/ClosePopUpContext";
 const AdminHome = (props) => {
   const { deletePopUp, setDeletePopUp, updatePopUp, setUpdatePopUp } =
     useContext(closePopUpContext);
-  
+
   const [deleteObj, setDeleteObj] = useState({});
   const [updateObj, setUpdateObj] = useState({});
 
@@ -38,9 +38,14 @@ const AdminHome = (props) => {
   };
 
   const handleDeleteYes = () => {
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+    var data1 = {
+      conference_id: deleteObj.id,
+    };
     axios
-      .put(delete_conference, {
-        conference_id: deleteObj.id,
+      .put(delete_conference, data1, {
+        headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {});
     setDeletePopUp(false);

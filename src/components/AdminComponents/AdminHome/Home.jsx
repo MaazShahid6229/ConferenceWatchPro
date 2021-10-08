@@ -17,25 +17,29 @@ const Home = (props) => {
     `connex/conferenece/create_conference/?page=${page}&per_page=${countPerPage}&delay=1`;
 
   useEffect(() => {
-    axios.get(all_conferences).then((response) => {
-      const obj = response.data["All Conference"];
-      let data1 = [];
-      for (const i in obj) {
-        data1.push({
-          ID: obj[i].id,
-          CID: obj[i].dash_cid,
-          Company: obj[i].dash_company_name,
-          Moderator: obj[i].dash_moderator_name,
-          Brand: obj[i].brand,
-          StartDate: obj[i].start_date,
-          EndDate: obj[i].end_date,
-          Series: obj[i].series,
-          Password: obj[i].password,
-        });
-      }
-      setData(data1);
-    });
-  }, [page, all_conferences, updatePopUp,deletePopUp]);
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+    axios
+      .get(all_conferences, { headers: { Authorization: `jwt ${token}` } })
+      .then((response) => {
+        const obj = response.data["All Conference"];
+        let data1 = [];
+        for (const i in obj) {
+          data1.push({
+            ID: obj[i].id,
+            CID: obj[i].dash_cid,
+            Company: obj[i].dash_company_name,
+            Moderator: obj[i].dash_moderator_name,
+            Brand: obj[i].brand,
+            StartDate: obj[i].start_date,
+            EndDate: obj[i].end_date,
+            Series: obj[i].series,
+            Password: obj[i].password,
+          });
+        }
+        setData(data1);
+      });
+  }, [page, all_conferences, updatePopUp, deletePopUp]);
 
   const handlePageChange = (p) => {
     setPage(p);

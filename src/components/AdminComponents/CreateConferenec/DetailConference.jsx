@@ -96,10 +96,15 @@ const DetailConference = (props) => {
     event.preventDefault();
   };
   const onSubmit = (data) => {
+    console.log(data)
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
     if (!props.find) {
+      var a= []
+      a.push(data.Email1)
+      a.push(data.Email2)
+      a.push(data.Email3)
       var data1 = {
         dash_cid: data.ConferenceId,
         dash_company_name: data.Company,
@@ -109,7 +114,7 @@ const DetailConference = (props) => {
         series: data.Series,
         brand: data.Branding,
         password: data.Password,
-        email_addresses: [],
+        email_addresses: a,
       };
       axios
         .post(baseURL1, data1, {
@@ -139,6 +144,7 @@ const DetailConference = (props) => {
         })
         .then((response) => {
           setUpdatePopUp(false);
+          push("/connexadmin/home");
         });
     }
   };
@@ -297,30 +303,30 @@ const DetailConference = (props) => {
         </div>
         <div className={classes.controls3}>
           <div className={classes.control}>
-            <label htmlFor="email1">Email 1</label>
+            <label htmlFor="Email1">Email 1</label>
             <input
               {...register("Email1")}
               type="email"
               placeholder="Enter First Participant Email"
-              name="email1"
+              name="Email1"
             />
           </div>
           <div className={classes.control}>
-            <label htmlFor="email2">Email 2</label>
+            <label htmlFor="Email2">Email 2</label>
             <input
               {...register("Email2")}
               type="email2"
               placeholder="Enter Second Participant Email"
-              name="email2"
+              name="Email2"
             />
           </div>
           <div className={classes.control}>
-            <label htmlFor="email3">Email 3</label>
+            <label htmlFor="Email3">Email 3</label>
             <input
               {...register("Email3")}
               type="email"
               placeholder="Enter Third Participant Email"
-              name="email3"
+              name="Email3"
             />
           </div>
         </div>

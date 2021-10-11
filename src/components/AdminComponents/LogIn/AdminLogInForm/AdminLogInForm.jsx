@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 import Card from "../../../UI/Card/Card";
 import classes from "./AdminLogInform.module.css";
@@ -13,6 +14,7 @@ const LogInForm = (props) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -35,6 +37,16 @@ const LogInForm = (props) => {
           );
           // history.replace("/connexadmin/home")
           push("/connexadmin/home");
+        } else {
+          toast.error("User Not Found", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       });
   };
@@ -83,6 +95,17 @@ const LogInForm = (props) => {
       <h3 className={classes.pointer} onClick={props.onClick}>
         Having Trouble Signing In?
       </h3>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Card>
   );
 };

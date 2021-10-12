@@ -96,15 +96,23 @@ const DetailConference = (props) => {
     event.preventDefault();
   };
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
     if (!props.find) {
-      var a= []
-      a.push(data.Email1)
-      a.push(data.Email2)
-      a.push(data.Email3)
+      const email_addresses = [
+        {
+          email_address: data.Email1,
+        },
+        {
+          email_address: data.Email2,
+        },
+        {
+          email_address: data.Email3,
+        },
+      ];
+      console.log(email_addresses)
       var data1 = {
         dash_cid: data.ConferenceId,
         dash_company_name: data.Company,
@@ -114,7 +122,7 @@ const DetailConference = (props) => {
         series: data.Series,
         brand: data.Branding,
         password: data.Password,
-        email_addresses: a,
+        email_addresses: email_addresses,
       };
       axios
         .post(baseURL1, data1, {
@@ -258,9 +266,6 @@ const DetailConference = (props) => {
               </option>
               {Branding}
               <option onChange={AddBrand}>Add New</option>
-              {/* <button onClick={AddBrand}>
-                <option value="">Add New</option>
-              </button> */}
             </select>
           </div>
           <div className={classes.control}>

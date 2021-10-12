@@ -10,6 +10,7 @@ const Home = (props) => {
 
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
+  const [totalCount, setTotalCount] = useState();
   const countPerPage = 10;
 
   const all_conferences =
@@ -22,6 +23,7 @@ const Home = (props) => {
     axios
       .get(all_conferences, { headers: { Authorization: `jwt ${token}` } })
       .then((response) => {
+        setTotalCount(response.data.total_count)
         const obj = response.data["All Conference"];
         let data1 = [];
         for (const i in obj) {
@@ -48,6 +50,7 @@ const Home = (props) => {
   return (
     <AdminHome
       data={data}
+      total_count={totalCount}
       countPerPage={countPerPage}
       handlePageChange={handlePageChange}
     />

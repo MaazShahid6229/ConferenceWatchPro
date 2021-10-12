@@ -52,3 +52,11 @@
   .action:hover{
     background-color: #aaaaaa
   }
+  .section2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }

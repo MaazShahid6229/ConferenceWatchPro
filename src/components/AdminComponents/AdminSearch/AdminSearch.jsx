@@ -38,6 +38,7 @@ const CreateConference = (props) => {
   };
 
   const onSubmit = (data) => {
+    console.log(data);
     setResult(data);
   };
 
@@ -45,7 +46,13 @@ const CreateConference = (props) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
-    var data = { dash_cid: result.ConferenceId };
+    var data = {
+      dash_cid: result.ConferenceId,
+      dash_company_name: result.Company,
+      dash_moderator_name: result.Moderator,
+      StartDate: result.StartDate,
+    };
+    // moderator, cid, company, start_date, email_address
 
     if (Object.entries(result).length !== 0) {
       axios
@@ -106,10 +113,9 @@ const CreateConference = (props) => {
       <Card className={classes.login}>
         <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form}>
           <div className={classes.control}>
-            {/* <label>Conference Id</label> */}
+            <label>Conference Id</label>
             <input
               {...register("ConferenceId", {
-                required: { value: true, message: "This Field is Required" },
                 maxLength: {
                   value: 20,
                   message: "Conference Id Cannot Exceed 20 Characters ",
@@ -124,7 +130,56 @@ const CreateConference = (props) => {
             />
             {errors.ConferenceId && <p>{errors.ConferenceId.message}</p>}
           </div>
-          <div className={classes.actions}>
+          <div className={classes.control}>
+            <label>Company</label>
+            <input
+              {...register("Company", {
+                maxLength: {
+                  value: 50,
+                  message: "Company Name Cannot Exceed 50 Characters ",
+                },
+                pattern: {
+                  value: /^[A-Za-z ]+$/,
+                  message: "Alphabetical Characters only",
+                },
+              })}
+              type="text"
+              placeholder="Enter Company"
+            />
+            {errors.Company && <p>{errors.Company.message}</p>}
+          </div>
+          <div className={classes.control}>
+            <label>Moderator</label>
+            <input
+              {...register("Moderator", {
+                maxLength: {
+                  value: 20,
+                  message: "Conference Id Cannot Exceed 20 Characters ",
+                },
+                pattern: {
+                  value: /^[A-Za-z ]+$/,
+                  message: "Alphabetical Characters only",
+                },
+              })}
+              type="text"
+              placeholder="Moderator "
+            />
+            {errors.Moderator && <p>{errors.Moderator.message}</p>}
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="Email1">Email </label>
+            <input
+              {...register("Email")}
+              type="email"
+              placeholder="Email"
+              name="Email"
+            />
+          </div>
+          <div className={classes.control}>
+            <label>Start Date</label>
+            <input {...register("StartDate")} type="date" />
+          </div>
+          <div className={classes.section2}>
             <Button className={classes.action} type="submit">
               Find Order
             </Button>

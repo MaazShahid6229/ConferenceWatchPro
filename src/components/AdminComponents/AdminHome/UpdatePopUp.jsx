@@ -21,6 +21,7 @@ const UpdatePopUp = (props) => {
         headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
+        console.log(response.data)
         setResult({
           id: response.data.Conference.id,
           ConferenceId: props.value,
@@ -32,6 +33,9 @@ const UpdatePopUp = (props) => {
           Branding: response.data.Conference.brand,
           Password: response.data.Conference.password,
           ConfirmPassword: response.data.Conference.password,
+          Email1: response.data.Conference.email_addresses[0].email_address,
+          Email2: response.data.Conference.email_addresses[1].email_address,
+          Email3: response.data.Conference.email_addresses[2].email_address,
         });
       });
   }, [props.value]);

@@ -28,6 +28,7 @@ const CreateConference = (props) => {
   };
 
   const onSubmit = (data) => {
+    console.log(data)
     var data1 = {
       dash_cid: data.ConferenceId,
     };
@@ -40,6 +41,7 @@ const CreateConference = (props) => {
         headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
+        console.log(response.data)
         setResult({
           id: response.data.Conference.id,
           ConferenceId: data.ConferenceId,
@@ -51,6 +53,9 @@ const CreateConference = (props) => {
           Branding: response.data.Conference.brand,
           Password: response.data.Conference.password,
           ConfirmPassword: response.data.Conference.password,
+          Email1: response.data.Conference.email_addresses[0].email_address,
+          Email2: response.data.Conference.email_addresses[1].email_address,
+          Email3: response.data.Conference.email_addresses[2].email_address,
         });
         setFind(true);
       })

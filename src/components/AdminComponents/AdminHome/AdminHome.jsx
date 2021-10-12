@@ -130,7 +130,7 @@ const AdminHome = (props) => {
           columns={columns}
           data={props.data}
           onChangePage={(page) => props.handlePageChange(page)}
-          paginationTotalRows={10}
+          paginationTotalRows={props.total_count}
           paginationPerPage={props.countPerPage}
         />
       </Card>

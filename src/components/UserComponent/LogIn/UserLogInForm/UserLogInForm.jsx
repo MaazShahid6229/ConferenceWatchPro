@@ -2,13 +2,13 @@ import Card from "../../../UI/Card/Card";
 import classes from "./UserLogInform.module.css";
 import Button from "../../../UI/Button/Button";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+// import { useState } from "react";
 
 const LogInForm = (props) => {
   const { register, handleSubmit } = useForm();
-  const [result, setResult] = useState("");
+  // const [result, setResult] = useState("");
   const onSubmit = (data) => {
-    setResult(JSON.stringify(data));
+    // console.log(data)
   };
 
   return (

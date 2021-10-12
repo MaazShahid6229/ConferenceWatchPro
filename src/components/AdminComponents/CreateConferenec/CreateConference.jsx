@@ -28,7 +28,6 @@ const CreateConference = (props) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data)
     var data1 = {
       dash_cid: data.ConferenceId,
     };
@@ -41,7 +40,6 @@ const CreateConference = (props) => {
         headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
-        console.log(response.data)
         setResult({
           id: response.data.Conference.id,
           ConferenceId: data.ConferenceId,

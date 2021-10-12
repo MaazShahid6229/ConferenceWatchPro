@@ -14,7 +14,6 @@ const LogInForm = (props) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -35,19 +34,20 @@ const LogInForm = (props) => {
               Token: response.data.Token,
             })
           );
-          // history.replace("/connexadmin/home")
           push("/connexadmin/home");
-        } else {
-          toast.error("User Not Found", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
         }
+      })
+      .catch((error) => {
+        let message = error.response.data.Message
+        toast.error(`${message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 

@@ -96,23 +96,22 @@ const DetailConference = (props) => {
     event.preventDefault();
   };
   const onSubmit = (data) => {
-    console.log(data);
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
+    const email_addresses = [
+      {
+        email_address: data.Email1,
+      },
+      {
+        email_address: data.Email2,
+      },
+      {
+        email_address: data.Email3,
+      },
+    ];
+
     if (!props.find) {
-      const email_addresses = [
-        {
-          email_address: data.Email1,
-        },
-        {
-          email_address: data.Email2,
-        },
-        {
-          email_address: data.Email3,
-        },
-      ];
-      console.log(email_addresses)
       var data1 = {
         dash_cid: data.ConferenceId,
         dash_company_name: data.Company,
@@ -144,7 +143,7 @@ const DetailConference = (props) => {
         series: data.Series,
         brand: data.Branding,
         password: data.Password,
-        email_addresses: [],
+        email_addresses: email_addresses,
       };
       axios
         .put(baseURL2, data2, {
@@ -193,7 +192,7 @@ const DetailConference = (props) => {
             <label>Company</label>
             <input
               {...register("Company", {
-                required: { value: true, message: "This Field is Required" },
+                required: { value: true, message: "Company Name Required" },
                 maxLength: {
                   value: 50,
                   message: "Company Name Cannot Exceed 50 Characters ",
@@ -212,7 +211,7 @@ const DetailConference = (props) => {
             <label>Moderator</label>
             <input
               {...register("Moderator", {
-                required: { value: true, message: "This Field is Required" },
+                required: { value: true, message: "Moderator is Required" },
                 maxLength: {
                   value: 20,
                   message: "Conference Id Cannot Exceed 20 Characters ",
@@ -232,35 +231,50 @@ const DetailConference = (props) => {
           <div className={classes.control}>
             <label>Start Date</label>
             <input
-              {...register("StartDate")}
+              {...register("StartDate", {
+                required: { value: true, message: "Start Date is Required" },
+              })}
               type="date"
               min={`${!props.find && disablePastDate()}`}
             />
+            {errors.StartDate && <p>{errors.StartDate.message}</p>}
           </div>
           <div className={classes.control}>
             <label>End Date</label>
             <input
-              {...register("EndDate")}
+              {...register("EndDate", {
+                required: { value: true, message: "End Date is Required" },
+              })}
               type="date"
               min={`${!props.find && disablePastDate()}`}
             />
+            {errors.EndDate && <p>{errors.EndDate.message}</p>}
           </div>
 
           <div className={classes.control}>
             <label>Series</label>
             <input
-              {...register("Series")}
+              {...register("Series", {
+                required: { value: true, message: "Series is Required" },
+              })}
               type="number"
               placeholder="Enter Series Number"
               min="0"
               step="1"
             />
+            {errors.Series && <p>{errors.Series.message}</p>}
           </div>
         </div>
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor="Branding">Branding</label>
-            <select name="Branding" {...register("Branding")}>
+            <select
+              name="Branding"
+              {...register("Branding", {
+                required: { value: true, message: "Brand Name is Required" },
+              })}
+            >
+              {errors.Branding && <p>{errors.Branding.message}</p>}
               <option value="" disabled>
                 Chose Brand
               </option>
@@ -280,7 +294,7 @@ const DetailConference = (props) => {
             </i>
             <input
               {...register("Password", {
-                required: { value: true, message: "This Field is Required" },
+                required: { value: true, message: "Password is Required" },
                 maxLength: {
                   value: 15,
                   message: "Password Cannot Exceed 15 Characters ",
@@ -308,31 +322,40 @@ const DetailConference = (props) => {
         </div>
         <div className={classes.controls3}>
           <div className={classes.control}>
-            <label htmlFor="Email1">Email 1</label>
+            <label htmlFor="Email1">Participant 1</label>
             <input
-              {...register("Email1")}
+              {...register("Email1", {
+                required: { value: true, message: "Participant Email is Required" },
+              })}
               type="email"
               placeholder="Enter First Participant Email"
               name="Email1"
             />
+            {errors.Email1 && <p>{errors.Email1.message}</p>}
           </div>
           <div className={classes.control}>
-            <label htmlFor="Email2">Email 2</label>
+            <label htmlFor="Email1">Participant 2</label>
             <input
-              {...register("Email2")}
-              type="email2"
+              {...register("Email2", {
+                required: { value: true, message: "Participant Email is Required" },
+              })}
+              type="email"
               placeholder="Enter Second Participant Email"
               name="Email2"
             />
+            {errors.Email2 && <p>{errors.Email2.message}</p>}
           </div>
           <div className={classes.control}>
-            <label htmlFor="Email3">Email 3</label>
+            <label htmlFor="Email1">Participant 3</label>
             <input
-              {...register("Email3")}
+              {...register("Email3", {
+                required: { value: true, message: "Participant Email is Required" },
+              })}
               type="email"
               placeholder="Enter Third Participant Email"
               name="Email3"
             />
+            {errors.Email3 && <p>{errors.Email3.message}</p>}
           </div>
         </div>
         <div className={classes.section2}>

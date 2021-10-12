@@ -14,12 +14,13 @@ import { useState } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
 
-const CreateConference = (props) => {
+const AdminSearch = (props) => {
   const { deletePopUp, updatePopUp } = useContext(closePopUpContext);
 
   const [data, setData] = useState([]);
   const [result, setResult] = useState({});
   const [showForm, setShowForm] = useState(false);
+  const [totalCount, setTotalCount] = useState();
   const [page, setPage] = useState(1);
   const countPerPage = 10;
 
@@ -38,7 +39,6 @@ const CreateConference = (props) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     setResult(data);
   };
 
@@ -48,10 +48,10 @@ const CreateConference = (props) => {
 
     var data = {
       dash_cid: result.ConferenceId,
-      dash_company_name: result.Company,
+      dash_company_name__istartswith: result.Company,
       dash_moderator_name: result.Moderator,
-      StartDate: result.StartDate,
-      
+      start_date: result.StartDate,
+      email_addresses__email_address:result.Email,
     };
     // moderator, cid, company, start_date, email_address
 
@@ -63,6 +63,7 @@ const CreateConference = (props) => {
           },
         })
         .then((response) => {
+          setTotalCount(response.data.total_count)
           const obj = response.data["All Conference"];
           let data1 = [];
           for (const i in obj) {
@@ -201,6 +202,7 @@ const CreateConference = (props) => {
       {showForm && (
         <AdminHome
           data={data}
+          total_count={totalCount}
           countPerPage={countPerPage}
           handlePageChange={handlePageChange}
         />
@@ -209,4 +211,4 @@ const CreateConference = (props) => {
   );
 };
 
-export default CreateConference;
+export default AdminSearch;

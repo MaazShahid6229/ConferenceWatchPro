@@ -48,9 +48,10 @@ const CreateConference = (props) => {
 
     var data = {
       dash_cid: result.ConferenceId,
-      dash_company_name: result.Company,
+      dash_company_name__istartswith: result.Company,
       dash_moderator_name: result.Moderator,
-      StartDate: result.StartDate,
+      start_date: result.StartDate,
+      email_addresses__email_address:result.Email,
     };
     // moderator, cid, company, start_date, email_address
 

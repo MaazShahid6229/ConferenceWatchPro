@@ -51,6 +51,7 @@ const CreateConference = (props) => {
       dash_company_name: result.Company,
       dash_moderator_name: result.Moderator,
       StartDate: result.StartDate,
+      
     };
     // moderator, cid, company, start_date, email_address
 

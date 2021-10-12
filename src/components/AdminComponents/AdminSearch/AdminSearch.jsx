@@ -49,7 +49,7 @@ const AdminSearch = (props) => {
     var data = {
       dash_cid: result.ConferenceId,
       dash_company_name__istartswith: result.Company,
-      dash_moderator_name: result.Moderator,
+      dash_moderator_name__istartswith: result.Moderator,
       start_date: result.StartDate,
       email_addresses__email_address:result.Email,
     };

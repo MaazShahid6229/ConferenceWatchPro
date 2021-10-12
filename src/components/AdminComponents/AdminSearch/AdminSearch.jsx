@@ -97,8 +97,8 @@ const AdminSearch = (props) => {
           }
         })
         .catch((error) => {
-          let message = error.response.data.Massage
-          toast.error({message}, {
+          let message = error.response.data.Message
+          toast.error(`${message}`, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,

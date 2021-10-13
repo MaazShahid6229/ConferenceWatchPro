@@ -5,7 +5,7 @@ import Card from "../../../UI/Card/Card";
 import classes from "./AdminLogInform.module.css";
 import Button from "../../../UI/Button/Button";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import BaseUrl from "../../../BaseUrl";
 
 const LogInForm = (props) => {
@@ -17,7 +17,8 @@ const LogInForm = (props) => {
     formState: { errors },
   } = useForm();
 
-  const { push } = useHistory();
+  // const { push } = useHistory();
+  const history = useHistory();
 
   const onSubmit = (data) => {
     axios
@@ -34,21 +35,24 @@ const LogInForm = (props) => {
               Token: response.data.Token,
             })
           );
-          push("/connexadmin/home");
+          console.log(history)
+          history.replace("/connexadmin/home")
+          // <Redirect to={"/connexadmin/home"}/>
         }
       })
-      .catch((error) => {
-        let message = error.response.data.Message
-        toast.error(`${message}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+      // .catch((error) => {
+      //   console.log(error)
+      //   let message = error.response.data.Message
+      //   toast.error(`${message}`, {
+      //     position: "top-right",
+      //     autoClose: 5000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //   });
+      // });
   };
 
   return (

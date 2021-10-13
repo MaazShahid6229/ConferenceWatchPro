@@ -32,7 +32,7 @@ const Home = (props) => {
             CID: obj[i].dash_cid,
             Company: obj[i].dash_company_name,
             Moderator: obj[i].dash_moderator_name,
-            Brand: obj[i].brand,
+            Brand: obj[i].brand['text'],
             StartDate: obj[i].start_date,
             EndDate: obj[i].end_date,
             Series: obj[i].series,

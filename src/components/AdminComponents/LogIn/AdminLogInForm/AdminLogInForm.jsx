@@ -18,6 +18,7 @@ const LogInForm = (props) => {
   } = useForm();
 
   const { push } = useHistory();
+  // const history = useHistory();
 
   const onSubmit = (data) => {
     axios
@@ -34,7 +35,7 @@ const LogInForm = (props) => {
               Token: response.data.Token,
             })
           );
-          push("/connexadmin/home");
+          push("/connexadmin/home")
         }
       })
       .catch((error) => {

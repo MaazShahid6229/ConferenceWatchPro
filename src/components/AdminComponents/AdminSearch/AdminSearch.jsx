@@ -63,6 +63,7 @@ const AdminSearch = (props) => {
           },
         })
         .then((response) => {
+          console.log(response.data)
           setTotalCount(response.data.total_count)
           const obj = response.data["All Conference"];
           let data1 = [];
@@ -72,7 +73,7 @@ const AdminSearch = (props) => {
               CID: obj[i].dash_cid,
               Company: obj[i].dash_company_name,
               Moderator: obj[i].dash_moderator_name,
-              Brand: obj[i].brand,
+              Brand: obj[i].brand['text'],
               StartDate: obj[i].start_date,
               EndDate: obj[i].end_date,
               Series: obj[i].series,
@@ -97,16 +98,17 @@ const AdminSearch = (props) => {
           }
         })
         .catch((error) => {
-          let message = error.response.data.Message
-          toast.error(`${message}`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          console.group(error)
+          // let message = error.response.data.Message
+          // toast.error(`${message}`, {
+          //   position: "top-right",
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          // });
         });
     }
   }, [result, deletePopUp, updatePopUp, search_conferences]);

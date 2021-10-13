@@ -16,6 +16,7 @@ const Routes = () => {
   const [deletePopUp, setDeletePopUp] = useState(false);
   const [updateBranPopUp, setUpdateBrandPopUp] = useState(false);
   const [deleteBrandPopUp, setDeleteBrandPopUp] = useState(false);
+  const [addBrandPopUp, setAddBrandPopUp] = useState(false);
   return (
     <Router>
       <Switch>
@@ -29,6 +30,8 @@ const Routes = () => {
             setUpdateBrandPopUp,
             deleteBrandPopUp,
             setDeleteBrandPopUp,
+            addBrandPopUp,
+            setAddBrandPopUp,
           }}
         >
           <Route path="/" component={UserLogin} exact />

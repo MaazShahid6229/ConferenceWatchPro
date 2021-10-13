@@ -1,21 +1,22 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Fragment } from "react";
 import axios from "axios";
 
 import BaseUrl from "../../BaseUrl";
 import BrandDataTable from "./BrandDataTable";
-import {closePopUpContext} from "../../Context/ClosePopUpContext"
+import Button from "../../UI/Button/Button";
+import Card from "../../UI/Card/Card";
+import classes from "./AdminBrand.module.css";
+import { closePopUpContext } from "../../Context/ClosePopUpContext";
+import AddBrandPopUp from "./AddBrandPopUp";
 
 const AdminBrand = () => {
-
-  const {
-    updateBranPopUp,
-    deleteBrandPopUp,
-  } = useContext(closePopUpContext);
+  const { addBrandPopUp, setAddBrandPopUp, updateBranPopUp, deleteBrandPopUp } =
+    useContext(closePopUpContext);
 
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState();
-  const countPerPage = 10;
+  const countPerPage = 4;
 
   const all_brands =
     BaseUrl.url +
@@ -27,7 +28,6 @@ const AdminBrand = () => {
     axios
       .get(all_brands, { headers: { Authorization: `jwt ${token}` } })
       .then((response) => {
-        console.log(response.data);
         setTotalCount(response.data.total_count);
         const obj = response.data["All Brand"];
         let data1 = [];
@@ -39,21 +39,34 @@ const AdminBrand = () => {
           });
         }
         setData(data1);
-        console.log(data);
       });
-  }, [page, all_brands, deleteBrandPopUp]);
+  }, [page, all_brands, deleteBrandPopUp, addBrandPopUp,updateBranPopUp]);
 
   const handlePageChange = (p) => {
     setPage(p);
   };
 
+  const AddBrandHandler = () => {
+    setAddBrandPopUp(true);
+  };
+
   return (
-    <BrandDataTable
-      data={data}
-      total_count={totalCount}
-      countPerPage={countPerPage}
-      handlePageChange={handlePageChange}
-    />
+    <Fragment>
+      <Card className={classes.CardDataTable}>
+        <div className={classes.action}>
+          <Button onClick={AddBrandHandler} className={classes.button}>
+            Add Brand
+          </Button>
+        </div>
+        <BrandDataTable
+          data={data}
+          total_count={totalCount}
+          countPerPage={countPerPage}
+          handlePageChange={handlePageChange}
+        />
+      </Card>
+      {addBrandPopUp && <AddBrandPopUp />}
+    </Fragment>
   );
 };
 

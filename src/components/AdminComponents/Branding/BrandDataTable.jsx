@@ -67,8 +67,8 @@ const BrandDataTable = (props) => {
         <div className={classes.BrandImage}>
           <img
             src={`${BaseUrl.url}${row.BrandImgUrl}`}
-            width={120}
-            height={100}
+            width={100}
+            height={90}
             alt="Brand"
           />
         </div>

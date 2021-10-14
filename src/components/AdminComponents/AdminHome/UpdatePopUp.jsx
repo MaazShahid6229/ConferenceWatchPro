@@ -21,7 +21,6 @@ const UpdatePopUp = (props) => {
         headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
-        console.log(response.data)
         setResult({
           id: response.data.Conference.id,
           ConferenceId: props.value,

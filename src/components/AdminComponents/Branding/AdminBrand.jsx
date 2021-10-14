@@ -16,7 +16,7 @@ const AdminBrand = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState();
-  const countPerPage = 4;
+  const countPerPage = 3;
 
   const all_brands =
     BaseUrl.url +
@@ -49,6 +49,7 @@ const AdminBrand = () => {
   const AddBrandHandler = () => {
     setAddBrandPopUp(true);
   };
+
 
   return (
     <Fragment>

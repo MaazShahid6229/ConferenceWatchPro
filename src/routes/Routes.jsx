@@ -17,11 +17,14 @@ const Routes = () => {
   const [updateBrandPopUp, setUpdateBrandPopUp] = useState(false);
   const [deleteBrandPopUp, setDeleteBrandPopUp] = useState(false);
   const [addBrandPopUp, setAddBrandPopUp] = useState(false);
+  const [startConference, setStartConference] = useState(false);
   return (
     <Router>
       <Switch>
         <closePopUpContext.Provider
           value={{
+            startConference,
+            setStartConference,
             updatePopUp,
             deletePopUp,
             setUpdatePopUp,

@@ -38,14 +38,29 @@
   background: #dad5d5;
 }
 
-.actions  {
+.actions {
   margin-top: 22px;
 }
-.action{
+.action {
   background-color: white;
   color: black;
   border: 2px solid #d3cfcf;
 }
-.action:hover{
-  background-color: #aaaaaa
+.action:hover {
+  background-color: #aaaaaa;
+}
+
+.ButtonDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+.ConferenceButton {
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+}
+.ConferenceButton:hover {
+  background-color: #4caf50;
+  color: white;
 }

@@ -63,7 +63,6 @@ const AdminSearch = (props) => {
           },
         })
         .then((response) => {
-          console.log(response.data)
           setTotalCount(response.data.total_count)
           const obj = response.data["All Conference"];
           let data1 = [];
@@ -98,7 +97,6 @@ const AdminSearch = (props) => {
           }
         })
         .catch((error) => {
-          console.group(error)
           // let message = error.response.data.Message
           // toast.error(`${message}`, {
           //   position: "top-right",

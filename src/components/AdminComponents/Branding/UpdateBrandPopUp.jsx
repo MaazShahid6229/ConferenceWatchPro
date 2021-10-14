@@ -15,6 +15,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -25,7 +26,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
   useEffect(() => {
     setValue("BrandName", value1?.BrandName);
     // setValue("image", value1.Image);
-  },[]);
+  }, []);
 
   const PopUpCloseHandler = () => {
     setUpdateBrandPopUp(false);
@@ -65,6 +66,12 @@ const UpdateBrandPopUp = ({ value1 }) => {
       });
   };
 
+  // const getImageUrl = () => {
+  //   var test=document.getElementById("fraz");
+  //   console.log(test.files.item(0))
+  //   // set
+  // };
+
   return (
     <Fragment>
       <Modal>
@@ -77,6 +84,15 @@ const UpdateBrandPopUp = ({ value1 }) => {
             alt="Close Icon"
           />
         </div>
+        <div className={classes.BrandImageDiv}>
+          <img
+            className={classes.BrandImage}
+            src={`${BaseUrl.url}${value1.Image}`}
+            width={130}
+            height={120}
+            alt="Brand"
+          />
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form}>
           <div className={classes.controls}>
             <div className={classes.control}>
@@ -85,9 +101,11 @@ const UpdateBrandPopUp = ({ value1 }) => {
                 {...register("Image", {
                   required: { value: true, message: "Image is Required" },
                 })}
+                id="fraz"
                 type="file"
                 accept="image/*"
                 placeholder="Image"
+                // onChange={getImageUrl}
                 readOnly
               />
               {errors.Image && <p>{errors.Image.message}</p>}

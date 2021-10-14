@@ -40,7 +40,7 @@ const AdminBrand = () => {
         }
         setData(data1);
       });
-  }, [page,deleteBrandPopUp, addBrandPopUp,updateBrandPopUp]);
+  }, [page,deleteBrandPopUp,all_brands, addBrandPopUp,updateBrandPopUp]);
 
   const handlePageChange = (p) => {
     setPage(p);

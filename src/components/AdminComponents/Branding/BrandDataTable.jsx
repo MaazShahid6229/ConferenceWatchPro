@@ -5,7 +5,6 @@ import DataTable from "../../UI/DataTable/DataTable";
 import BaseUrl from "../../BaseUrl";
 import BrandDeletePopUp from "./BrandDeletePopUp";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
-import Card from "../../UI/Card/Card";
 import classes from "./BrandDataTable.module.css";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import editIcon from "../../../assets/editIcon.png";
@@ -15,13 +14,10 @@ const delete_brand = BaseUrl.url + "connex/branding/update_brand/";
 
 const BrandDataTable = (props) => {
   const {
-    addBrandPopUp,
-    setAddBrandPopUp,
     updateBrandPopUp,
     setUpdateBrandPopUp,
     deleteBrandPopUp,
     setDeleteBrandPopUp,
-    setUpdatePopUp,
   } = useContext(closePopUpContext);
 
   const [deleteObj, setDeleteObj] = useState({});
@@ -41,7 +37,6 @@ const BrandDataTable = (props) => {
     setValue1({
       id: state.target.id,
       Image: state.target.attributes.img.nodeValue,
-      // Image: "http://127.0.0.1:8000/media/brand/1633635290435_Ur3NwNz.jpg",
       BrandName: state.target.attributes.text.nodeValue,
     });
   };
@@ -72,7 +67,7 @@ const BrandDataTable = (props) => {
       selector: (row) => (
         <div className={classes.BrandImage}>
           <img
-            src={`http://127.0.0.1:8000${row.BrandImgUrl}`}
+            src={`http://192.168.5.19${row.BrandImgUrl}`}
             width={120}
             height={100}
             alt="Brand"

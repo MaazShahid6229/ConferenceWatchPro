@@ -11,7 +11,6 @@ import BaseUrl from "../../BaseUrl";
 import axios from "axios";
 
 const UpdateBrandPopUp = ({ value1 }) => {
-  console.log(value1);
   const {
     register,
     handleSubmit,
@@ -25,7 +24,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
 
   useEffect(() => {
     setValue("BrandName", value1?.BrandName);
-    setValue("image", value1.Image);
+    // setValue("image", value1.Image);
   },[]);
 
   const PopUpCloseHandler = () => {
@@ -39,7 +38,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
     var data1 = new FormData();
 
     data1.append("brand_id", value1.id);
-    // data1.append("image", data.Image[0]);
+    data1.append("image", data.Image[0]);
     data1.append("text", data.BrandName);
     data1.append("is_active", true);
 
@@ -51,7 +50,6 @@ const UpdateBrandPopUp = ({ value1 }) => {
       })
       .then((response) => {
         setUpdateBrandPopUp(false);
-        console.log(response);
       })
       .catch((error) => {
         let message = error.response.data.error;
@@ -84,9 +82,9 @@ const UpdateBrandPopUp = ({ value1 }) => {
             <div className={classes.control}>
               <label>Brand Image</label>
               <input
-                // {...register("Image", {
-                //   required: { value: true, message: "Image is Required" },
-                // })}
+                {...register("Image", {
+                  required: { value: true, message: "Image is Required" },
+                })}
                 type="file"
                 accept="image/*"
                 placeholder="Image"

@@ -43,7 +43,6 @@ const AddBrandPopUp = ({ value1 }) => {
       })
       .then((response) => {
         setAddBrandPopUp(false);
-        console.log(response);
       })
       .catch((error) => {
         let message = error.response.data.error;

@@ -19,56 +19,81 @@ const AdminConference = () => {
 
   const create_brand = BaseUrl.url + "connex/branding/create_brand/";
 
-  const { startConference, setStartConference } = useContext(closePopUpContext);
+  const {  setStartConference } = useContext(closePopUpContext);
 
   const PopUpCloseHandler = () => {
     setStartConference(false);
   };
 
-  // const option = [
-  //   {
-  //     id:1,
-  //   }
-  // ];
+  const option = [
+    {
+      text: "Harvey",
+    },
+    {
+      text: "Grace",
+    },
+    {
+      text: "Oscar",
+    },
+    {
+      text: "Isabel",
+    },
+    {
+      text: "Victor",
+    },
+    {
+      text: "Pearl",
+    },
+    {
+      text: "Atlas",
+    },
+    {
+      text: "Xena",
+    },
+    {
+      text: "Zeus",
+    },
+  ];
 
-  // const options = option.map((brand, index) => (
-  //   <option key={index} value={brand.id}>
-  //     {brand.text}
-  //   </option>
-  // ));
+  const options = option.map((option, index) => (
+    <option key={index} value={option.text}>
+      {option.text}
+    </option>
+  ));
 
   const onSubmit = (data) => {
-    let store = JSON.parse(localStorage.getItem("login"));
-    let token = store.Token;
+    console.log(data);
+    setStartConference(false)
 
-    var data1 = new FormData();
+    // let store = JSON.parse(localStorage.getItem("login"));
+    // let token = store.Token;
 
-    data1.append("image", data.Image[0]);
-    data1.append("text", data.BrandName);
-    data1.append("is_active", true);
+    // var data1 = new FormData();
 
-    axios
-      .post(create_brand, data1, {
-        headers: {
-          Authorization: `jwt ${token}`,
-        },
-      })
-      .then((response) => {
-        setStartConference(false);
-        console.log(response);
-      })
-      .catch((error) => {
-        let message = error.response.data.error;
-        toast.error(`${message}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+    // data1.append("image", data.Image[0]);
+
+    // axios
+    //   .post(create_brand, data1, {
+    //     headers: {
+    //       Authorization: `jwt ${token}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setStartConference(false);
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     let message = error.response.data.error;
+    //     toast.error(`${message}`, {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //     });
+    //   });
   };
 
   return (
@@ -98,18 +123,79 @@ const AdminConference = () => {
             </div>
             <div className={classes.control}>
               <label>Spectel Bridge</label>
-              <input
+              <select
+                name="Spectel_Bridge_1"
                 {...register("Spectel_Bridge_1", {
                   required: {
                     value: true,
                     message: "Spectel Bridge is Required",
                   },
                 })}
-                type="text"
-                placeholder="Spectel Bridge"
-              />
+              >
+                {options}
+              </select>
               {errors.Spectel_Bridge_1 && (
                 <p>{errors.Spectel_Bridge_1.message}</p>
+              )}
+            </div>
+          </div>
+          <div className={classes.controls}>
+            <div className={classes.control}>
+              <label>Spectel Id</label>
+              <input
+                {...register("Spectel_Id_2", {
+                  required: { value: true, message: "Spectel Id is Required" },
+                })}
+                type="text"
+                placeholder="Spectel Id"
+              />
+              {errors.Spectel_Id_2 && <p>{errors.Spectel_Id_2.message}</p>}
+            </div>
+            <div className={classes.control}>
+              <label>Spectel Bridge</label>
+              <select
+                name="Spectel_Bridge_2"
+                {...register("Spectel_Bridge_2", {
+                  required: {
+                    value: true,
+                    message: "Spectel Bridge is Required",
+                  },
+                })}
+              >
+                {options}
+              </select>
+              {errors.Spectel_Bridge_2 && (
+                <p>{errors.Spectel_Bridge_2.message}</p>
+              )}
+            </div>
+          </div>
+          <div className={classes.controls}>
+            <div className={classes.control}>
+              <label>Spectel Id</label>
+              <input
+                {...register("Spectel_Id_3", {
+                  required: { value: true, message: "Spectel Id is Required" },
+                })}
+                type="text"
+                placeholder="Spectel Id"
+              />
+              {errors.Spectel_Id_3 && <p>{errors.Spectel_Id_3.message}</p>}
+            </div>
+            <div className={classes.control}>
+              <label>Spectel Bridge</label>
+              <select
+                name="Spectel_Bridge_3"
+                {...register("Spectel_Bridge_3", {
+                  required: {
+                    value: true,
+                    message: "Spectel Bridge is Required",
+                  },
+                })}
+              >
+                {options}
+              </select>
+              {errors.Spectel_Bridge_3 && (
+                <p>{errors.Spectel_Bridge_3.message}</p>
               )}
             </div>
           </div>

@@ -10,16 +10,16 @@ import BaseUrl from "../../BaseUrl";
 
 import axios from "axios";
 
-const AdminConference = () => {
+const AdminConference = (props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const create_brand = BaseUrl.url + "connex/branding/create_brand/";
+  const create_bridge = BaseUrl.url + "connex/spectel/create_Spectel_Conf/";
 
-  const {  setStartConference } = useContext(closePopUpContext);
+  const { setStartConference } = useContext(closePopUpContext);
 
   const PopUpCloseHandler = () => {
     setStartConference(false);
@@ -27,53 +27,65 @@ const AdminConference = () => {
 
   const option = [
     {
+      id:0,
       text: "Harvey",
     },
     {
+      id:1,
       text: "Grace",
     },
     {
+      id:3,
       text: "Oscar",
     },
     {
+      id:4,
       text: "Isabel",
     },
     {
+      id:5,
       text: "Victor",
     },
     {
+      id:6,
       text: "Pearl",
     },
     {
+      id:7,
       text: "Atlas",
     },
     {
+      id:8,
       text: "Xena",
     },
     {
+      id:9,
       text: "Zeus",
     },
   ];
 
   const options = option.map((option, index) => (
-    <option key={index} value={option.text}>
+    <option key={index} value={option.id}>
       {option.text}
     </option>
   ));
 
   const onSubmit = (data) => {
-    console.log(data);
-    setStartConference(false)
+    // console.log(props.id);
+    // console.log(data);
+    setStartConference(false);
 
     // let store = JSON.parse(localStorage.getItem("login"));
     // let token = store.Token;
 
     // var data1 = new FormData();
 
-    // data1.append("image", data.Image[0]);
+    // data1.append("conference", props.id);
+    // data1.append("bridge_number", data.Spectel_Bridge_1);
+    // data1.append("s_conf_id", data.Spectel_Id_2);
 
     // axios
-    //   .post(create_brand, data1, {
+    //   .post(create_bridge, data1, {
     //     headers: {
     //       Authorization: `jwt ${token}`,
     //     },
@@ -81,7 +93,7 @@ const AdminConference = () => {
     //   .then((response) => {
     //     setStartConference(false);
     //     console.log(response);
-    //   })
+    //   });
     //   .catch((error) => {
     //     let message = error.response.data.error;
     //     toast.error(`${message}`, {

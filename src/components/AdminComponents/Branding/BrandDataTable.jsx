@@ -33,7 +33,6 @@ const BrandDataTable = (props) => {
 
   const handleUpdateButton = (state) => {
     setUpdateBrandPopUp(true);
-    console.log(state.target.attributes)
     setValue1({
       id: state.target.id,
       Image: state.target.attributes.img.nodeValue,
@@ -68,8 +67,8 @@ const BrandDataTable = (props) => {
         <div className={classes.BrandImage}>
           <img
             src={`${BaseUrl.url}${row.BrandImgUrl}`}
-            width={120}
-            height={100}
+            width={100}
+            height={90}
             alt="Brand"
           />
         </div>

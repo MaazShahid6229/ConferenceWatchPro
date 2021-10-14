@@ -11,7 +11,7 @@ import deleteIcon from "../../../assets/deleteIcon.png";
 import editIcon from "../../../assets/editIcon.png";
 import conferenceIcon from "../../../assets/conferenceIcon.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
-import AdminConference from "../AdminConference/AdminConference"
+import AdminConference from "../AdminConference/AdminConference";
 
 const AdminHome = (props) => {
   const {
@@ -25,6 +25,7 @@ const AdminHome = (props) => {
 
   const [deleteObj, setDeleteObj] = useState({});
   const [updateObj, setUpdateObj] = useState({});
+  const [conferenceObj, setConferenceObj] = useState();
 
   const delete_conference =
     BaseUrl.url + "connex/conferenece/create_conference/";
@@ -44,9 +45,10 @@ const AdminHome = (props) => {
       cid: state.target.attributes.cid.nodeValue,
     });
   };
-  
+
   const handleConferenceButton = (state) => {
-    setStartConference(true)
+    setStartConference(true);
+    setConferenceObj(state.target.id);
   };
 
   const handleDeleteYes = () => {
@@ -128,13 +130,13 @@ const AdminHome = (props) => {
             onClick={handleUpdateButton}
             cid={row.CID}
           />
-          <img
+          {/* <img
             src={conferenceIcon}
             alt="conferenceIcon"
             className={classes.conferenceIcon}
             onClick={handleConferenceButton}
-            // cid={row.CID}
-          />
+            id={row.ID}
+          /> */}
         </div>
       ),
       center: true,
@@ -163,7 +165,7 @@ const AdminHome = (props) => {
       {updatePopUp && (
         <UpdatePopUp closeHandle={closeHandle} value={updateObj.cid} />
       )}
-      {startConference && <AdminConference />}
+      {/* {startConference && <AdminConference id={conferenceObj} />} */}
     </Fragment>
   );
 };

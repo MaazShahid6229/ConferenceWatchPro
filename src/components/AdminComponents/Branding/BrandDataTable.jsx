@@ -9,7 +9,7 @@ import Card from "../../UI/Card/Card";
 import classes from "./BrandDataTable.module.css";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import editIcon from "../../../assets/editIcon.png";
-import AddBrandPopUp from "./AddBrandPopUp"
+import UpdateBrandPopUp from "./UpdateBrandPopUp";
 
 const delete_brand = BaseUrl.url + "connex/branding/update_brand/";
 
@@ -17,14 +17,15 @@ const BrandDataTable = (props) => {
   const {
     addBrandPopUp,
     setAddBrandPopUp,
+    updateBrandPopUp,
     setUpdateBrandPopUp,
     deleteBrandPopUp,
     setDeleteBrandPopUp,
+    setUpdatePopUp,
   } = useContext(closePopUpContext);
 
   const [deleteObj, setDeleteObj] = useState({});
-  const [value, setValue] = useState({});
-  
+  const [value1, setValue1] = useState({});
 
   const handleDeleteButton = (state) => {
     setDeleteBrandPopUp(true);
@@ -35,19 +36,20 @@ const BrandDataTable = (props) => {
   };
 
   const handleUpdateButton = (state) => {
-    // console.log(state.target.attributes.text.nodeValue)
-    setValue(state.target.id);
-    setValue({
-      // Image:state.target.attributes.img.nodeValue,
-      BrandName: state.target.attributes.text.nodeValue
+    setUpdateBrandPopUp(true);
+    console.log(state.target.attributes)
+    setValue1({
+      id: state.target.id,
+      Image: state.target.attributes.img.nodeValue,
+      // Image: "http://127.0.0.1:8000/media/brand/1633635290435_Ur3NwNz.jpg",
+      BrandName: state.target.attributes.text.nodeValue,
     });
-    setAddBrandPopUp(true)
   };
 
   const handleDeleteYes = () => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
-   
+
     var data1 = {
       brand_id: deleteObj.id,
     };
@@ -128,7 +130,7 @@ const BrandDataTable = (props) => {
           value={deleteObj.text}
         />
       )}
-      {addBrandPopUp && <AddBrandPopUp value= {value} />}
+      {updateBrandPopUp && <UpdateBrandPopUp value1={value1} />}
     </Fragment>
   );
 };

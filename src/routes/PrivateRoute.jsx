@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Route, Redirect } from "react-router-dom";
 
+
 const PrivateRoute = ({ children, ...rest }) => {
+
   let store = JSON.parse(localStorage.getItem("login"));
-  let isAuth = store?.Token && true;
+  let isAuth = store?.Token ? true: false;
   return (
     <Route
       {...rest}
@@ -12,4 +15,3 @@ const PrivateRoute = ({ children, ...rest }) => {
 };
 export default PrivateRoute;
 
-// intersepter

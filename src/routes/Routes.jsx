@@ -14,7 +14,7 @@ import { closePopUpContext } from "../components/Context/ClosePopUpContext";
 const Routes = () => {
   const [updatePopUp, setUpdatePopUp] = useState(false);
   const [deletePopUp, setDeletePopUp] = useState(false);
-  const [updateBranPopUp, setUpdateBrandPopUp] = useState(false);
+  const [updateBrandPopUp, setUpdateBrandPopUp] = useState(false);
   const [deleteBrandPopUp, setDeleteBrandPopUp] = useState(false);
   const [addBrandPopUp, setAddBrandPopUp] = useState(false);
   return (
@@ -26,7 +26,7 @@ const Routes = () => {
             deletePopUp,
             setUpdatePopUp,
             setDeletePopUp,
-            updateBranPopUp,
+            updateBrandPopUp,
             setUpdateBrandPopUp,
             deleteBrandPopUp,
             setDeleteBrandPopUp,

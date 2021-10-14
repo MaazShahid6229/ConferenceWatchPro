@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "../../UI/Modal/Modal";
 import Button from "../../UI/Button/Button";
-import classes from "./addBrandPopUp.module.css";
+import classes from "./UpdateBrandPopUp.module.css";
 import closeIcon from "../../../assets/close.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,19 +10,26 @@ import BaseUrl from "../../BaseUrl";
 
 import axios from "axios";
 
-const AddBrandPopUp = ({ value1 }) => {
+const UpdateBrandPopUp = ({ value1 }) => {
+  console.log(value1);
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  const create_brand = BaseUrl.url + "connex/branding/create_brand/";
-  const { setAddBrandPopUp } =
-    useContext(closePopUpContext);
-    
+  const update_brand = BaseUrl.url + "connex/branding/update_brand/";
+
+  const { setUpdateBrandPopUp } = useContext(closePopUpContext);
+
+  useEffect(() => {
+    setValue("BrandName", value1?.BrandName);
+    setValue("image", value1.Image);
+  },[]);
+
   const PopUpCloseHandler = () => {
-    setAddBrandPopUp(false);
+    setUpdateBrandPopUp(false);
   };
 
   const onSubmit = (data) => {
@@ -31,18 +38,19 @@ const AddBrandPopUp = ({ value1 }) => {
 
     var data1 = new FormData();
 
-    data1.append("image", data.Image[0]);
+    data1.append("brand_id", value1.id);
+    // data1.append("image", data.Image[0]);
     data1.append("text", data.BrandName);
     data1.append("is_active", true);
 
     axios
-      .post(create_brand, data1, {
+      .put(update_brand, data1, {
         headers: {
           Authorization: `jwt ${token}`,
         },
       })
       .then((response) => {
-        setAddBrandPopUp(false);
+        setUpdateBrandPopUp(false);
         console.log(response);
       })
       .catch((error) => {
@@ -76,9 +84,9 @@ const AddBrandPopUp = ({ value1 }) => {
             <div className={classes.control}>
               <label>Brand Image</label>
               <input
-                {...register("Image", {
-                  required: { value: true, message: "Image is Required" },
-                })}
+                // {...register("Image", {
+                //   required: { value: true, message: "Image is Required" },
+                // })}
                 type="file"
                 accept="image/*"
                 placeholder="Image"
@@ -137,4 +145,4 @@ const AddBrandPopUp = ({ value1 }) => {
   );
 };
 
-export default AddBrandPopUp;
+export default UpdateBrandPopUp;

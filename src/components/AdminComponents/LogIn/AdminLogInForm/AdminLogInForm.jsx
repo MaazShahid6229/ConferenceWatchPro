@@ -26,15 +26,16 @@ const LogInForm = (props) => {
         username: data.username,
         password: data.password,
       })
-      .then((response) => {
+      .then(async (response) => {
         if (response.data.Token && response.data.Role === "A") {
-          localStorage.setItem(
+          await localStorage.setItem(
             "login",
             JSON.stringify({
               login: true,
               Token: response.data.Token,
             })
           );
+        
           push("/connexadmin/home")
         }
       })

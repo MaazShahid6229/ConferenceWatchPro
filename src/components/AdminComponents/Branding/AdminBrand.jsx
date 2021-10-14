@@ -10,7 +10,7 @@ import { closePopUpContext } from "../../Context/ClosePopUpContext";
 import AddBrandPopUp from "./AddBrandPopUp";
 
 const AdminBrand = () => {
-  const { addBrandPopUp, setAddBrandPopUp, updateBranPopUp, deleteBrandPopUp } =
+  const { addBrandPopUp, setAddBrandPopUp, deleteBrandPopUp, updateBrandPopUp } =
     useContext(closePopUpContext);
 
   const [page, setPage] = useState(1);
@@ -40,7 +40,7 @@ const AdminBrand = () => {
         }
         setData(data1);
       });
-  }, [page, all_brands, deleteBrandPopUp, addBrandPopUp,updateBranPopUp]);
+  }, [page,deleteBrandPopUp, addBrandPopUp,updateBrandPopUp]);
 
   const handlePageChange = (p) => {
     setPage(p);

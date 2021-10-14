@@ -14,11 +14,25 @@ import { closePopUpContext } from "../components/Context/ClosePopUpContext";
 const Routes = () => {
   const [updatePopUp, setUpdatePopUp] = useState(false);
   const [deletePopUp, setDeletePopUp] = useState(false);
+  const [updateBrandPopUp, setUpdateBrandPopUp] = useState(false);
+  const [deleteBrandPopUp, setDeleteBrandPopUp] = useState(false);
+  const [addBrandPopUp, setAddBrandPopUp] = useState(false);
   return (
     <Router>
       <Switch>
         <closePopUpContext.Provider
-          value={{ updatePopUp, deletePopUp, setUpdatePopUp, setDeletePopUp }}
+          value={{
+            updatePopUp,
+            deletePopUp,
+            setUpdatePopUp,
+            setDeletePopUp,
+            updateBrandPopUp,
+            setUpdateBrandPopUp,
+            deleteBrandPopUp,
+            setDeleteBrandPopUp,
+            addBrandPopUp,
+            setAddBrandPopUp,
+          }}
         >
           <Route path="/" component={UserLogin} exact />
 

@@ -39,7 +39,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
     var data1 = new FormData();
 
     data1.append("brand_id", value1.id);
-    // data1.append("image", data.Image[0]);
+    data1.append("image", data.Image[0]);
     data1.append("text", data.BrandName);
     data1.append("is_active", true);
 

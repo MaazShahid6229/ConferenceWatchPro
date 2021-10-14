@@ -19,11 +19,23 @@ const AdminConference = () => {
 
   const create_brand = BaseUrl.url + "connex/branding/create_brand/";
 
-  const { startConference,setStartConference } = useContext(closePopUpContext);
+  const { startConference, setStartConference } = useContext(closePopUpContext);
 
   const PopUpCloseHandler = () => {
     setStartConference(false);
   };
+
+  // const option = [
+  //   {
+  //     id:1,
+  //   }
+  // ];
+
+  // const options = option.map((brand, index) => (
+  //   <option key={index} value={brand.id}>
+  //     {brand.text}
+  //   </option>
+  // ));
 
   const onSubmit = (data) => {
     let store = JSON.parse(localStorage.getItem("login"));
@@ -61,7 +73,7 @@ const AdminConference = () => {
 
   return (
     <Fragment>
-      <Modal >
+      <Modal>
         <br />
         <div className={classes.divCloseIcon}>
           <img
@@ -88,12 +100,17 @@ const AdminConference = () => {
               <label>Spectel Bridge</label>
               <input
                 {...register("Spectel_Bridge_1", {
-                  required: { value: true, message: "Spectel Bridge is Required" },
+                  required: {
+                    value: true,
+                    message: "Spectel Bridge is Required",
+                  },
                 })}
                 type="text"
                 placeholder="Spectel Bridge"
               />
-              {errors.Spectel_Bridge_1 && <p>{errors.Spectel_Bridge_1.message}</p>}
+              {errors.Spectel_Bridge_1 && (
+                <p>{errors.Spectel_Bridge_1.message}</p>
+              )}
             </div>
           </div>
           <div className={classes.section2}>

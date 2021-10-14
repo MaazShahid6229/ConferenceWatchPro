@@ -5,14 +5,21 @@ import BaseUrl from "../../BaseUrl";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminConference from "../AdminConference/AdminConference"
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState,useContext, Fragment } from "react";
 import DetailConference from "./DetailConference";
+import { closePopUpContext } from "../../Context/ClosePopUpContext";
+
 
 const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 
 const CreateConference = (props) => {
+
+  const {setStartConference, startConference} =
+    useContext(closePopUpContext);
+
   const [result, setResult] = useState({});
   const [find, setFind] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -83,8 +90,16 @@ const CreateConference = (props) => {
     setShowForm(true);
   };
 
+  const StartConferenceHandler = () =>{
+    setStartConference(true)
+  }
+
   return (
+    <Fragment>
     <Card className={classes.login}>
+      <div className={classes.ButtonDiv}>
+        <Button onClick={StartConferenceHandler} className={classes.ConferenceButton}>Start Conference</Button>
+      </div>
       <h2>Enter Id and Date and Find Order</h2>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form}>
         <div className={classes.control}>
@@ -135,6 +150,8 @@ const CreateConference = (props) => {
         pauseOnHover
       />
     </Card>
+    {startConference && <AdminConference/>}
+    </Fragment>
   );
 };
 

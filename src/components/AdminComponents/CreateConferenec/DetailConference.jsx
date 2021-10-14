@@ -325,7 +325,10 @@ const DetailConference = (props) => {
             <label htmlFor="Email1">Participant 1</label>
             <input
               {...register("Email1", {
-                required: { value: true, message: "Participant Email is Required" },
+                required: {
+                  value: true,
+                  message: "Participant Email is Required",
+                },
               })}
               type="email"
               placeholder="Enter First Participant Email"
@@ -337,7 +340,10 @@ const DetailConference = (props) => {
             <label htmlFor="Email1">Participant 2</label>
             <input
               {...register("Email2", {
-                required: { value: true, message: "Participant Email is Required" },
+                required: {
+                  value: true,
+                  message: "Participant Email is Required",
+                },
               })}
               type="email"
               placeholder="Enter Second Participant Email"
@@ -349,7 +355,10 @@ const DetailConference = (props) => {
             <label htmlFor="Email1">Participant 3</label>
             <input
               {...register("Email3", {
-                required: { value: true, message: "Participant Email is Required" },
+                required: {
+                  value: true,
+                  message: "Participant Email is Required",
+                },
               })}
               type="email"
               placeholder="Enter Third Participant Email"

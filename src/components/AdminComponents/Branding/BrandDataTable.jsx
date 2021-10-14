@@ -59,7 +59,7 @@ const BrandDataTable = (props) => {
   const handleDeleteNo = () => {
     setDeleteBrandPopUp(false);
   };
-debugger;
+
   const columns = [
     {
       name: "Image",

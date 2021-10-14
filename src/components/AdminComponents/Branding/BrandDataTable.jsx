@@ -59,7 +59,7 @@ const BrandDataTable = (props) => {
   const handleDeleteNo = () => {
     setDeleteBrandPopUp(false);
   };
-
+debugger;
   const columns = [
     {
       name: "Image",
@@ -67,7 +67,7 @@ const BrandDataTable = (props) => {
       selector: (row) => (
         <div className={classes.BrandImage}>
           <img
-            src={`http://192.168.5.19${row.BrandImgUrl}`}
+            src={`${BaseUrl.url}${row.BrandImgUrl}`}
             width={120}
             height={100}
             alt="Brand"

@@ -61,6 +61,8 @@ const CreateConference = (props) => {
         setFind(true);
       })
       .catch((error) => {
+        setFind(false);
+        let message = error.response.data.Message
         setResult({
           ConferenceId: data.ConferenceId,
           Company: "",
@@ -72,8 +74,7 @@ const CreateConference = (props) => {
           Password: "",
           ConfirmPassword: "",
         });
-        setFind(false);
-        toast.error("No Record Found", {
+        toast.error(`${message}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

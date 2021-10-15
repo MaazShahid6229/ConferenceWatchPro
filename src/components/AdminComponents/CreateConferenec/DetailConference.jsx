@@ -64,9 +64,6 @@ const DetailConference = (props) => {
     </option>
   ));
 
-  const AddBrand = () => {
-    // console.log("Add Brand");
-  };
 
   useEffect(() => {
     for (const key in props.defaultV) {
@@ -279,7 +276,6 @@ const DetailConference = (props) => {
                 Chose Brand
               </option>
               {Branding}
-              <option onChange={AddBrand}>Add New</option>
             </select>
           </div>
           <div className={classes.control}>

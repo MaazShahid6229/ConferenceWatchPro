@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Route from "./routes/Routes";
-import { BrowserRouter } from "react-router-dom";
+import App from "./routes/Routes";
+import { BrowserRouter, Route } from "react-router-dom";
 
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <Route />
+  <Route path="/" component={App} />
   </BrowserRouter>,
   document.getElementById("root")
 );

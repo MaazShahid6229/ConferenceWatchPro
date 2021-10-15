@@ -15,7 +15,6 @@ const UpdateBrandPopUp = ({ value1 }) => {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm();
 

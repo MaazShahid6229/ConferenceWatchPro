@@ -15,6 +15,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -37,8 +38,12 @@ const UpdateBrandPopUp = ({ value1 }) => {
 
     var data1 = new FormData();
 
+    let getImage = getValues("Image")
+    if(Object.keys(getImage).length > 0)
+    {
+      data1.append("image", data.Image[0]);
+    }
     data1.append("brand_id", value1.id);
-    data1.append("image", data.Image[0]);
     data1.append("text", data.BrandName);
     data1.append("is_active", true);
 
@@ -64,12 +69,6 @@ const UpdateBrandPopUp = ({ value1 }) => {
         });
       });
   };
-
-  // const getImageUrl = () => {
-  //   var test=document.getElementById("fraz");
-  //   console.log(test.files.item(0))
-  //   // set
-  // };
 
   return (
     <Fragment>
@@ -97,14 +96,11 @@ const UpdateBrandPopUp = ({ value1 }) => {
             <div className={classes.control}>
               <label>Brand Image</label>
               <input
-                {...register("Image", {
-                  required: { value: true, message: "Image is Required" },
-                })}
+                {...register("Image")}
                 id="fraz"
                 type="file"
                 accept="image/*"
                 placeholder="Image"
-                // onChange={getImageUrl}
                 readOnly
               />
               {errors.Image && <p>{errors.Image.message}</p>}

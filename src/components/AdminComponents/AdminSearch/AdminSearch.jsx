@@ -97,16 +97,17 @@ const AdminSearch = (props) => {
           }
         })
         .catch((error) => {
-          // let message = error.response.data.Message
-          // toast.error(`${message}`, {
-          //   position: "top-right",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: true,
-          //   progress: undefined,
-          // });
+          console.log(error.response.data)
+          let message = error.response.data.Message
+          toast.error(`${message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
   }, [result, deletePopUp, updatePopUp, search_conferences]);

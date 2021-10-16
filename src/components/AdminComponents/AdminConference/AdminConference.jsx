@@ -180,7 +180,7 @@ const AdminConference = (props) => {
                       onClick={() => handleRemoveClick(i)}
                     />
                   )}
-                  {inputList.length - 1 === i && (
+                  {inputList.length - 1 === i && inputList.length <11 && (
                     <img
                       src={AddIcon}
                       alt="AddIcon"

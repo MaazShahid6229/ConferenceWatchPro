@@ -4,6 +4,7 @@ import Button from "../../UI/Button/Button";
 import classes from "./AdminConference.module.css";
 import closeIcon from "../../../assets/close.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
+// import { ToastContainer, toast } from "react-toastify";
 import BaseUrl from "../../BaseUrl";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import AddIcon from "../../../assets/add.png";
@@ -11,7 +12,6 @@ import AddIcon from "../../../assets/add.png";
 import axios from "axios";
 
 const AdminConference = (props) => {
-  console.log("trigger")
   const [inputList, setInputList] = useState([
     { s_conf_id: "", bridge_number: "" },
   ]);
@@ -29,11 +29,15 @@ const AdminConference = (props) => {
   const option = [
     {
       id: 0,
-      text: "Harvey",
+      text: "Grace",
     },
     {
       id: 1,
-      text: "Grace",
+      text: "Harvey",
+    },
+    {
+      id: 2,
+      text: "Isabel",
     },
     {
       id: 3,
@@ -41,7 +45,7 @@ const AdminConference = (props) => {
     },
     {
       id: 4,
-      text: "Isabel",
+      text: "Pearl",
     },
     {
       id: 5,
@@ -49,7 +53,7 @@ const AdminConference = (props) => {
     },
     {
       id: 6,
-      text: "Pearl",
+      text: "Xena",
     },
     {
       id: 7,
@@ -57,10 +61,6 @@ const AdminConference = (props) => {
     },
     {
       id: 8,
-      text: "Xena",
-    },
-    {
-      id: 9,
       text: "Zeus",
     },
   ];
@@ -75,9 +75,6 @@ const AdminConference = (props) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
-    // var id = new FormData();
-    // id.append("id",props.id)
-
     axios
       .get(get_bridge, {
         headers: {
@@ -88,13 +85,15 @@ const AdminConference = (props) => {
         let length_of_bridges = response.data["All Spectel Conference"].length;
         let new_input_list = [];
 
-        let obj = { s_conf_id: "", bridge_number: "" };
-
         for (let j = 0; j < length_of_bridges; j++) {
+          let obj = { s_conf_id: "", bridge_number: "" };
+
           obj["s_conf_id"] =
             response.data["All Spectel Conference"][j]["s_conf_id"];
+
           obj["bridge_number"] =
             response.data["All Spectel Conference"][j]["bridge_number"];
+
           new_input_list.push(obj);
         }
 
@@ -102,11 +101,9 @@ const AdminConference = (props) => {
           setInputList(new_input_list);
         }
       });
-  },[]);
-
+  },[get_bridge]);
 
   const onSubmit = () => {
-
     for (let i = 0; i < inputList.length; i++) {
       inputList[i]["conference"] = props.id;
     }
@@ -118,18 +115,15 @@ const AdminConference = (props) => {
 
     var data1 = JSON.stringify(inputList);
 
-    console.log(data1);
-
     axios
       .post(create_bridge, data1, {
         headers: {
           Authorization: `jwt ${token}`,
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
         setStartConference(false);
-        console.log(response);
       });
     // .catch((error) => {
     //   console.log(error);
@@ -182,8 +176,8 @@ const AdminConference = (props) => {
           {inputList.map((x, i) => {
             return (
               <Fragment key={i}>
-                <div className={classes.controls}>
-                  <div className={classes.control}>
+                <div className={classes.labelForm}>
+                  <div className={classes.labelInput}>
                     <label>Spectel Id</label>
                     <input
                       name="s_conf_id"
@@ -193,7 +187,9 @@ const AdminConference = (props) => {
                       required
                     />
                   </div>
-                  <div className={classes.control}>
+                  <div
+                    className={`${classes.labelInput} ${classes.labelWidth}`}
+                  >
                     <label>Spectel Bridge</label>
                     <select
                       name="bridge_number"
@@ -208,29 +204,29 @@ const AdminConference = (props) => {
                       {options}
                     </select>
                   </div>
+                  <div className={classes.iconDiv}>
+                    {inputList.length !== 1 && (
+                      <img
+                        src={deleteIcon}
+                        alt="DeleteIcon"
+                        className={classes.Icon}
+                        onClick={() => handleRemoveClick(i)}
+                      />
+                    )}
+                    {inputList.length - 1 === i && inputList.length < 100 && (
+                      <img
+                        src={AddIcon}
+                        alt="AddIcon"
+                        className={classes.Icon}
+                        onClick={handleAddClick}
+                      />
+                    )}
+                  </div>
                 </div>
-                <div className={classes.iconDiv}>
-                  {inputList.length !== 1 && (
-                    <img
-                      src={deleteIcon}
-                      alt="DeleteIcon"
-                      className={classes.Icon}
-                      onClick={() => handleRemoveClick(i)}
-                    />
-                  )}
-                  {inputList.length - 1 === i && inputList.length < 11 && (
-                    <img
-                      src={AddIcon}
-                      alt="AddIcon"
-                      className={classes.Icon}
-                      onClick={handleAddClick}
-                    />
-                  )}
-                </div>
+                <hr className={classes.sepHeight} />
               </Fragment>
             );
           })}
-
           <div className={classes.section2}>
             <Button
               onClick={PopUpCloseHandler}

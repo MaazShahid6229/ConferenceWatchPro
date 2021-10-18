@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "../../UI/Modal/Modal";
 import Button from "../../UI/Button/Button";
@@ -18,6 +18,8 @@ const AdminConference = (props) => {
   ]);
 
   const create_bridge = BaseUrl.url + "connex/spectel/create_Spectel_Conf/";
+  const get_bridge =
+    BaseUrl.url + `connex/spectel/create_Spectel_Conf/?id=${props.id}`;
 
   const { setStartConference } = useContext(closePopUpContext);
 
@@ -70,9 +72,43 @@ const AdminConference = (props) => {
     </option>
   ));
 
+  useEffect(() => {
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+
+    // var id = new FormData();
+    // id.append("id",props.id)
+
+    axios
+      .get(get_bridge, {
+        headers: {
+          Authorization: `jwt ${token}`,
+        },
+      })
+      .then((response) => {
+        let length_of_bridges = response.data["All Spectel Conference"].length;
+        let new_input_list = [];
+
+        let obj = { s_conf_id: "", bridge_number: "" };
+
+        for (let j = 0; j < length_of_bridges; j++) {
+          obj["s_conf_id"] =
+            response.data["All Spectel Conference"][j]["s_conf_id"];
+          obj["bridge_number"] =
+            response.data["All Spectel Conference"][j]["bridge_number"];
+          new_input_list.push(obj);
+        }
+
+        if (new_input_list.length > 0) {
+          setInputList(new_input_list);
+        }
+      });
+  }, []);
+
+
   const onSubmit = () => {
 
-    for (let i=0; i<inputList.length; i++) {
+    for (let i = 0; i < inputList.length; i++) {
       inputList[i]["conference"] = props.id;
     }
 
@@ -81,33 +117,34 @@ const AdminConference = (props) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
-    var data1 = JSON.stringify(inputList)
+    var data1 = JSON.stringify(inputList);
 
-    console.log(data1)
-    
+    console.log(data1);
+
     axios
       .post(create_bridge, data1, {
         headers: {
           Authorization: `jwt ${token}`,
+          // content_type: "application/json",
         },
       })
       .then((response) => {
         setStartConference(false);
         console.log(response);
-      })
-      .catch((error) => {
-        console.log(error)
-        // let message = error.response.data.error;
-        // toast.error(`${message}`, {
-        //   position: "top-right",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        // });
       });
+    // .catch((error) => {
+    //   console.log(error);
+    //   // let message = error.response.data.error;
+    //   // toast.error(`${message}`, {
+    //   //   position: "top-right",
+    //   //   autoClose: 5000,
+    //   //   hideProgressBar: false,
+    //   //   closeOnClick: true,
+    //   //   pauseOnHover: true,
+    //   //   draggable: true,
+    //   //   progress: undefined,
+    //   // });
+    // });
   };
 
   // handle input change

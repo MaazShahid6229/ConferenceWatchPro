@@ -4,7 +4,7 @@ import Button from "../../UI/Button/Button";
 import classes from "./AdminConference.module.css";
 import closeIcon from "../../../assets/close.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
-// import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import BaseUrl from "../../BaseUrl";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import AddIcon from "../../../assets/add.png";
@@ -101,7 +101,7 @@ const AdminConference = (props) => {
           setInputList(new_input_list);
         }
       });
-  },[get_bridge]);
+  }, [get_bridge]);
 
   const onSubmit = () => {
     for (let i = 0; i < inputList.length; i++) {
@@ -157,6 +157,17 @@ const AdminConference = (props) => {
 
   // handle click event of the Add button
   const handleAddClick = () => {
+    if (inputList.length >= 8) {
+      toast.error("Reached at Max Limit", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
     setInputList([...inputList, { s_conf_id: "", bridge_number: "" }]);
   };
 
@@ -213,7 +224,7 @@ const AdminConference = (props) => {
                         onClick={() => handleRemoveClick(i)}
                       />
                     )}
-                    {inputList.length - 1 === i && inputList.length < 100 && (
+                    {inputList.length - 1 === i && inputList.length < 9 && (
                       <img
                         src={AddIcon}
                         alt="AddIcon"
@@ -241,6 +252,17 @@ const AdminConference = (props) => {
           </div>
         </form>
       </Modal>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Fragment>
   );
 };

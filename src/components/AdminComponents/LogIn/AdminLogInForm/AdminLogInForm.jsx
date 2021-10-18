@@ -40,7 +40,7 @@ const LogInForm = (props) => {
         }
       })
       .catch((error) => {
-        let message = error.response.data.Message
+        let message = error.response?.data.Message
         toast.error(`${message}`, {
           position: "top-right",
           autoClose: 5000,

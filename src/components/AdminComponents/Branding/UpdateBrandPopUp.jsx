@@ -25,8 +25,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
 
   useEffect(() => {
     setValue("BrandName", value1?.BrandName);
-    // setValue("image", value1.Image);
-  }, []);
+  });
 
   const PopUpCloseHandler = () => {
     setUpdateBrandPopUp(false);

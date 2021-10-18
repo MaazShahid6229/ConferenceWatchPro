@@ -1,11 +1,9 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import Modal from "../../UI/Modal/Modal";
 import Button from "../../UI/Button/Button";
 import classes from "./AdminConference.module.css";
 import closeIcon from "../../../assets/close.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
-import { ToastContainer, toast } from "react-toastify";
 import BaseUrl from "../../BaseUrl";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import AddIcon from "../../../assets/add.png";
@@ -13,6 +11,7 @@ import AddIcon from "../../../assets/add.png";
 import axios from "axios";
 
 const AdminConference = (props) => {
+  console.log("trigger")
   const [inputList, setInputList] = useState([
     { s_conf_id: "", bridge_number: "" },
   ]);
@@ -103,7 +102,7 @@ const AdminConference = (props) => {
           setInputList(new_input_list);
         }
       });
-  }, []);
+  },[]);
 
 
   const onSubmit = () => {

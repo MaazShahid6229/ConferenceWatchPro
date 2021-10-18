@@ -89,6 +89,7 @@ const AdminConference = (props) => {
       .post(create_bridge, data1, {
         headers: {
           Authorization: `jwt ${token}`,
+          'Content-Type': 'application/json',
         },
       })
       .then((response) => {

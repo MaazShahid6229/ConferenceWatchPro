@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
 import closeIcon from "../../../assets/close.png";
-import AddButton from "../../../assets/add.png";
 import BaseUrl from "../../BaseUrl";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 

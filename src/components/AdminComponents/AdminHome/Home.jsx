@@ -6,8 +6,11 @@ import AdminHome from "./AdminHome";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
 const Home = (props) => {
-  const { updatePopUp, deletePopUp } = useContext(closePopUpContext);
+  
+  const { updatePopUp, deletePopUp, setLoader } =
+    useContext(closePopUpContext);
 
+  
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState();
@@ -18,12 +21,13 @@ const Home = (props) => {
     `connex/conferenece/create_conference/?page=${page}&per_page=${countPerPage}&delay=1`;
 
   useEffect(() => {
+    setLoader(true)
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
     axios
       .get(all_conferences, { headers: { Authorization: `jwt ${token}` } })
       .then((response) => {
-        setTotalCount(response.data.total_count)
+        setTotalCount(response.data.total_count);
         const obj = response.data["All Conference"];
         let data1 = [];
         for (const i in obj) {
@@ -32,7 +36,7 @@ const Home = (props) => {
             CID: obj[i].dash_cid,
             Company: obj[i].dash_company_name,
             Moderator: obj[i].dash_moderator_name,
-            Brand: obj[i].brand['text'],
+            Brand: obj[i].brand["text"],
             StartDate: obj[i].start_date,
             EndDate: obj[i].end_date,
             Series: obj[i].series,
@@ -40,6 +44,7 @@ const Home = (props) => {
           });
         }
         setData(data1);
+        setLoader(false)
       });
   }, [page, all_conferences, updatePopUp, deletePopUp]);
 

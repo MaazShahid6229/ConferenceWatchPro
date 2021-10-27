@@ -10,7 +10,7 @@ import { closePopUpContext } from "../../Context/ClosePopUpContext";
 import AddBrandPopUp from "./AddBrandPopUp";
 
 const AdminBrand = () => {
-  const { addBrandPopUp, setAddBrandPopUp, deleteBrandPopUp, updateBrandPopUp } =
+  const { setLoader, addBrandPopUp, setAddBrandPopUp, deleteBrandPopUp, updateBrandPopUp } =
     useContext(closePopUpContext);
 
   const [page, setPage] = useState(1);
@@ -23,6 +23,7 @@ const AdminBrand = () => {
     `connex/branding/update_brand/?page=${page}&per_page=${countPerPage}&delay=1`;
 
   useEffect(() => {
+    setLoader(true)
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
     axios
@@ -39,6 +40,7 @@ const AdminBrand = () => {
           });
         }
         setData(data1);
+        setLoader(false)
       });
   }, [page,deleteBrandPopUp,all_brands, addBrandPopUp,updateBrandPopUp]);
 

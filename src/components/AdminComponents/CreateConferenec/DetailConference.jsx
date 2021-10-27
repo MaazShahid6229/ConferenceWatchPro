@@ -64,7 +64,6 @@ const DetailConference = (props) => {
     </option>
   ));
 
-
   useEffect(() => {
     for (const key in props.defaultV) {
       setValue(key, props.defaultV[key]);
@@ -152,7 +151,9 @@ const DetailConference = (props) => {
         });
     }
   };
-
+  const AddNewBrand = () => {
+    console.log("hello");
+  };
   return (
     <Fragment>
       <br />

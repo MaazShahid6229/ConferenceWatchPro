@@ -1,7 +1,9 @@
-import React from "react";
+import {  useContext } from "react";
 import DataTable,{createTheme } from "react-data-table-component";
+import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
+
 
 const sortIcon = <ArrowDownward />;
 
@@ -56,10 +58,16 @@ const customStyles = {
 };
 
 function DataTableBase(props) {
+
+  const {
+    loader,
+  } = useContext(closePopUpContext);
+
   return (
     <DataTable
       theme="solarized"
       customStyles={customStyles}
+      progressPending={loader}
       pagination
       paginationServer
       sortIcon={sortIcon}

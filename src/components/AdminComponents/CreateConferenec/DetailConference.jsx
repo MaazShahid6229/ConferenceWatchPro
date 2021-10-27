@@ -7,6 +7,9 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import AddBrandPopUp from "../Branding/AddBrandPopUp";
+import deleteIcon from "../../../assets/deleteIcon.png";
+import AddIcon from "../../../assets/add.png";
+import { ToastContainer, toast } from "react-toastify";
 
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,6 +39,49 @@ const DetailConference = (props) => {
     setValue,
     formState: { errors },
   } = useForm();
+
+  const [emailList, setEmailList] = useState([{ email_address: "" }]);
+
+  const NewEmailList = [];
+  for (let i in props.defaultV.Email) {
+    NewEmailList.push({
+      email_address: props.defaultV.Email[i]["email_address"],
+    });
+  }
+  useEffect(() => {
+    setEmailList(NewEmailList)
+  },[props.defaultV]);
+
+  // handle input change
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...emailList];
+    list[index][name] = value;
+    setEmailList(list);
+  };
+
+  // handle click event of the Remove button
+  const handleRemoveClick = (index) => {
+    const list = [...emailList];
+    list.splice(index, 1);
+    setEmailList(list);
+  };
+
+  // handle click event of the Add button
+  const handleAddClick = () => {
+    if (emailList.length >= 9) {
+      toast.error("Reached at Max Limit", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    setEmailList([...emailList, { Email: "" }]);
+  };
 
   const [brand, setBrand] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
@@ -102,18 +148,6 @@ const DetailConference = (props) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
-    const email_addresses = [
-      {
-        email_address: data.Email1,
-      },
-      {
-        email_address: data.Email2,
-      },
-      {
-        email_address: data.Email3,
-      },
-    ];
-
     if (!props.find) {
       var data1 = {
         dash_cid: data.ConferenceId,
@@ -124,7 +158,7 @@ const DetailConference = (props) => {
         series: data.Series,
         brand: data.Branding,
         password: data.Password,
-        email_addresses: email_addresses,
+        email_addresses: emailList,
       };
       axios
         .post(baseURL1, data1, {
@@ -146,7 +180,7 @@ const DetailConference = (props) => {
         series: data.Series,
         brand: data.Branding,
         password: data.Password,
-        email_addresses: email_addresses,
+        email_addresses: emailList,
       };
       axios
         .put(baseURL2, data2, {
@@ -288,10 +322,7 @@ const DetailConference = (props) => {
             </select>
           </div>
           <div className={classes.controls}>
-            <Button
-              className={classes.AddBrand}
-              onClick={AddNewBrand}
-            >
+            <Button className={classes.AddBrand} onClick={AddNewBrand}>
               Add New Brand
             </Button>
           </div>
@@ -334,51 +365,45 @@ const DetailConference = (props) => {
           </div>
         </div>
         <div className={classes.controls3}>
-          <div className={classes.control}>
-            <label htmlFor="Email1">Participant 1</label>
-            <input
-              {...register("Email1", {
-                required: {
-                  value: true,
-                  message: "Participant Email is Required",
-                },
-              })}
-              type="email"
-              placeholder="Enter First Participant Email"
-              name="Email1"
-            />
-            {errors.Email1 && <p>{errors.Email1.message}</p>}
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="Email1">Participant 2</label>
-            <input
-              {...register("Email2", {
-                required: {
-                  value: true,
-                  message: "Participant Email is Required",
-                },
-              })}
-              type="email"
-              placeholder="Enter Second Participant Email"
-              name="Email2"
-            />
-            {errors.Email2 && <p>{errors.Email2.message}</p>}
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="Email1">Participant 3</label>
-            <input
-              {...register("Email3", {
-                required: {
-                  value: true,
-                  message: "Participant Email is Required",
-                },
-              })}
-              type="email"
-              placeholder="Enter Third Participant Email"
-              name="Email3"
-            />
-            {errors.Email3 && <p>{errors.Email3.message}</p>}
-          </div>
+          {emailList.map((x, i) => {
+            return (
+              <Fragment key={i}>
+                <div className={classes.labelForm}>
+                  <div className={classes.labelInput}>
+                    <label>Email</label>
+                    <input
+                      name="email_address"
+                      placeholder="Enter Participant Email"
+                      value={x.email_address}
+                      onChange={(e) => handleInputChange(e, i)}
+                      required
+                    />
+                  </div>
+                  <div className={classes.iconDiv}>
+                    {emailList.length !== 1 && (
+                      <img
+                        className={classes.Icon}
+                        src={deleteIcon}
+                        alt="DeleteIcon"
+                        className={classes.Icon}
+                        onClick={() => handleRemoveClick(i)}
+                      />
+                    )}
+                    {emailList.length - 1 === i && emailList.length < 10 && (
+                      <img
+                        className={classes.Icon}
+                        src={AddIcon}
+                        alt="AddIcon"
+                        className={classes.Icon}
+                        onClick={handleAddClick}
+                      />
+                    )}
+                  </div>
+                </div>
+                <hr className={classes.sepHeight} />
+              </Fragment>
+            );
+          })}
         </div>
         <div className={classes.section2}>
           <Button
@@ -394,6 +419,17 @@ const DetailConference = (props) => {
         </div>
       </form>
       {addBrandPopUp && <AddBrandPopUp />}
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Fragment>
   );
 };

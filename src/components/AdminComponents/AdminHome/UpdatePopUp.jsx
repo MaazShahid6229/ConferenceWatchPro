@@ -34,9 +34,7 @@ const UpdatePopUp = (props) => {
           Branding: response.data.Conference.brand,
           Password: response.data.Conference.password,
           ConfirmPassword: response.data.Conference.password,
-          Email1: response.data.Conference.email_addresses[0].email_address,
-          Email2: response.data.Conference.email_addresses[1].email_address,
-          Email3: response.data.Conference.email_addresses[2].email_address,
+          Email: response.data.Conference.email_addresses,
         });
       });
   }, [props.value]);

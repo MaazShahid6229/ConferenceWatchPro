@@ -19,11 +19,17 @@ const App = () => {
   const [addBrandPopUp, setAddBrandPopUp] = useState(false);
   const [startConference, setStartConference] = useState(false);
   const [loader, setLoader] = useState(true);
+  const [conferenceApiCall, setConferenceApiCall] = useState(false);
+  const [brandApiCall, setBrandApiCall] = useState(false);
 
   return (
     <Switch>
       <closePopUpContext.Provider
         value={{
+          conferenceApiCall,
+          setConferenceApiCall,
+          brandApiCall,
+          setBrandApiCall,
           loader,
           setLoader,
           startConference,

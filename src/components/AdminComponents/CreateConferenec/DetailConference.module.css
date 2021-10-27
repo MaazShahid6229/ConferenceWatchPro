@@ -94,9 +94,9 @@ select {
   /* margin-right: 8px; */
   margin-top: -25px;
 }
-.generatePassword{
-  margin-top: 20px;
-  padding: 10px 20px 10px 20px;
+.generatePassword {
+  margin-top: 27px;
+  padding: 5px 10px 5px 10px;
   background-color: white;
   color: black;
   border: 2px solid #323362;
@@ -109,7 +109,24 @@ select {
 p {
   color: red;
 }
-.passwordIcon{
+.passwordIcon {
   position: absolute;
   margin-left: 280px;
+}
+.AddButton {
+  margin-top: 32px;
+  cursor: pointer;
+  width: 30px;
+}
+.AddBrand {
+  margin-top: 27px;
+  padding: 5px 10px 5px 10px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+  align-self: flex-end;
+}
+.AddBrand:hover {
+  background-color: #4caf50;
+  color: white;
 }

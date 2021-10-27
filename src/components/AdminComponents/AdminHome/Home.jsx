@@ -7,7 +7,7 @@ import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
 const Home = (props) => {
   
-  const { updatePopUp, deletePopUp, setLoader } =
+  const { setLoader,conferenceApiCall } =
     useContext(closePopUpContext);
 
   
@@ -46,7 +46,7 @@ const Home = (props) => {
         setData(data1);
         setLoader(false)
       });
-  }, [page, all_conferences, updatePopUp, deletePopUp]);
+  }, [page, all_conferences,conferenceApiCall]);
 
   const handlePageChange = (p) => {
     setPage(p);

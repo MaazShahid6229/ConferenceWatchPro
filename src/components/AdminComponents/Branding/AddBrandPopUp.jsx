@@ -7,6 +7,7 @@ import closeIcon from "../../../assets/close.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 import { ToastContainer, toast } from "react-toastify";
 import BaseUrl from "../../BaseUrl";
+import { Helmet } from "react-helmet";
 
 import axios from "axios";
 
@@ -18,9 +19,9 @@ const AddBrandPopUp = ({ value1 }) => {
   } = useForm();
 
   const create_brand = BaseUrl.url + "connex/branding/create_brand/";
-  const { setAddBrandPopUp } =
+  const { setAddBrandPopUp, brandApiCall, setBrandApiCall } =
     useContext(closePopUpContext);
-    
+
   const PopUpCloseHandler = () => {
     setAddBrandPopUp(false);
   };
@@ -43,6 +44,7 @@ const AddBrandPopUp = ({ value1 }) => {
       })
       .then((response) => {
         setAddBrandPopUp(false);
+        setBrandApiCall(!brandApiCall);
       })
       .catch((error) => {
         let message = error.response.data.error;
@@ -60,6 +62,9 @@ const AddBrandPopUp = ({ value1 }) => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Add Brand</title>
+      </Helmet>
       <Modal>
         <br />
         <div className={classes.divCloseIcon}>

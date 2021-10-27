@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import BaseUrl from "../../BaseUrl";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import AddIcon from "../../../assets/add.png";
+import { Helmet } from "react-helmet";
 
 import axios from "axios";
 
@@ -173,6 +174,9 @@ const AdminConference = (props) => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Start Conference</title>
+      </Helmet>
       <Modal>
         <br />
         <div className={classes.divCloseIcon}>

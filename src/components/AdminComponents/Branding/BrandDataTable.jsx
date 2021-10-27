@@ -14,6 +14,8 @@ const delete_brand = BaseUrl.url + "connex/branding/update_brand/";
 
 const BrandDataTable = (props) => {
   const {
+    brandApiCall,
+    setBrandApiCall,
     updateBrandPopUp,
     setUpdateBrandPopUp,
     deleteBrandPopUp,
@@ -52,6 +54,7 @@ const BrandDataTable = (props) => {
         headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {});
+    setBrandApiCall(!brandApiCall);
     setDeleteBrandPopUp(false);
   };
 

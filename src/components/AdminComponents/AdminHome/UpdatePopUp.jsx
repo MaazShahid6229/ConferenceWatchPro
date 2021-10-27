@@ -3,6 +3,8 @@ import Modal from "../../UI/Modal/Modal";
 import DetailConference from "../CreateConferenec/DetailConference";
 import axios from "axios";
 import BaseUrl from "../../BaseUrl";
+import { Helmet } from "react-helmet";
+import { Fragment } from "react/cjs/react.production.min";
 
 const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 
@@ -40,14 +42,19 @@ const UpdatePopUp = (props) => {
   }, [props.value]);
 
   return (
-    <Modal className="classes.UpdateModal">
-      <DetailConference
-        defaultV={result}
-        find={find}
-        closeHandle={props.closeHandle}
-        popUp="true"
-      />
-    </Modal>
+    <Fragment>
+      <Helmet>
+        <title>Update Conference</title>
+      </Helmet>
+      <Modal className="classes.UpdateModal">
+        <DetailConference
+          defaultV={result}
+          find={find}
+          closeHandle={props.closeHandle}
+          popUp="true"
+        />
+      </Modal>
+    </Fragment>
   );
 };
 

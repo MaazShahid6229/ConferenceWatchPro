@@ -7,6 +7,7 @@ import closeIcon from "../../../assets/close.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 import { ToastContainer, toast } from "react-toastify";
 import BaseUrl from "../../BaseUrl";
+import { Helmet } from "react-helmet";
 
 import axios from "axios";
 
@@ -21,7 +22,8 @@ const UpdateBrandPopUp = ({ value1 }) => {
 
   const update_brand = BaseUrl.url + "connex/branding/update_brand/";
 
-  const { setUpdateBrandPopUp } = useContext(closePopUpContext);
+  const { setUpdateBrandPopUp, brandApiCall, setBrandApiCall } =
+    useContext(closePopUpContext);
 
   useEffect(() => {
     setValue("BrandName", value1?.BrandName);
@@ -37,9 +39,8 @@ const UpdateBrandPopUp = ({ value1 }) => {
 
     var data1 = new FormData();
 
-    let getImage = getValues("Image")
-    if(Object.keys(getImage).length > 0)
-    {
+    let getImage = getValues("Image");
+    if (Object.keys(getImage).length > 0) {
       data1.append("image", data.Image[0]);
     }
     data1.append("brand_id", value1.id);
@@ -53,6 +54,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
         },
       })
       .then((response) => {
+        setBrandApiCall(!brandApiCall);
         setUpdateBrandPopUp(false);
       })
       .catch((error) => {
@@ -71,6 +73,9 @@ const UpdateBrandPopUp = ({ value1 }) => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Update Brand</title>
+      </Helmet>
       <Modal>
         <br />
         <div className={classes.divCloseIcon}>

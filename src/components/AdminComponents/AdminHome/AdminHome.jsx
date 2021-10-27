@@ -15,6 +15,8 @@ import AdminConference from "../AdminConference/AdminConference";
 
 const AdminHome = (props) => {
   const {
+    conferenceApiCall,
+    setConferenceApiCall,
     deletePopUp,
     setDeletePopUp,
     updatePopUp,
@@ -63,6 +65,7 @@ const AdminHome = (props) => {
       })
       .then((response) => {});
     setDeletePopUp(false);
+    setConferenceApiCall(!conferenceApiCall)
   };
 
   const handleDeleteNo = () => {

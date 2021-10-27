@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import AddBrandPopUp from "../Branding/AddBrandPopUp";
 
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import classes from "./DetailConference.module.css";
 import Button from "../../UI/Button/Button";
 import closeIcon from "../../../assets/close.png";
+import AddButton from "../../../assets/add.png";
 import BaseUrl from "../../BaseUrl";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
@@ -21,7 +23,13 @@ const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
 const DetailConference = (props) => {
-  const { setUpdatePopUp } = useContext(closePopUpContext);
+  const {
+    setUpdatePopUp,
+    setAddBrandPopUp,
+    addBrandPopUp,
+    conferenceApiCall,
+    setConferenceApiCall,
+  } = useContext(closePopUpContext);
 
   const {
     register,
@@ -56,7 +64,7 @@ const DetailConference = (props) => {
         }
         setBrand(brands);
       });
-  }, [props.defaultV]);
+  }, [props.defaultV, addBrandPopUp]);
 
   const Branding = brand.map((brand, index) => (
     <option key={index} value={brand.id}>
@@ -147,12 +155,13 @@ const DetailConference = (props) => {
         })
         .then((response) => {
           setUpdatePopUp(false);
+          setConferenceApiCall(!conferenceApiCall);
           push("/connexadmin/home");
         });
     }
   };
   const AddNewBrand = () => {
-    console.log("hello");
+    setAddBrandPopUp(true);
   };
   return (
     <Fragment>
@@ -279,6 +288,14 @@ const DetailConference = (props) => {
               {Branding}
             </select>
           </div>
+          <div className={classes.controls}>
+            <Button
+              className={classes.AddBrand}
+              onClick={AddNewBrand}
+            >
+              Add New Brand
+            </Button>
+          </div>
           <div className={classes.control}>
             <label>Password</label>
             <i className={classes.passwordIcon}>
@@ -377,6 +394,7 @@ const DetailConference = (props) => {
           </Button>
         </div>
       </form>
+      {addBrandPopUp && <AddBrandPopUp />}
     </Fragment>
   );
 };

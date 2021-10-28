@@ -25,7 +25,8 @@
   gap: 1rem;
   justify-content: center;
 }
-.control label {
+.control label,
+.labelInput label {
   font-weight: bold;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
@@ -33,7 +34,8 @@
 }
 
 .control input,
-select {
+select,
+.labelInput input {
   font: inherit;
   padding: 0.5rem;
   border-radius: 6px;
@@ -41,10 +43,34 @@ select {
   width: 20rem;
   max-width: 100%;
 }
-.control input:focus {
+.control input:focus,
+.labelInput label input:focus {
   outline: none;
   border-color: #323362;
   background: #dad5d5;
+}
+
+.labelInput,
+.iconDiv {
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.labelInput {
+  /* margin-left: 350px; */
+  width: 80%;
+}
+.iconDiv {
+  margin-top: 15px;
+  /* width: 15%; */
+  margin-right: 0px;
+  text-align: center;
+}
+.sepHeight {
+  border: none;
+  padding: 7px;
+  clear: both;
 }
 .section2 {
   width: 100%;
@@ -55,6 +81,9 @@ select {
   gap: 1rem;
 }
 .controls3 {
+  overflow-y: auto;
+  max-width: 80rem;
+  max-height: 20rem;
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -129,4 +158,28 @@ p {
 .AddBrand:hover {
   background-color: #4caf50;
   color: white;
+}
+.Icon {
+  margin-top: 17px;
+  width: 25px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #d7d7d7;
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d7d7d7;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #333232;
 }

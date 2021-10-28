@@ -38,11 +38,12 @@ const CreateConference = (props) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
-    axios
+     axios
       .post(find_conference, data1, {
         headers: { Authorization: `jwt ${token}` },
       })
       .then((response) => {
+        // console.log("email", response.data.Conference.email_addresses)
         setResult({
           id: response.data.Conference.id,
           ConferenceId: data.ConferenceId,
@@ -54,9 +55,7 @@ const CreateConference = (props) => {
           Branding: response.data.Conference.brand,
           Password: response.data.Conference.password,
           ConfirmPassword: response.data.Conference.password,
-          Email1: response.data.Conference.email_addresses[0].email_address,
-          Email2: response.data.Conference.email_addresses[1].email_address,
-          Email3: response.data.Conference.email_addresses[2].email_address,
+          Email: response.data.Conference.email_addresses,
         });
         setFind(true);
       })
@@ -73,6 +72,7 @@ const CreateConference = (props) => {
           Branding: "",
           Password: "",
           ConfirmPassword: "",
+          Email:[],
         });
         toast.error(`${message}`, {
           position: "top-right",

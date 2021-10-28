@@ -46,7 +46,7 @@ const Home = (props) => {
         setData(data1);
         setLoader(false)
       });
-  }, [page, all_conferences,conferenceApiCall]);
+  }, [page, all_conferences,conferenceApiCall,setLoader]);
 
   const handlePageChange = (p) => {
     setPage(p);

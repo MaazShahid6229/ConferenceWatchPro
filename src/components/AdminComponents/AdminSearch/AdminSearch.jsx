@@ -97,7 +97,6 @@ const AdminSearch = (props) => {
           }
         })
         .catch((error) => {
-          console.log(error.response.data)
           let message = error.response.data.Message
           toast.error(`${message}`, {
             position: "top-right",

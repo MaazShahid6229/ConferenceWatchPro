@@ -49,8 +49,12 @@ const DetailConference = (props) => {
     });
   }
   useEffect(() => {
-    setEmailList(NewEmailList)
-  },[props.defaultV]);
+    if (NewEmailList.length > 0) {
+      setEmailList(NewEmailList);
+    } else {
+      setEmailList([{ email_address: "" }]);
+    }
+  }, [props.defaultV]);
 
   // handle input change
   const handleInputChange = (e, index) => {
@@ -168,6 +172,19 @@ const DetailConference = (props) => {
         })
         .then((response) => {
           push("/connexadmin/home");
+        })
+        .catch((error) => {
+          // let message = error.response.data.Message;
+          let message = "Check Your Details Again"
+          toast.error(`${message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     } else {
       var data2 = {
@@ -190,6 +207,19 @@ const DetailConference = (props) => {
           setUpdatePopUp(false);
           setConferenceApiCall(!conferenceApiCall);
           push("/connexadmin/home");
+        })
+        .catch((error) => {
+          // let message = error.response.data.Message;
+          let message = "Check Your Details Again"
+          toast.error(`${message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
   };
@@ -314,12 +344,12 @@ const DetailConference = (props) => {
                 required: { value: true, message: "Brand Name is Required" },
               })}
             >
-              {errors.Branding && <p>{errors.Branding.message}</p>}
               <option value="" disabled>
                 Chose Brand
               </option>
               {Branding}
             </select>
+            {errors.Branding && <p>{errors.Branding.message}</p>}
           </div>
           <div className={classes.controls}>
             <Button className={classes.AddBrand} onClick={AddNewBrand}>
@@ -372,6 +402,7 @@ const DetailConference = (props) => {
                   <div className={classes.labelInput}>
                     <label>Email</label>
                     <input
+                      type="email"
                       name="email_address"
                       placeholder="Enter Participant Email"
                       value={x.email_address}

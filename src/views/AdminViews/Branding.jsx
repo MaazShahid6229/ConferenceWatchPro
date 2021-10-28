@@ -1,20 +1,20 @@
 import Wrapper from "../../components/UI/Wrapper/Wrapper";
-import NavBar from "../../components/UI/NavBar/NavBar";
-import AHome from "../../components/AdminComponents/AdminHome/Home";
 import { Fragment } from "react";
+import NavBar from "../../components/UI/NavBar/NavBar";
+import AdminBrand from "../../components/AdminComponents/Branding/AdminBrand";
 import { Helmet } from "react-helmet";
 
-const Home = () => {
+const Branding = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Home</title>
+        <title>Brands</title>
       </Helmet>
       <Wrapper />
       <NavBar />
-      <AHome />
+      <AdminBrand />
     </Fragment>
   );
 };
 
-export default Home;
+export default Branding;

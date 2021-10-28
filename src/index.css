@@ -1,5 +1,5 @@
 html{
-    font-family: Verdana, sans-serif;
+    font-family: Optima, sans-serif;
     font-size: 15px;
     line-height: 1.5;
     scroll-behavior: smooth;
@@ -12,5 +12,8 @@ body{
     background-size: cover;
     font-size: 15px;
     font-family: "Trebuchet MS", "Arial"," sans-serif"
+}
+p{
+    color:red
 }
 

@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 20px 20px 20px;
+  position: fixed;
+  top: 0;
+  width: 98%;
+  z-index: 99;
+  /* overflow: hidden; */
+}
+.nav-list {
+  display: flex;
+  list-style: none;
+}
+
+.nav-list > li {
+  margin-left: 30px;
+}
+.nav-list a {
+  text-decoration: none;
+  color: black;
+  font-size: large;
+  padding: 10px;
+}
+.nav-list a:hover {
+  background-color: #cccccc;
+}
+.toggle-button {
+  position: absolute;
+  display: none;
+  top: 1.5rem;
+  margin-right: 8px;
+  right: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 30px;
+  height: 21px;
+}
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: rgb(2, 2, 2);
+  border-radius: 10px;
+}

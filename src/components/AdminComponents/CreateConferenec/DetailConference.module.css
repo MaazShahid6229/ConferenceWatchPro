@@ -1,0 +1,185 @@
+.find_form {
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: 80rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  text-align: left;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.controls2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.control label,
+.labelInput label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  display: block;
+}
+
+.control input,
+select,
+.labelInput input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+}
+.control input:focus,
+.labelInput label input:focus {
+  outline: none;
+  border-color: #323362;
+  background: #dad5d5;
+}
+
+.labelInput,
+.iconDiv {
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.labelInput {
+  /* margin-left: 350px; */
+  width: 80%;
+}
+.iconDiv {
+  margin-top: 15px;
+  /* width: 15%; */
+  margin-right: 0px;
+  text-align: center;
+}
+.sepHeight {
+  border: none;
+  padding: 7px;
+  clear: both;
+}
+.section2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.controls3 {
+  overflow-y: auto;
+  max-width: 80rem;
+  max-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+.EmailSection div {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+.action {
+  margin: 4px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+}
+.action:hover {
+  background-color: #4caf50;
+  color: white;
+}
+.action_close {
+  margin: 4px;
+  background-color: white;
+  color: black;
+  border: 2px solid #f44336;
+}
+.action_close:hover {
+  background-color: #f44336;
+  color: white;
+}
+.closeIcon {
+  cursor: pointer;
+  width: 25px;
+}
+.divCloseIcon {
+  display: flex;
+  justify-content: flex-end;
+  /* margin-right: 8px; */
+  margin-top: -25px;
+}
+.generatePassword {
+  margin-top: 27px;
+  padding: 5px 10px 5px 10px;
+  background-color: white;
+  color: black;
+  border: 2px solid #323362;
+  align-self: flex-end;
+}
+.generatePassword:hover {
+  background-color: #323362;
+  color: rgb(255, 251, 251);
+}
+p {
+  color: red;
+}
+.passwordIcon {
+  position: absolute;
+  margin-left: 280px;
+}
+.AddButton {
+  margin-top: 32px;
+  cursor: pointer;
+  width: 30px;
+}
+.AddBrand {
+  margin-top: 27px;
+  padding: 5px 10px 5px 10px;
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+  align-self: flex-end;
+}
+.AddBrand:hover {
+  background-color: #4caf50;
+  color: white;
+}
+.Icon {
+  margin-top: 17px;
+  width: 25px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #d7d7d7;
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d7d7d7;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #333232;
+}

@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import classes from "./NavBar.module.css";
 
 const NavBar = () => {
+
+  const logoutHandler=()=>{
+    localStorage.clear()
+  }
   return (
     <header className={classes.header}>
       <nav>
@@ -18,18 +22,18 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName={classes.active} to="/Hello">
+            <NavLink activeClassName={classes.active} to="/connexadmin/search">
               Search
             </NavLink>
           </li>
 
           <li>
-            <NavLink activeClassName={classes.active} to="/products">
+            <NavLink activeClassName={classes.active} to="/connexadmin/branding">
               Branding
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName={classes.active} to="/products">
+            <NavLink to="/connexadmin" onClick={logoutHandler}>
               Logout
             </NavLink>
           </li>

@@ -1,0 +1,30 @@
+.CardDataTable {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 90rem;
+  margin: 1rem auto;
+  padding: 2rem;
+}
+.iconDiv{
+  margin: 4px 4px;
+
+
+}
+.deleteIcon{
+  cursor: pointer;
+  width: 30px;
+  margin-right: 2px;
+}
+.editIcon{
+  cursor: pointer;
+  width: 30px;
+  margin-left: 2px;
+}
+.conferenceIcon{
+  cursor: pointer;
+  width: 36px;
+  margin-left: 2px;
+  margin-top: 5px;
+}

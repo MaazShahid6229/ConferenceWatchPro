@@ -1,20 +1,20 @@
 import Wrapper from "../../components/UI/Wrapper/Wrapper";
-import NavBar from "../../components/UI/NavBar/NavBar";
-import AHome from "../../components/AdminComponents/AdminHome/Home";
 import { Fragment } from "react";
+import NavBar from "../../components/UI/NavBar/NavBar";
+import AdminSearch from "../../components/AdminComponents/AdminSearch/AdminSearch";
 import { Helmet } from "react-helmet";
 
-const Home = () => {
+const Search = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Home</title>
+        <title>Search Conference</title>
       </Helmet>
       <Wrapper />
       <NavBar />
-      <AHome />
+      <AdminSearch />
     </Fragment>
   );
 };
 
-export default Home;
+export default Search;

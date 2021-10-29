@@ -1,4 +1,4 @@
-import Wrapper from "../../components/UI/Wrapper/Wrapper";
+import Wrapper2 from "../../components/UI/Wrapper/Wrapper2";
 import { Fragment, useState } from "react";
 import AdminLogInPopUp from "../../components/AdminComponents/LogIn/AdminLogInPopUp/AdminLogInPopUp";
 import AdminLogInForm from "../../components/AdminComponents/LogIn/AdminLogInForm/AdminLogInForm";
@@ -19,7 +19,7 @@ const AdminLogin = () => {
       <Helmet>
         <title>ConnexAdmin</title>
       </Helmet>
-      <Wrapper />
+      <Wrapper2 />
       {popUpIsShown && <AdminLogInPopUp onClick={HidePopUp} />}
       <AdminLogInForm onClick={ShowPopUp} />
     </Fragment>

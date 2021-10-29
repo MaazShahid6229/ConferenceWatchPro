@@ -11,7 +11,6 @@ const Search = () => {
         <title>Search Conference</title>
       </Helmet>
       <Wrapper />
-      <NavBar />
       <AdminSearch />
     </Fragment>
   );

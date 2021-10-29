@@ -6,14 +6,134 @@ html{
 }
 body{
     /* overflow: hidden; */
-    background-image: url(./assets/background.jpg);
+    background-image: url(./assets/main-background.jpg);
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
     font-size: 15px;
-    font-family: "Trebuchet MS", "Arial"," sans-serif"
+    font-family: "Trebuchet MS", "Arial"," sans-serif";
+    margin: 0px;
+}
+.pgSize{
+    width: 1200px;
+    margin: 0 auto;
+}
+.Wrapper_header__229S2{
+    background-image: url(./assets/main-header-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 35px;
+    width: auto !important;
+    display: block !important;
+    text-align: center !important;
+    margin: 0px !important;
+    overflow: hidden;
+}
+.logoMain{
+    margin-bottom:0px;
+    width: 16%;
+    float: left;
+}
+.Wrapper_text__20wf5 .logoMain{
+    float: none;
 }
 p{
     color:red
 }
+.huizgM{
+    font-size: 17px !important;
+}
 
+.DetailConference_control__1qFwo{
+    /* margin-right: 15px;
+    width: 30%; */
+    position: relative;
+}
+.DetailConference_control__1qFwo select{
+    padding: 0.5rem !important;
+  }
+
+
+
+@media only screen and  (min-width : 10px) and (max-width: 1300px){
+    .AdminSearch_login__2cbJI{
+        width: 80% !important;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 1250px){
+    .DetailConference_control__1qFwo input{
+        width: 12rem !important;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 1000px){
+    .pgSize{
+        width:auto;
+    }
+    .rdt_TableCell{
+        padding-right: 0px !important;
+    }
+    .Modal_UpdateModal__OhcTK{
+        left: 0px !important;
+        width: 85% !important;
+        right: 0px !important;
+        margin: 0 auto !important;
+    }
+    .DetailConference_find_form__1SJ7G{
+        max-width:30%;
+    }
+    .labelInput,
+    .iconDiv {
+        margin-right:7px;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 810px){
+    .CreateConference_login__3ny1G {
+      width: 92% !important;
+      max-width: 90rem !important;
+    }
+    .AdminSearch_login__2cbJI{
+        width: 95% !important;
+    }
+    .AdminBrand_CardDataTable__2Gd1U, .AdminLogInform_login__-jde3{
+        max-width: -webkit-fill-available !important;
+        margin: 4% !important;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 765px){
+    .DetailConference_control__1qFwo input{
+        width: 10rem !important;    
+    }
+    .logoMain{
+        width: 350px;
+        float: none;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
+    .NavBar_header__3Om8J{
+        float: none !important;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 600px){
+    .kCEQys svg {
+        top: 13px !important;
+        right: -12px !important;
+    }
+    .DetailConference_control__1qFwo input{
+        width: 8rem !important;    
+    }
+    .DetailConference_generatePassword__3n6bf {
+        margin-top: 0px;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 500px){
+    .logoMain{
+        width: 250px;
+        margin-bottom:25px;
+    }
+    .NavBar_header__3Om8J a {
+        padding:5px 8px !important;
+    }
+    .DetailConference_control__1qFwo input{
+        width: 4rem !important;    
+    }
+}

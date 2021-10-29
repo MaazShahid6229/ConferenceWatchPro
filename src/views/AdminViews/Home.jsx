@@ -11,7 +11,6 @@ const Home = () => {
         <title>Home</title>
       </Helmet>
       <Wrapper />
-      <NavBar />
       <AHome />
     </Fragment>
   );

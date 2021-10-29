@@ -11,7 +11,6 @@ const Branding = () => {
         <title>Brands</title>
       </Helmet>
       <Wrapper />
-      <NavBar />
       <AdminBrand />
     </Fragment>
   );

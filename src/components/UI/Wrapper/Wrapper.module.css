@@ -5,3 +5,9 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+.text{
+  text-align: center !important;
+}
+.text .logoMain{
+  float: none;
+}

@@ -11,7 +11,6 @@ const Create = () => {
         <title>Create Conference</title>
       </Helmet>
       <Wrapper />
-      <NavBar />
       <CreateConference />
     </Fragment>
   );

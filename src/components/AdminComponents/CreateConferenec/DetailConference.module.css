@@ -1,7 +1,8 @@
 .find_form {
   margin: 1rem auto;
   padding: 1rem;
-  max-width: 80rem;
+  /* max-width: 80rem; */
+  max-width: 50rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -40,7 +41,7 @@ select,
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width: 20rem;
+  width: 14rem;
   max-width: 100%;
 }
 .control input:focus,
@@ -49,7 +50,9 @@ select,
   border-color: #323362;
   background: #dad5d5;
 }
-
+.DetailConference_control__1qFwo select{
+  padding: 0.5rem !important;
+}
 .labelInput,
 .iconDiv {
   margin-left: 5px;
@@ -59,7 +62,8 @@ select,
 }
 .labelInput {
   /* margin-left: 350px; */
-  width: 80%;
+  margin-right:2px;
+  /* width: 80%; */
 }
 .iconDiv {
   margin-top: 15px;
@@ -83,7 +87,7 @@ select,
 .controls3 {
   overflow-y: auto;
   max-width: 80rem;
-  max-height: 20rem;
+  max-height: 12rem;
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -140,7 +144,8 @@ p {
 }
 .passwordIcon {
   position: absolute;
-  margin-left: 280px;
+  /* margin-left: 280px; */
+  right: 0px;
 }
 .AddButton {
   margin-top: 32px;
@@ -161,7 +166,7 @@ p {
 }
 .Icon {
   margin-top: 17px;
-  width: 25px;
+  width: 21px;
 }
 
 ::-webkit-scrollbar {

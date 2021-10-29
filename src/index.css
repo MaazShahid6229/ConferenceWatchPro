@@ -17,24 +17,14 @@ body{
     width: 1200px;
     margin: 0 auto;
 }
-.Wrapper_header__229S2{
-    background-image: url(./assets/main-header-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 35px;
-    width: auto !important;
-    display: block !important;
-    text-align: center !important;
-    margin: 0px !important;
-    overflow: hidden;
-}
+
 .logoMain{
     margin-bottom:0px;
     width: 16%;
     float: left;
 }
-.Wrapper_text__20wf5 .logoMain{
-    float: none;
+.header.text .logoMain{
+    float: none !important;
 }
 p{
     color:red

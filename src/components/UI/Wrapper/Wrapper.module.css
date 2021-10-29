@@ -8,6 +8,17 @@
 .text{
   text-align: center !important;
 }
-.text .logoMain{
-  float: none;
+.header.text .logoMain{
+  float: none !important;
+}
+.header{
+  background-image: url(../../../assets/main-header-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 35px;
+  width: auto !important;
+  display: block !important;
+  text-align: center !important;
+  margin: 0px !important;
+  overflow: hidden;
 }

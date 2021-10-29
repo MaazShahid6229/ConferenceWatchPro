@@ -52,3 +52,9 @@
 .actions {
   text-align: center;
 }
+@media only screen and  (min-width : 10px) and (max-width: 810px){
+  .login{
+      max-width: -webkit-fill-available !important;
+      margin: 4% !important;
+  }
+}

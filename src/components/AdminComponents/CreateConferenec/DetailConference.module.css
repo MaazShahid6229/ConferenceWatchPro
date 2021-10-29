@@ -26,6 +26,14 @@
   gap: 1rem;
   justify-content: center;
 }
+.control{
+  /* margin-right: 15px;
+  width: 30%; */
+  position: relative;
+}
+.control select{
+  padding: 0.5rem !important;
+}
 .control label,
 .labelInput label {
   font-weight: bold;
@@ -187,4 +195,38 @@ p {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #333232;
+}
+
+@media only screen and  (min-width : 10px) and (max-width: 1250px){
+  .control input{
+      width: 12rem !important;
+  }
+  .find_form{
+    max-width:98%;
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 765px){
+  .control input{
+      width:8rem !important;    
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 600px){
+  svg {
+      top: 13px !important;
+      right: -12px !important;
+  }
+  .control input{
+      width: 8rem !important;    
+  }
+  .generatePassword{
+      margin-top: 0px;
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 500px){
+  .control input{
+      width: 16rem !important;    
+  }
+  .labelInput input {
+    width: 12rem;
+  }
 }

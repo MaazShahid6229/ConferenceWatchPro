@@ -60,3 +60,13 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
+@media only screen and  (min-width : 10px) and (max-width: 1300px){
+    .login{
+        width: 80% !important;
+    }
+}
+@media only screen and  (min-width : 10px) and (max-width: 810px){
+  .login{
+      width: 95% !important;
+  }
+}

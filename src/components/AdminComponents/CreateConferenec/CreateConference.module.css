@@ -65,3 +65,9 @@
   color: white;
 }
 
+@media only screen and  (min-width : 10px) and (max-width: 810px){
+  .login {
+    width: 92% !important;
+    max-width: 90rem !important;
+  }
+}

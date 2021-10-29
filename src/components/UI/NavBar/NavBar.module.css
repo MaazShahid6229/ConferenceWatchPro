@@ -51,11 +51,18 @@
   border-bottom: 4px solid rgb(131, 131, 131); */
 }
 
-@media only screen and  (min-width : 10px) and (max-width: 500px){
+@media only screen and  (min-width : 10px) and (max-width: 765px){
+  .header{
+      float: none !important;
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 600px){
   .header li{
-    margin: 0 0.5rem;
+    margin: 0 0.2rem;
   }
   .header a{
     font-size: 14px;
+      padding:5px 8px !important;
   }
+
 }

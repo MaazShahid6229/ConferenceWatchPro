@@ -23,3 +23,9 @@
     background-color: #4caf50;
     color: white;
   }
+  @media only screen and  (min-width : 10px) and (max-width: 810px){
+    .CardDataTable{
+        max-width: -webkit-fill-available !important;
+        margin: 4% !important;
+    }
+}

@@ -8,8 +8,9 @@
 .text{
   text-align: center !important;
 }
-.header.text .logoMain{
+.text .logoMain{
   float: none !important;
+  width: 16%;
 }
 .header{
   background-image: url(../../../assets/main-header-background.jpg);
@@ -21,4 +22,19 @@
   text-align: center !important;
   margin: 0px !important;
   overflow: hidden;
+}
+
+@media only screen and  (min-width : 10px) and (max-width: 765px){
+  .logoMain{
+      width: 250px !important;
+      float: none !important;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 25px;
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 600px){
+  .header {
+    padding: 35px 6px !important;
+  }
 }

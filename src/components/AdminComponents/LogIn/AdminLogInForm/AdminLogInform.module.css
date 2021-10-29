@@ -21,7 +21,10 @@
   margin-bottom: 0.5rem;
   margin-left: 0.3rem;
   display: block;
-  
+}
+.passwordIcon {
+  position: absolute;
+  margin-left: 280px;
 }
 
 .control input {
@@ -42,7 +45,9 @@
   border-color: rgb(218, 88, 88);
   background: #fbdada;
 }
-.pointer {cursor: pointer;}
+.pointer {
+  cursor: pointer;
+}
 
 .actions {
   text-align: center;

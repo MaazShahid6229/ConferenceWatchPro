@@ -1,11 +1,14 @@
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
 import Card from "../../../UI/Card/Card";
 import classes from "./AdminLogInform.module.css";
 import Button from "../../../UI/Button/Button";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
 import BaseUrl from "../../../BaseUrl";
 
 const LogInForm = (props) => {
@@ -18,7 +21,16 @@ const LogInForm = (props) => {
   } = useForm();
 
   const { push } = useHistory();
-  // const history = useHistory();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const onSubmit = (data) => {
     axios
@@ -35,12 +47,12 @@ const LogInForm = (props) => {
               Token: response.data.Token,
             })
           );
-        
-          push("/connexadmin/home")
+
+          push("/connexadmin/home");
         }
       })
       .catch((error) => {
-        let message = error.response?.data.Message
+        let message = error.response?.data.Message;
         toast.error(`${message}`, {
           position: "top-right",
           autoClose: 5000,
@@ -76,15 +88,23 @@ const LogInForm = (props) => {
 
           <div className={classes.control}>
             <label>Password</label>
+            <i className={classes.passwordIcon}>
+              <IconButton
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </i>
             <input
               {...register("password", {
                 required: { value: true, message: "This Field is Required" },
                 maxLength: {
                   value: 20,
                   message: "Password Cannot Exceed 20 Characters ",
-                },
+                }
               })}
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
             />
             {errors.password && <p>{errors.password.message}</p>}

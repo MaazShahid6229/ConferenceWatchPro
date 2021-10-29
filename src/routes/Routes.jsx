@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import UserLogin from "../views/UserViews/UserLogin";
+import Dashboard from "../views/UserViews/DashBoard";
 import AdminLogIn from "../views/AdminViews/AdminLogIn";
 import Home from "../views/AdminViews/Home";
 import Create from "../views/AdminViews/Create";
@@ -61,6 +62,7 @@ const App = () => {
 
         <Route path="/connexadmin" component={AdminLogIn} exact />
         <Route path="/" component={UserLogin} exact />
+        <Route path="/dashboard" component={Dashboard} exact />
       </closePopUpContext.Provider>
     </Switch>
   );

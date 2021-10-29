@@ -373,9 +373,13 @@ const DetailConference = (props) => {
                   value: 15,
                   message: "Password Cannot Exceed 15 Characters ",
                 },
+                minLength: {
+                  value: 6,
+                  message: "Password at least 6 Characters ",
+                },
                 pattern: {
                   value:
-                    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
+                    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,15}$/,
                   message: "Password Format A-Z,a-z,0-9,@#$",
                 },
               })}

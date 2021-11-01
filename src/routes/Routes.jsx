@@ -8,6 +8,7 @@ import Search from "../views/AdminViews/Search";
 import Branding from "../views/AdminViews/Branding";
 // import PageNotFound from "../views/AdminViews/PgaeNotFound";
 import PrivateRoute from "./PrivateRoute";
+import UserPrivateRoute from "./UserPrivateRoute";
 
 import { useState } from "react";
 import { closePopUpContext } from "../components/Context/ClosePopUpContext";
@@ -62,7 +63,12 @@ const App = () => {
 
         <Route path="/connexadmin" component={AdminLogIn} exact />
         <Route path="/" component={UserLogin} exact />
-        <Route path="/dashboard" component={Dashboard} exact />
+
+        <UserPrivateRoute path="/dashboard" exact>
+          <Dashboard />
+        </UserPrivateRoute>
+
+        {/* <Route path="/dashboard" component={Dashboard} exact /> */}
       </closePopUpContext.Provider>
     </Switch>
   );

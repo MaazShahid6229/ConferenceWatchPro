@@ -16,18 +16,31 @@
   text-align: left;
 }
 
-.control label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  margin-left: 0.3rem;
-  display: block;
-}
 .passwordIcon {
   position: absolute;
-  margin-left: 280px;
+  /* margin-left: 280px; */
+  right: 0px;
 }
 
-.control input {
+.control{
+  /* margin-right: 15px;
+  width: 30%; */
+  position: relative;
+}
+.control select{
+  padding: 0.5rem !important;
+}
+.control label,
+.labelInput label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  display: block;
+}
+
+.control input,
+select,
+.labelInput input {
   font: inherit;
   padding: 0.5rem;
   border-radius: 6px;
@@ -35,7 +48,8 @@
   width: 20rem;
   max-width: 100%;
 }
-.control input:focus {
+.control input:focus,
+.labelInput label input:focus {
   outline: none;
   border-color: #323362;
   background: #dad5d5;
@@ -56,5 +70,29 @@
   .login{
       max-width: -webkit-fill-available !important;
       margin: 4% !important;
+  }
+}
+
+@media only screen and  (min-width : 10px) and (max-width: 1250px){
+  .control input{
+      width: 12rem !important;
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 765px){
+  .control input{
+      width:8rem !important;    
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 600px){
+  .control input{
+      width: 8rem !important;    
+  }
+}
+@media only screen and  (min-width : 10px) and (max-width: 500px){
+  .control input{
+      width: 16rem !important;    
+  }
+  .labelInput input {
+    width: 12rem;
   }
 }

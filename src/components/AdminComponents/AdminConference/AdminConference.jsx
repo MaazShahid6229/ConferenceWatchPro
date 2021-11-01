@@ -10,6 +10,7 @@ import deleteIcon from "../../../assets/deleteIcon.png";
 import AddIcon from "../../../assets/add.png";
 import { Helmet } from "react-helmet";
 
+
 import axios from "axios";
 
 const AdminConference = (props) => {
@@ -105,6 +106,7 @@ const AdminConference = (props) => {
   }, [get_bridge]);
 
   const onSubmit = () => {
+    window.open(BaseUrl.url1+"dashboard")
     for (let i = 0; i < inputList.length; i++) {
       inputList[i]["conference"] = props.id;
     }

@@ -12,7 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import BaseUrl from "../../../BaseUrl";
 
 const LogInForm = (props) => {
-  const UserLogin = BaseUrl.url + "core/user_profile/admin_login/";
+  const AdminLogin = BaseUrl.url + "core/user_profile/admin_login/";
 
   const {
     register,
@@ -34,7 +34,7 @@ const LogInForm = (props) => {
 
   const onSubmit = (data) => {
     axios
-      .post(UserLogin, {
+      .post(AdminLogin, {
         username: data.username,
         password: data.password,
       })
@@ -45,6 +45,7 @@ const LogInForm = (props) => {
             JSON.stringify({
               login: true,
               Token: response.data.Token,
+              Role: response.data.Role,
             })
           );
 
@@ -85,9 +86,19 @@ const LogInForm = (props) => {
             />
             {errors.username && <p>{errors.username.message}</p>}
           </div>
-
           <div className={classes.control}>
             <label>Password</label>
+            <input
+              {...register("password", {
+                required: { value: true, message: "This Field is Required" },
+                maxLength: {
+                  value: 20,
+                  message: "Password Cannot Exceed 20 Characters ",
+                },
+              })}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter Password"
+            />
             <i className={classes.passwordIcon}>
               <IconButton
                 onClick={handleClickShowPassword}
@@ -96,17 +107,6 @@ const LogInForm = (props) => {
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </i>
-            <input
-              {...register("password", {
-                required: { value: true, message: "This Field is Required" },
-                maxLength: {
-                  value: 20,
-                  message: "Password Cannot Exceed 20 Characters ",
-                }
-              })}
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter Password"
-            />
             {errors.password && <p>{errors.password.message}</p>}
           </div>
         </div>

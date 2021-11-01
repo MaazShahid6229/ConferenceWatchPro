@@ -24,8 +24,8 @@ const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
- /* eslint-disable */
- 
+/* eslint-disable */
+
 const DetailConference = (props) => {
   const {
     setUpdatePopUp,
@@ -361,14 +361,6 @@ const DetailConference = (props) => {
           </div>
           <div className={classes.control}>
             <label>Password</label>
-            <i className={classes.passwordIcon}>
-              <IconButton
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-              >
-                {showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </i>
             <input
               {...register("Password", {
                 required: { value: true, message: "Password is Required" },
@@ -389,6 +381,14 @@ const DetailConference = (props) => {
               type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
             />
+            <i className={classes.passwordIcon}>
+              <IconButton
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </i>
             {errors.Password && <p>{errors.Password.message}</p>}
           </div>
           {/* <IconButton/> */}

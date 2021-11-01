@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "../../UI/Modal/Modal";
 import Button from "../../UI/Button/Button";
@@ -20,6 +20,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
     formState: { errors },
   } = useForm();
 
+  const [imgUrl, setImageUrl] = useState(`${BaseUrl.url}${value1.Image}`)
   const update_brand = BaseUrl.url + "connex/branding/update_brand/";
 
   const { setUpdateBrandPopUp, brandApiCall, setBrandApiCall } =
@@ -33,9 +34,9 @@ const UpdateBrandPopUp = ({ value1 }) => {
     setUpdateBrandPopUp(false);
   };
 
-  const ImageChangeHandle = () =>{
-    let getImage = getValues("Image");
-    console.log(getImage)
+  const ImageChangeHandle = (event) =>{
+    setImageUrl(URL.createObjectURL(event.target.files[0]))
+
   }
 
   const onSubmit = (data) => {
@@ -94,7 +95,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
         <div className={classes.BrandImageDiv}>
           <img
             className={classes.BrandImage}
-            src={`${BaseUrl.url}${value1.Image}`}
+            src={imgUrl}
             width={130}
             height={120}
             alt="Brand"

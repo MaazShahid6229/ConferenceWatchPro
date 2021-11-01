@@ -5,14 +5,18 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
-.text{
+.text {
   text-align: center !important;
 }
-.text .logoMain{
+.text .logoMain {
   float: none !important;
   width: 16%;
 }
-.header{
+.pgSize {
+  width: 1200px;
+  margin: 0 auto;
+}
+.header {
   background-image: url(../../../assets/main-header-background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,17 +28,54 @@
   overflow: hidden;
 }
 
-@media only screen and  (min-width : 10px) and (max-width: 765px){
-  .logoMain{
-      width: 250px !important;
-      float: none !important;
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 25px;
+.logoMain {
+  margin-bottom: 0px;
+  width: 16%;
+  float: left;
+}
+
+.text img.logoMain {
+  float: none !important;
+}
+
+@media only screen and (min-width: 10px) and (max-width: 765px) {
+  .logoMain {
+    width: 250px !important;
+    float: none !important;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 25px;
   }
 }
-@media only screen and  (min-width : 10px) and (max-width: 600px){
+
+@media only screen and (min-width: 10px) and (max-width: 765px) {
+  .logoMain {
+    width: 350px;
+    float: none;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (min-width: 10px) and (max-width: 500px) {
+  .logoMain {
+    width: 250px;
+    margin-bottom: 25px;
+  }
+}
+@media only screen and (min-width: 10px) and (max-width: 600px) {
   .header {
     padding: 35px 6px !important;
+  }
+}
+@media only screen and (min-width: 10px) and (max-width: 1220px) {
+  .pgSize {
+    width: auto;
+  }
+}
+@media only screen and (min-width: 10px) and (max-width: 1000px) {
+  .pgSize {
+    width: auto;
   }
 }

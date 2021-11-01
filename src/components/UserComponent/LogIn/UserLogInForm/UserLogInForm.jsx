@@ -62,7 +62,7 @@ const LogInForm = (props) => {
                   message: "Value Cannot Exceed 30 Characters ",
                 },
                 pattern: {
-                  value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                  value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                   message: "Email Format abc@gmail.com",
                 },
               })}

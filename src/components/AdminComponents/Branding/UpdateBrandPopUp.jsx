@@ -33,6 +33,11 @@ const UpdateBrandPopUp = ({ value1 }) => {
     setUpdateBrandPopUp(false);
   };
 
+  const ImageChangeHandle = () =>{
+    let getImage = getValues("Image");
+    console.log(getImage)
+  }
+
   const onSubmit = (data) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
@@ -105,7 +110,7 @@ const UpdateBrandPopUp = ({ value1 }) => {
                 type="file"
                 accept="image/*"
                 placeholder="Image"
-                readOnly
+                onChange={ImageChangeHandle}
               />
               {errors.Image && <p>{errors.Image.message}</p>}
             </div>

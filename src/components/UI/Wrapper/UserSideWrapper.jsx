@@ -1,16 +1,16 @@
 import logo from "../../../assets/company-logo.png";
-import NavBar from "../NavBar/NavBar";
+import UserNavBar from "../NavBar/UserNavBar";
 import classes from "./Wrapper.module.css";
 
-const Wrapper = () => {
+const UserSideWrapper = () => {
   return (
       <div className={classes.header}>
         <div className={classes.pgSize}>
-          <img src={logo} alt="logo" className={classes.logoMain}/>
-          <NavBar/>
+          <img src={logo} alt="logo" className={classes.logoMain} />
+          <UserNavBar/>
         </div>
       </div>
   );
 };
 
-export default Wrapper;
+export default UserSideWrapper;

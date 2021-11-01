@@ -1,4 +1,4 @@
-import Wrapper from "../../components/UI/Wrapper/Wrapper";
+import UserSideWrapper from "../../components/UI/Wrapper/UserSideWrapper";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 
@@ -8,7 +8,7 @@ const Dashboard = () => {
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
-      <Wrapper />
+      <UserSideWrapper />
     </Fragment>
   );
 };

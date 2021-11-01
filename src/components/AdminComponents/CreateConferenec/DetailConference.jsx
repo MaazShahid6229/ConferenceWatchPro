@@ -24,6 +24,8 @@ const all_brands = BaseUrl.url + "connex/branding/update_brand/";
 const baseURL1 = BaseUrl.url + "connex/conferenece/create_conference/";
 const baseURL2 = BaseUrl.url + "connex/conferenece/update_conference/";
 
+ /* eslint-disable */
+ 
 const DetailConference = (props) => {
   const {
     setUpdatePopUp,
@@ -48,6 +50,7 @@ const DetailConference = (props) => {
       email_address: props.defaultV.Email[i]["email_address"],
     });
   }
+
   useEffect(() => {
     if (NewEmailList.length > 0) {
       setEmailList(NewEmailList);
@@ -175,7 +178,7 @@ const DetailConference = (props) => {
         })
         .catch((error) => {
           // let message = error.response.data.Message;
-          let message = "Check Your Details Again"
+          let message = "Check Your Details Again";
           toast.error(`${message}`, {
             position: "top-right",
             autoClose: 5000,
@@ -210,7 +213,7 @@ const DetailConference = (props) => {
         })
         .catch((error) => {
           // let message = error.response.data.Message;
-          let message = "Check Your Details Again"
+          let message = "Check Your Details Again";
           toast.error(`${message}`, {
             position: "top-right",
             autoClose: 5000,
@@ -420,7 +423,6 @@ const DetailConference = (props) => {
                         className={classes.Icon}
                         src={deleteIcon}
                         alt="DeleteIcon"
-                        className={classes.Icon}
                         onClick={() => handleRemoveClick(i)}
                       />
                     )}
@@ -429,7 +431,6 @@ const DetailConference = (props) => {
                         className={classes.Icon}
                         src={AddIcon}
                         alt="AddIcon"
-                        className={classes.Icon}
                         onClick={handleAddClick}
                       />
                     )}

@@ -16,11 +16,12 @@ const NavBar = () => {
     <header className={classes.header}>
       <nav>
         <ul>
+          <li>
+            <NavLink  activeClassName={classes.active} to="/home">Home</NavLink>
+          </li>
           {isAdmin ? (
             <li>
-              <NavLink to="/connexadmin/home">
-                Admin Side
-              </NavLink>
+              <NavLink to="/connexadmin/home">Admin Side</NavLink>
             </li>
           ) : (
             <li>

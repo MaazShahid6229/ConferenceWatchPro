@@ -40,19 +40,22 @@ const customStyles = {
   },
   rows: {
     style: {
+      
       minHeight: '72px', // override the row height
     }
   },
   headCells: {
     style: {
-      fontSize: '22px',
-      fontWeight: '300',
-      color: "#424040",
+      fontSize: '30px',
+      fontWeight: '550',
+      color: "#000",
+      fontFamily: "Arial",
     },
   },
   cells: {
     style: {
       fontSize: '14px',
+      fontFamily: "Arial",
     },
   },
 };

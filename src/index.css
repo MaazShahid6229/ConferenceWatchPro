@@ -1,5 +1,5 @@
 html{
-    font-family: Optima, sans-serif;
+    font-family: sans-serif, Arial, Helvetica, sans-serif;
     font-size: 15px;
     line-height: 1.5;
     scroll-behavior: smooth;
@@ -17,7 +17,6 @@ body{
     width: 1200px;
     margin: 0 auto;
 }
-
 .logoMain{
     margin-bottom:0px;
     width: 16%;

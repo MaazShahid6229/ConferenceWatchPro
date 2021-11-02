@@ -47,7 +47,7 @@ const LogInForm = (props) => {
               Role: response.data.Role,
             })
           );
-          push("/dashboard");
+          push("/home");
         }
       })
       .catch((error) => {

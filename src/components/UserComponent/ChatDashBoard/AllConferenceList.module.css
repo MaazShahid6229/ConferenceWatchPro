@@ -1,0 +1,77 @@
+.messageForm {
+  float: right;
+  width: 24%;
+  background-color: #e6e6e6;
+  padding: 10px 5px 30px 5px;
+  border: 1px solid #bbbbbb;
+  float: left;
+  clear: both;
+  margin-right: 1%;
+  width: 16%;
+}
+.chatTxt {
+  float: left;
+  padding-bottom: 15px;
+}
+.searchimg{
+    width: 45% !important;
+    text-align: right;
+}
+.chatTxt h2,
+.tableHead h2 {
+  margin: 0;
+  font-size: 16px;
+}
+.tableHead img,
+.tableHead h2,
+.searchimg form,
+.chatTxt img,
+.chatTxt h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.chatimg {
+  float: right;
+  padding-bottom: 15px;
+}
+.chatimg img {
+  width: 20px;
+}
+
+.chatbox{
+    clear: both;
+}
+.chatbox form{
+    padding-right: 0;
+}
+.chatbox form textarea{
+    width: 93%;
+    height: 400px;
+    border: none;
+    padding: 10px;
+    border-top: 2px solid #9a9a9a;
+}
+.chatbox input{
+    border: 1px solid #aaaaaa;
+    padding: 7px;
+    border-radius: 5px;
+}
+.chatbox select{
+    padding: 8px;
+    width: 58.2%;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #aaaaaa;
+    margin: 8px 0;
+    color: #555555;
+}
+.chatbox input[type="submit"]{
+    padding: 7px 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+hr.box {
+    border: 3px solid #fff;
+}

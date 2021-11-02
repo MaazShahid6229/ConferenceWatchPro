@@ -9,11 +9,13 @@ import BaseUrl from "../../BaseUrl";
 import deleteIcon from "../../../assets/deleteIcon.png";
 import AddIcon from "../../../assets/add.png";
 import { Helmet } from "react-helmet";
+import { useHistory } from "react-router-dom";
 
 
 import axios from "axios";
 
 const AdminConference = (props) => {
+  const { push } = useHistory();
   const [inputList, setInputList] = useState([
     { s_conf_id: "", bridge_number: "" },
   ]);
@@ -125,7 +127,7 @@ const AdminConference = (props) => {
         },
       })
       .then((response) => {
-        window.open(BaseUrl.url1+"dashboard")
+        push("/home")
         setStartConference(false);
       });
     // .catch((error) => {

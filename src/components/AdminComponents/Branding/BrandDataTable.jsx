@@ -64,7 +64,7 @@ const BrandDataTable = (props) => {
 
   const columns = [
     {
-      name: "Image",
+      // name: "Image",
       center: true,
       selector: (row) => (
         <div className={classes.BrandImage}>

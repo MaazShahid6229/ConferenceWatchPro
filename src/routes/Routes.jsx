@@ -64,11 +64,9 @@ const App = () => {
         <Route path="/connexadmin" component={AdminLogIn} exact />
         <Route path="/" component={UserLogin} exact />
 
-        <UserPrivateRoute path="/dashboard" exact>
+        <UserPrivateRoute path="/home" exact>
           <Dashboard />
         </UserPrivateRoute>
-
-        {/* <Route path="/dashboard" component={Dashboard} exact /> */}
       </closePopUpContext.Provider>
     </Switch>
   );

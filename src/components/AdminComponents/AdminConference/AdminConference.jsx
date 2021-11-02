@@ -106,7 +106,6 @@ const AdminConference = (props) => {
   }, [get_bridge]);
 
   const onSubmit = () => {
-    window.open(BaseUrl.url1+"dashboard")
     for (let i = 0; i < inputList.length; i++) {
       inputList[i]["conference"] = props.id;
     }
@@ -126,6 +125,7 @@ const AdminConference = (props) => {
         },
       })
       .then((response) => {
+        window.open(BaseUrl.url1+"dashboard")
         setStartConference(false);
       });
     // .catch((error) => {
@@ -253,7 +253,7 @@ const AdminConference = (props) => {
               Close
             </Button>
             <Button className={classes.action} type="submit">
-              Submit
+              Start
             </Button>
           </div>
         </form>

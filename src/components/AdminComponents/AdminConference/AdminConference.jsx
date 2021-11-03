@@ -22,7 +22,7 @@ const AdminConference = (props) => {
 
   const create_bridge = BaseUrl.url + "connex/spectel/create_Spectel_Conf/";
   const get_bridge =
-    BaseUrl.url + `connex/spectel/create_Spectel_Conf/?id=${props.id}`;
+    BaseUrl.url + `connex/spectel/create_Spectel_Conf/?id=${props.obj.id}`;
 
   const { setStartConference } = useContext(closePopUpContext);
 
@@ -109,7 +109,7 @@ const AdminConference = (props) => {
 
   const onSubmit = () => {
     for (let i = 0; i < inputList.length; i++) {
-      inputList[i]["conference"] = props.id;
+      inputList[i]["conference"] = props.obj.id;
     }
 
     setStartConference(false);
@@ -127,7 +127,7 @@ const AdminConference = (props) => {
         },
       })
       .then((response) => {
-        push("/home")
+        push(`/home/${props.obj.cid}/`)
         setStartConference(false);
       });
     // .catch((error) => {

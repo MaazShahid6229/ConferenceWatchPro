@@ -27,7 +27,7 @@ const AdminHome = (props) => {
 
   const [deleteObj, setDeleteObj] = useState({});
   const [updateObj, setUpdateObj] = useState({});
-  const [conferenceObj, setConferenceObj] = useState();
+  const [conferenceObj, setConferenceObj] = useState({});
 
   const delete_conference =
     BaseUrl.url + "connex/conferenece/create_conference/";
@@ -50,7 +50,7 @@ const AdminHome = (props) => {
 
   const handleConferenceButton = (state) => {
     setStartConference(true);
-    setConferenceObj(state.target.id);
+    setConferenceObj({id:state.target.id, cid:state.target.attributes.cid.nodeValue});
   };
 
   const handleDeleteYes = () => {
@@ -65,7 +65,7 @@ const AdminHome = (props) => {
       })
       .then((response) => {});
     setDeletePopUp(false);
-    setConferenceApiCall(!conferenceApiCall)
+    setConferenceApiCall(!conferenceApiCall);
   };
 
   const handleDeleteNo = () => {
@@ -139,6 +139,7 @@ const AdminHome = (props) => {
             className={classes.conferenceIcon}
             onClick={handleConferenceButton}
             id={row.ID}
+            cid={row.CID}
           />
         </div>
       ),
@@ -168,7 +169,7 @@ const AdminHome = (props) => {
       {updatePopUp && (
         <UpdatePopUp closeHandle={closeHandle} value={updateObj.cid} />
       )}
-      {startConference && <AdminConference id={conferenceObj} />}
+      {startConference && <AdminConference obj={conferenceObj} />}
     </Fragment>
   );
 };

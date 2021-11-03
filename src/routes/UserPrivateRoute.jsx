@@ -5,7 +5,7 @@ const UserPrivateRoute = ({ children, ...rest }) => {
   let isAuth = false;
 
   if (store?.Token) {
-    if (store?.Role === "U" || store?.Role === "A" ) {
+    if (store?.Role === "U" || store?.Role === "A") {
       isAuth = true;
     }
   } else {

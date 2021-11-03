@@ -1,0 +1,17 @@
+.CardDataTable {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    max-width: 90rem;
+    margin: 3rem auto;
+    padding: 2rem;
+  }
+
+.conferenceIcon{
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 30px;
+    margin-right: 2px;
+  }

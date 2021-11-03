@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import UserLogin from "../views/UserViews/UserLogin";
-import Dashboard from "../views/UserViews/DashBoard";
+import UserHome from "../views/UserViews/UserHome";
+import ChatView from "../views/UserViews/ChatView";
 import AdminLogIn from "../views/AdminViews/AdminLogIn";
 import Home from "../views/AdminViews/Home";
 import Create from "../views/AdminViews/Create";
@@ -65,8 +66,13 @@ const App = () => {
         <Route path="/" component={UserLogin} exact />
 
         <UserPrivateRoute path="/home" exact>
-          <Dashboard />
+          <UserHome />
         </UserPrivateRoute>
+
+        <UserPrivateRoute path="/home/:cid" exact>
+          <ChatView />
+        </UserPrivateRoute>
+
       </closePopUpContext.Provider>
     </Switch>
   );

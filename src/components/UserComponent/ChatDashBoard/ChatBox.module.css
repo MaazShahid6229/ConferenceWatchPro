@@ -1,0 +1,91 @@
+.messageForm{
+    float: right;
+    width: 24%;
+    background-color: #e6e6e6;
+    padding: 10px 5px 30px 5px;
+}
+.chatimg {
+  float: right;
+  padding-bottom: 15px;
+}
+.chatimg img{
+    width: 20px;
+}
+.chatbox input:focus,
+.chatbox textarea:focus,
+.chatbox select {
+  outline: none;
+}
+hr.box {
+  border: 3px solid #fff;
+}
+.chatTxt {
+  float: left;
+  padding-bottom: 15px;
+}
+.chatTxt h2,
+.tableHead h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.chatTxt img,
+.chatTxt h2 {
+  display: inline-block;
+  vertical-align: middle;
+}
+.chatBoxDiv{
+    background-color:white;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border: 2px solid black ;
+    height: 400px;
+    width: 340px;
+}
+
+@media only screen and (min-width: 10px) and (max-width: 1200px) {
+  .messageForm {
+    width: 22%;
+  }
+}
+
+@media only screen and
+  (min-width : 10px) and 
+  (max-width: 1100px){
+    .messageForm {
+        width: 19%;
+    }
+    .chatbox form textarea {
+        width: 90%;
+        height: 90%;
+    }
+}
+
+@media only screen and
+  (min-width : 10px) and 
+  (max-width: 1000px){
+    .messageForm, .formTable {
+        width: auto;
+        float: none;
+        margin-right: 0;
+        margin-bottom: 3%;
+    }
+    .mainMsg form textarea {
+        width: 97.7%;
+    }
+    .chatbox form textarea {
+        width: 97.5%;
+    }
+    .chatbox form textarea {
+        height: 270px;
+    }
+}
+@media only screen and
+  (min-width : 10px) and 
+  (max-width: 768px){
+    .chatbox form textarea {
+        width: 96.8%;
+    }
+}
+
+

@@ -1,13 +1,14 @@
-import QA from "./QA";
+// import QA from "./QA";
+// import AllConferenceList from "./AllConferenceList";
 import ChatBox from "./ChatBox";
-import AllConferenceList from "./AllConferenceList";
 import classes from "./ChatDashBoard.module.css";
 
-const ChatDashBoard = () => {
+const ChatDashBoard = (props) => {
   return (
     <div className={classes.pageSize}>
-      <AllConferenceList />
-      <QA />
+      {/* <AllConferenceList /> */}
+      {/* <QA /> */}
+      {/* <h2>{props.cid}</h2> */}
       <ChatBox />
     </div>
   );

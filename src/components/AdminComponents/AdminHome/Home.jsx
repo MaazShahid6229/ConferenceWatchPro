@@ -6,11 +6,8 @@ import AdminHome from "./AdminHome";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
 const Home = (props) => {
-  
-  const { setLoader,conferenceApiCall } =
-    useContext(closePopUpContext);
+  const { setLoader, conferenceApiCall } = useContext(closePopUpContext);
 
-  
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState();
@@ -21,7 +18,7 @@ const Home = (props) => {
     `connex/conferenece/create_conference/?page=${page}&per_page=${countPerPage}&delay=1`;
 
   useEffect(() => {
-    setLoader(true)
+    setLoader(true);
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
     axios
@@ -44,9 +41,9 @@ const Home = (props) => {
           });
         }
         setData(data1);
-        setLoader(false)
+        setLoader(false);
       });
-  }, [page, all_conferences,conferenceApiCall,setLoader]);
+  }, [page, all_conferences, conferenceApiCall, setLoader]);
 
   const handlePageChange = (p) => {
     setPage(p);

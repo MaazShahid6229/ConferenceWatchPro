@@ -9,7 +9,7 @@ const ChatDashBoard = (props) => {
       {/* <AllConferenceList /> */}
       {/* <QA /> */}
       {/* <h2>{props.cid}</h2> */}
-      <ChatBox />
+      <ChatBox cid={props.cid} />
     </div>
   );
 };

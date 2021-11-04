@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import ChatDashBoard from "../../components/UserComponent/ChatDashBoard/ChatDashBoard";
 
 const UserHome = () => {
+  console.log("ChatView")
     let { cid } = useParams();
   return (
     <Fragment>

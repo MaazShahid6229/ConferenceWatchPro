@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import BaseUrl from "../../BaseUrl";
 
 const ChatBox = (props) => {
+  console.log("ChatBox")
   console.log(props.cid);
   const { register, handleSubmit, setValue } = useForm();
   const [list, setList] = useState([]);
@@ -17,7 +18,7 @@ const ChatBox = (props) => {
   console.log(roomName);
 
   const chatSocket = new WebSocket(
-    "ws://" + "74e1-116-90-122-10.ngrok.io//" + "/ws/chat/" + roomName + "/"
+    "ws://" + BaseUrl.chat + "/ws/chat/" + roomName + "/"
   );
 
   useEffect(() => {

@@ -1,10 +1,16 @@
 import { useForm } from "react-hook-form";
 
 const NewMessage = ({ socket }) => {
+  console.log("NEw_Message")
   const { register, handleSubmit, setValue } = useForm();
 
   const messageForm = (data) => {
-    socket.emit("message", data.message);
+    const message = data.message;
+    socket.send(
+      JSON.stringify({
+        message: message,
+      })
+    );
     setValue("message", "");
   };
 

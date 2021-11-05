@@ -59,7 +59,6 @@ const HomeDataTable = (props) => {
         setLoader(false);
       })
       .catch((error) => {
-        console.log(error.response.data);
         setLoader(false);
       });
   }, [page, setLoader, user_conferences]);

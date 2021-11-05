@@ -1,32 +1,53 @@
-import io from "socket.io-client";
-
 import classes from "./ChatBox.module.css";
 import printer from "../../../assets/printer.png";
 import chat from "../../../assets/chat.png";
 import img1 from "../../../assets/img1.png";
 import chat_icon from "../../../assets/chat-icon.png";
-import { useEffect, useState } from "react";
 import BaseUrl from "../../BaseUrl";
 import Messages from "./Messages";
 import NewMessage from "./InputMessage";
+import { useState, useEffect } from "react";
 
 const ChatBox = (props) => {
+  console.log("Chatbox");
+
+  const [ws, setWs] = useState(true);
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(
+    console.log("ChatBox Effect");
+
+    const newSocket = new WebSocket(
       "ws://" + BaseUrl.chat + "/ws/chat/" + props.cid + "/"
     );
-    newSocket.on("connect", () => {
-      // either with send()
-      newSocket.send("Hello!");
-    });
 
     console.log(newSocket);
+
     setSocket(newSocket);
 
-    return () => newSocket.close();
-  }, [setSocket, props.cid]);
+    newSocket.onclose = function (e) {
+      console.log(
+        "Socket is closed. Reconnect will be attempted in 1 second.",
+        e.reason
+      );
+
+      setTimeout(() => {
+        console.log("connecting.... cHatBox");
+        setWs(e);
+      }, 5000);
+    };
+
+    // newSocket.onerror = function (err) {
+    //   console.error(
+    //     "Socket encountered error: ",
+    //     err.message,
+    //     "Closing socket"
+    //   );
+    //   newSocket.close();
+    //   setWs(err);
+    // };
+
+  }, [props.cid, ws]);
 
   return (
     <div className={classes.messageForm}>
@@ -50,6 +71,7 @@ const ChatBox = (props) => {
           <div>
             <hr className={classes.box}></hr>
             <Messages socket={socket} />
+            
             <NewMessage socket={socket} />
           </div>
         ) : (

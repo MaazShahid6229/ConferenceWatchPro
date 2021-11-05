@@ -41,6 +41,27 @@ hr.box {
     border: 2px solid black ;
     height: 400px;
     width: 340px;
+    max-height: 1000px;
+    overflow-y: auto;
+}
+.container{
+  width: 250px;
+  height: 80px;
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px ;
+}
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+  
+}
+.time_right {
+  float: right;
+  color: #aaa;
 }
 
 @media only screen and (min-width: 10px) and (max-width: 1200px) {

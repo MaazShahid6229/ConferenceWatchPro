@@ -1,47 +1,38 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ChatBox.module.css";
 
-function Messages({ socket }) {
-  const [messages, setMessages] = useState({});
+function Messages(props) {
+  console.log("Message");
+
+  const [list, setList] = useState([]);
+
+  // props.socket.onclose = function (e) {
+  //   console.log(
+  //     "Socket is closed. Reconnect will be attempted in 1 second.",
+  //     e.reason
+  //   );
+  //   setTimeout(function () {
+  //     console.log("connecting.... message");
+  //     props.connect();
+  //   }, 1000);
+  // };
 
   useEffect(() => {
-    const messageListener = (message) => {
-      setMessages((prevMessages) => {
-        const newMessages = { ...prevMessages };
-        newMessages[message.id] = message;
-        return newMessages;
-      });
+    props.socket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      setList((list) => [...list, data.message]);
     };
-
-    socket.on("message", messageListener);
-    socket.emit("getMessages");
-
-    socket.on("connect_error", () => {
-        setTimeout(() => {
-          socket.connect();
-        }, 1000);
-      });
-
-    return () => {
-      socket.off("message", messageListener);
-    };
-  }, [socket]);
+  }, [props.socket]);
 
   return (
     <div className={classes.chatBoxDiv}>
-      {[...Object.values(messages)]
-        .sort((a, b) => a.time - b.time)
-        .map((message) => (
-          <div
-            key={message.id}
-            className="message-container"
-            title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-          >
-            {/* <span className="user">{message.user.name}:</span> */}
-            <span className="message">{message.value}</span>
-            {/* <span className="date">{new Date(message.time).toLocaleTimeString()}</span> */}
-          </div>
-        ))}
+      {list.map((message, index) => (
+        // <li key={index}>{message}</li>
+        <div key={index} className={classes.container}>
+          <h5>{message}</h5>
+          <span className={classes.time_right}>11:00</span>
+        </div>
+      ))}
     </div>
   );
 }

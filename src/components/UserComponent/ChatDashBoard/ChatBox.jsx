@@ -7,9 +7,12 @@ import BaseUrl from "../../BaseUrl";
 import Messages from "./Messages";
 import NewMessage from "./InputMessage";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ChatBox = (props) => {
   console.log("Chatbox");
+
+  const chat_part = BaseUrl.url + "conf_chat/chat_participants/?id=62";
 
   const [ws, setWs] = useState(true);
   const [socket, setSocket] = useState(null);
@@ -21,7 +24,7 @@ const ChatBox = (props) => {
       "ws://" + BaseUrl.chat + "/ws/chat/" + props.cid + "/"
     );
 
-    console.log(newSocket);
+    // console.log(newSocket);
 
     setSocket(newSocket);
 
@@ -41,14 +44,26 @@ const ChatBox = (props) => {
       console.error("errror");
       newSocket.close();
     };
-    
   }, [props.cid, ws]);
+
+  useEffect(() => {
+    console.log("api hit");
+    let store = JSON.parse(localStorage.getItem("login"));
+    let token = store.Token;
+    axios
+      .get(chat_part, {
+        headers: { Authorization: `jwt ${token}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  }, [chat_part]);
 
   return (
     <div className={classes.messageForm}>
       <div className={classes.chatTxt}>
         <img src={chat} alt="Chat" />
-        <h2>Chat</h2>
+        <h2>{props.cid}</h2>
       </div>
       <div className={classes.chatimg}>
         <button type="button">
@@ -66,8 +81,7 @@ const ChatBox = (props) => {
           <div>
             <hr className={classes.box}></hr>
             <Messages socket={socket} />
-
-            <NewMessage socket={socket} />
+            <NewMessage socket={socket} id={props.id} />
           </div>
         ) : (
           <div>Not Connected</div>

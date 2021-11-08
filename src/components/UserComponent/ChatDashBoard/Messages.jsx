@@ -1,36 +1,32 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ChatBox.module.css";
 
-function Messages(props) {
+function Messages({ socket }) {
   console.log("Message");
 
   const [list, setList] = useState([]);
 
-  // props.socket.onclose = function (e) {
-  //   console.log(
-  //     "Socket is closed. Reconnect will be attempted in 1 second.",
-  //     e.reason
-  //   );
-  //   setTimeout(function () {
-  //     console.log("connecting.... message");
-  //     props.connect();
-  //   }, 1000);
-  // };
-
   useEffect(() => {
-    props.socket.onmessage = function (e) {
+    socket.onmessage = function (e) {
       const data = JSON.parse(e.data);
       setList((list) => [...list, data.message]);
     };
-  }, [props.socket]);
+  }, [socket]);
 
   return (
-    <div className={classes.chatBoxDiv}>
+    <div className={classes.chatInfo}>
       {list.map((message, index) => (
-        // <li key={index}>{message}</li>
-        <div key={index} className={classes.container}>
-          <h5>{message}</h5>
-          <span className={classes.time_right}>11:00</span>
+        <div key={index}>
+          <div className={classes.chatClr}>
+            <h3>Maaz</h3>
+            <p>{message.message}</p>
+            <span>{message.time}</span>
+          </div>
+          <div className={`${classes.chatClr} ${classes.chatLight}`}>
+            <h3>Maaz</h3>
+            <p>{message.message}</p>
+            <span>{message.time}</span>
+          </div>
         </div>
       ))}
     </div>

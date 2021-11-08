@@ -5,14 +5,14 @@ import { Helmet } from "react-helmet";
 import ChatDashBoard from "../../components/UserComponent/ChatDashBoard/ChatDashBoard";
 
 const UserHome = () => {
-    let { cid } = useParams();
+    let { cid,id } = useParams();
   return (
     <Fragment>
       <Helmet>
         <title>Home</title>
       </Helmet>
       <UserSideWrapper />
-      <ChatDashBoard cid={cid} />
+      <ChatDashBoard cid={cid} id={id} />
     </Fragment>
   );
 };

@@ -127,7 +127,7 @@ const AdminConference = (props) => {
         },
       })
       .then((response) => {
-        push(`/home/${props.obj.cid}/`)
+        push(`/home/${props.obj.cid}/${props.obj.id}/`)
         setStartConference(false);
       });
     // .catch((error) => {

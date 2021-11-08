@@ -69,7 +69,7 @@ const App = () => {
           <UserHome />
         </UserPrivateRoute>
 
-        <UserPrivateRoute path="/home/:cid" exact>
+        <UserPrivateRoute path="/home/:cid/:id/" exact>
           <ChatView />
         </UserPrivateRoute>
 

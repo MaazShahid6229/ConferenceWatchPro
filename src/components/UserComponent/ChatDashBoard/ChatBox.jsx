@@ -27,26 +27,21 @@ const ChatBox = (props) => {
 
     newSocket.onclose = function (e) {
       console.log(
-        "Socket is closed. Reconnect will be attempted in 1 second.",
+        "Socket is closed. Reconnect will be attempted in 10 second.",
         e.reason
       );
 
       setTimeout(() => {
         console.log("connecting.... cHatBox");
         setWs(e);
-      }, 5000);
+      }, 10000);
     };
 
-    // newSocket.onerror = function (err) {
-    //   console.error(
-    //     "Socket encountered error: ",
-    //     err.message,
-    //     "Closing socket"
-    //   );
-    //   newSocket.close();
-    //   setWs(err);
-    // };
-
+    newSocket.onerror = function (err) {
+      console.error("errror");
+      newSocket.close();
+    };
+    
   }, [props.cid, ws]);
 
   return (
@@ -71,7 +66,7 @@ const ChatBox = (props) => {
           <div>
             <hr className={classes.box}></hr>
             <Messages socket={socket} />
-            
+
             <NewMessage socket={socket} />
           </div>
         ) : (

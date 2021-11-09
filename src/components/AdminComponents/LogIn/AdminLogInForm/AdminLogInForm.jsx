@@ -43,6 +43,8 @@ const LogInForm = (props) => {
           await localStorage.setItem(
             "login",
             JSON.stringify({
+              email: "admin@gmail.com",
+              username: data.username,
               login: true,
               Token: response.data.Token,
               Role: response.data.Role,

@@ -263,6 +263,10 @@ form img{
     padding: 8px !important;
     cursor: pointer;
 }
+.connectIcon{
+    margin-left: 2px;
+    width: 15px;
+}
 .chatbox input[type="submit"]{
     cursor: pointer;
     position: absolute;

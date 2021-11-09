@@ -1,10 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import classes from "./ChatBox.module.css";
 
 function Messages({ socket }) {
   console.log("Message");
 
+  const store = JSON.parse(localStorage.getItem("login"));
+  // const token = store.Token;
+  const username = store.username;
+  const user_email = store.email;
+
   const [list, setList] = useState([]);
+
+  const messageRef = useRef();
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+    }
+  }, [list]);
 
   useEffect(() => {
     socket.onmessage = function (e) {
@@ -17,16 +34,28 @@ function Messages({ socket }) {
     <div className={classes.chatInfo}>
       {list.map((message, index) => (
         <div key={index}>
-          <div className={classes.chatClr}>
-            <h3>Maaz</h3>
-            <p>{message.message}</p>
-            <span>{message.time}</span>
-          </div>
-          <div className={`${classes.chatClr} ${classes.chatLight}`}>
-            <h3>Maaz</h3>
-            <p>{message.message}</p>
-            <span>{message.time}</span>
-          </div>
+          {message.username !== username && (
+            <div>
+              {(message.receiver_email === user_email ||
+                message.receiver_email === "everyone") && (
+                <div className={classes.chatClr} ref={messageRef}>
+                  <h3>{message.username}</h3>
+                  <p>{message.message}</p>
+                  <span>{message.time}</span>
+                </div>
+              )}
+            </div>
+          )}
+          {message.username === username && (
+            <div
+              className={`${classes.chatLight} ${classes.chatClr}`}
+              ref={messageRef}
+            >
+              <h3>{message.username}</h3>
+              <p>{message.message}</p>
+              <span>{message.time}</span>
+            </div>
+          )}
         </div>
       ))}
     </div>

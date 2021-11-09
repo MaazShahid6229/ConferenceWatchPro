@@ -32,6 +32,7 @@ const LogInForm = (props) => {
   };
 
   const onSubmit = (data) => {
+    console.log(data.username)
     axios
       .post(UserLogin, {
         email: data.email,
@@ -43,6 +44,8 @@ const LogInForm = (props) => {
             "login",
             JSON.stringify({
               login: true,
+              email: data.email,
+              username: data.username,
               Token: response.data.Token,
               Role: response.data.Role,
             })
@@ -69,6 +72,21 @@ const LogInForm = (props) => {
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.controls}>
+          <div className={classes.control}>
+            <label>Username</label>
+            <input
+              {...register("username", {
+                required: { value: true, message: "username is Required" },
+                maxLength: {
+                  value: 30,
+                  message: "Value Cannot Exceed 30 Characters ",
+                },
+              })}
+              type="text"
+              placeholder="Enter Your Username"
+            />
+            {errors.username && <p>{errors.username.message}</p>}
+          </div>
           <div className={classes.control}>
             <label>Email</label>
             <input

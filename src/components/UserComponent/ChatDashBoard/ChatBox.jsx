@@ -3,19 +3,19 @@ import printer from "../../../assets/printer.png";
 import chat from "../../../assets/chat.png";
 import img1 from "../../../assets/img1.png";
 import chat_icon from "../../../assets/chat-icon.png";
+import connected from "../../../assets/connected.png";
+import disconnected from "../../../assets/disconnected.png";
 import BaseUrl from "../../BaseUrl";
 import Messages from "./Messages";
 import NewMessage from "./InputMessage";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const ChatBox = (props) => {
   console.log("Chatbox");
 
-  const chat_part = BaseUrl.url + "conf_chat/chat_participants/?id=62";
-
   const [ws, setWs] = useState(true);
   const [socket, setSocket] = useState(null);
+  const [online, setOnline] = useState(false);
 
   useEffect(() => {
     console.log("ChatBox Effect");
@@ -24,11 +24,15 @@ const ChatBox = (props) => {
       "ws://" + BaseUrl.chat + "/ws/chat/" + props.cid + "/"
     );
 
-    // console.log(newSocket);
+    newSocket.onopen = function (e) {
+      console.log("Open");
+      setOnline(true);
+    };
 
     setSocket(newSocket);
 
     newSocket.onclose = function (e) {
+      setOnline(false);
       console.log(
         "Socket is closed. Reconnect will be attempted in 10 second.",
         e.reason
@@ -46,24 +50,24 @@ const ChatBox = (props) => {
     };
   }, [props.cid, ws]);
 
-  useEffect(() => {
-    console.log("api hit");
-    let store = JSON.parse(localStorage.getItem("login"));
-    let token = store.Token;
-    axios
-      .get(chat_part, {
-        headers: { Authorization: `jwt ${token}` },
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
-  }, [chat_part]);
-
   return (
     <div className={classes.messageForm}>
       <div className={classes.chatTxt}>
         <img src={chat} alt="Chat" />
         <h2>{props.cid}</h2>
+        {online ? (
+          <img
+            src={connected}
+            alt="connected"
+            className={classes.connectIcon}
+          />
+        ) : (
+          <img
+            src={disconnected}
+            alt="disconnected"
+            className={classes.connectIcon}
+          />
+        )}
       </div>
       <div className={classes.chatimg}>
         <button type="button">

@@ -19,7 +19,7 @@ const HomeDataTable = (props) => {
   const [data, setData] = useState([]);
 
   const handleConferenceButton = (state) => {
-    push(`/home/${state.target.id}/`);
+    push(`/home/${state.target.attributes.cid.value}/${state.target.id}/`);
   };
 
   const handlePageChange = (p) => {
@@ -41,11 +41,12 @@ const HomeDataTable = (props) => {
       .then((response) => {
         setTotalCount(response.data.total_count);
         const obj = response.data["Active Conference Listing"];
+        console.log(response.data);
         let data1 = [];
         for (const i in obj) {
           // console.log(obj[i]["conference"])
           data1.push({
-            ID: obj[i].id,
+            ID: obj[i]["conference"].id,
             CID: obj[i]["conference"].dash_cid,
             Company: obj[i]["conference"].dash_company_name,
             Moderator: obj[i]["conference"].dash_moderator_name,
@@ -97,11 +98,6 @@ const HomeDataTable = (props) => {
       center: true,
     },
     {
-      name: "Status",
-      selector: (row) => row.Status,
-      center: true,
-    },
-    {
       name: "Start Conference",
       grow: 2,
       cell: (row) => (
@@ -111,7 +107,8 @@ const HomeDataTable = (props) => {
             alt="conferenceIcon"
             className={classes.conferenceIcon}
             onClick={handleConferenceButton}
-            id={row.CID}
+            id={row.ID}
+            cid={row.CID}
           />
         </div>
       ),

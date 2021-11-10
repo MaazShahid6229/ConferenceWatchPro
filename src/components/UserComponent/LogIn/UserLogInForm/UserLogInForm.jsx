@@ -32,7 +32,6 @@ const LogInForm = (props) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data.username)
     axios
       .post(UserLogin, {
         email: data.email,

@@ -1,4 +1,4 @@
-import classes from "./ChatBox.module.css";
+import classes from "./Chat.module.css";
 import printer from "../../../assets/printer.png";
 import chat from "../../../assets/chat.png";
 import img1 from "../../../assets/img1.png";
@@ -11,21 +11,18 @@ import NewMessage from "./InputMessage";
 import { useState, useEffect } from "react";
 
 const ChatBox = (props) => {
-  console.log("Chatbox");
 
   const [ws, setWs] = useState(true);
   const [socket, setSocket] = useState(null);
   const [online, setOnline] = useState(false);
 
   useEffect(() => {
-    console.log("ChatBox Effect");
 
     const newSocket = new WebSocket(
       "ws://" + BaseUrl.chat + "/ws/chat/" + props.cid + "/"
     );
 
     newSocket.onopen = function (e) {
-      console.log("Open");
       setOnline(true);
     };
 
@@ -34,20 +31,19 @@ const ChatBox = (props) => {
     newSocket.onclose = function (e) {
       setOnline(false);
       console.log(
-        "Socket is closed. Reconnect will be attempted in 10 second.",
+        "Socket is closed. Reconnect will be attempted in 1 second.",
         e.reason
       );
 
       setTimeout(() => {
-        console.log("connecting.... cHatBox");
         setWs(e);
-      }, 10000);
+      }, 1000);
     };
 
     newSocket.onerror = function (err) {
-      console.error("errror");
       newSocket.close();
     };
+    
   }, [props.cid, ws]);
 
   return (

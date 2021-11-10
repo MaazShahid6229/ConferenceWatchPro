@@ -1,7 +1,7 @@
 // import QA from "./QA";
 // import AllConferenceList from "./AllConferenceList";
 import ChatBox from "./ChatBox";
-import classes from "./ChatDashBoard.module.css";
+import classes from "./Chat.module.css";
 
 const ChatDashBoard = (props) => {
   return (

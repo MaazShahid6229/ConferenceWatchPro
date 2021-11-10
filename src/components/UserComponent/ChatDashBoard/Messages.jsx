@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import classes from "./ChatBox.module.css";
+import classes from "./Chat.module.css";
 
 function Messages({ socket }) {
-  console.log("Message");
 
   const store = JSON.parse(localStorage.getItem("login"));
   // const token = store.Token;

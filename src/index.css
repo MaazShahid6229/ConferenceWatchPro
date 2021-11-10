@@ -1,62 +1,62 @@
-html{
-    font-family: sans-serif, Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
-    scroll-behavior: smooth;
+html {
+  font-family: sans-serif, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  scroll-behavior: smooth;
 }
-body{
-    /* overflow: hidden; */
-    background-image: url(./assets/main-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-size: 15px;
-    font-family: "Trebuchet MS", "Arial"," sans-serif";
-    margin: 0px;
+body {
+  /* overflow: hidden; */
+  background-image: url(./assets/main-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 15px;
+  font-family: "Trebuchet MS", "Arial", " sans-serif";
+  margin: 0px;
 }
-.pgSize{
-    width: 1200px;
-    margin: 0 auto;
+.pgSize {
+  width: 1200px;
+  margin: 0 auto;
 }
-.logoMain{
-    margin-bottom:0px;
-    width: 16%;
-    float: left;
+.logoMain {
+  margin-bottom: 0px;
+  width: 16%;
+  float: left;
 }
-.text img.logoMain{
-    float: none !important;
+.text img.logoMain {
+  float: none !important;
 }
-p{
-    color:red
+p {
+  color: red;
 }
-.huizgM{
-    font-size: 17px !important;
+.huizgM {
+  font-size: 17px !important;
 }
-@media only screen and  (min-width : 10px) and (max-width: 1220px){
-    .pgSize{
-        width:auto;
-    }
+@media only screen and (min-width: 10px) and (max-width: 1220px) {
+  .pgSize {
+    width: auto;
+  }
 }
-@media only screen and  (min-width : 10px) and (max-width: 1000px){
-    .pgSize{
-        width:auto;
-    }
-    .rdt_TableCell{
-        padding-right: 0px !important;
-    }
-    .labelInput,
-    .iconDiv {
-        margin-right:7px;
-    }
+@media only screen and (min-width: 10px) and (max-width: 1000px) {
+  .pgSize {
+    width: auto;
+  }
+  .rdt_TableCell {
+    padding-right: 0px !important;
+  }
+  .labelInput,
+  .iconDiv {
+    margin-right: 7px;
+  }
 }
 
-@media only screen and  (min-width : 10px) and (max-width: 765px){
-    .logoMain{
-        width: 350px;
-        float: none;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 25px;
-    }
+@media only screen and (min-width: 10px) and (max-width: 765px) {
+  .logoMain {
+    width: 350px;
+    float: none;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 25px;
+  }
 }
 /* @media only screen and  (min-width : 10px) and (max-width: 600px){
     .kCEQys svg {
@@ -64,9 +64,9 @@ p{
         right: -12px !important;
     }
 } */
-@media only screen and  (min-width : 10px) and (max-width: 500px){
-    .logoMain{
-        width: 250px;
-        margin-bottom:25px;
-    }
+@media only screen and (min-width: 10px) and (max-width: 500px) {
+  .logoMain {
+    width: 250px;
+    margin-bottom: 25px;
+  }
 }

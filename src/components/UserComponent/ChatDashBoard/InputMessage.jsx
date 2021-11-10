@@ -14,7 +14,7 @@ const NewMessage = (props) => {
   const store = JSON.parse(localStorage.getItem("login"));
   const token = store.Token;
   const username = store.username;
-  const user_email = store.email;
+  // const user_email = store.email;
 
   const {
     register,
@@ -32,20 +32,19 @@ const NewMessage = (props) => {
           username: username,
           message: message,
           time: new Date().toLocaleTimeString(),
-          sender_email: user_email,
-          receiver_email: data.participant,
+          recipient: data.participant,
         },
       })
     );
     if (data.participant === "everyone") {
       var data1 = {
-        name: user_email,
+        name: username,
         msg: message,
         conference: props.id,
       };
     } else {
       data1 = {
-        name: user_email,
+        name: username,
         msg: message,
         conference: props.id,
         recipient: data.participant,
@@ -71,6 +70,17 @@ const NewMessage = (props) => {
     setValue("message", "");
   };
 
+  const typingHandler = () => {
+    props.socket.send(
+      JSON.stringify({
+        message: {
+          username: username,
+          typing: true,
+        },
+      })
+    );
+  };
+
   useEffect(() => {
     axios
       .get(chat_part, {
@@ -83,27 +93,31 @@ const NewMessage = (props) => {
   }, [chat_part, token]);
 
   const participant = participants.map((part, index) => (
-    <option key={index} value={part.email_address}>
-      {part.email_address}
+    <option key={index} value={part.username}>
+      {part.username}
     </option>
   ));
 
   return (
     <div className={classes.chatbox}>
       <form onSubmit={handleSubmit(messageForm)}>
-        <input
-          {...register("message", {
-            required: { value: true, message: "message is Required" },
-            maxLength: {
-              value: 1000,
-              message: "Value Cannot Exceed  Characters ",
-            },
-          })}
-          type="text"
-          placeholder="Enter Your Message"
-        />
+        <div className={classes.chatposition}>
+          <input
+            {...register("message", {
+              required: { value: true, message: "message is Required" },
+              maxLength: {
+                value: 1000,
+                message: "Value Cannot Exceed  Characters ",
+              },
+            })}
+            type="text"
+            placeholder="Enter Your Message"
+            autoComplete="off"
+            onChange={typingHandler}
+          />
+          <input type="submit" />
+        </div>
         {errors.message && <p>{errors.message.message}</p>}
-        <input type="submit" value="SEND" />
         <select
           name="participant"
           {...register("participant", {

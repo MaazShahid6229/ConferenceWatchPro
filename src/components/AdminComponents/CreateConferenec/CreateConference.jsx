@@ -10,12 +10,9 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import DetailConference from "./DetailConference";
 
-
 const find_conference = BaseUrl.url + "connex/conferenece/find_conference/";
 
 const CreateConference = (props) => {
-
-
   const [result, setResult] = useState({});
   const [find, setFind] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -38,7 +35,7 @@ const CreateConference = (props) => {
     let store = JSON.parse(localStorage.getItem("login"));
     let token = store.Token;
 
-     axios
+    axios
       .post(find_conference, data1, {
         headers: { Authorization: `jwt ${token}` },
       })
@@ -61,7 +58,7 @@ const CreateConference = (props) => {
       })
       .catch((error) => {
         setFind(false);
-        let message = error.response.data.Message
+        let message = error.response.data.Message;
         setResult({
           ConferenceId: data.ConferenceId,
           Company: "",
@@ -72,7 +69,7 @@ const CreateConference = (props) => {
           Branding: "",
           Password: "",
           ConfirmPassword: "",
-          Email:[],
+          Email: [],
         });
         toast.error(`${message}`, {
           position: "top-right",
@@ -86,7 +83,6 @@ const CreateConference = (props) => {
       });
     setShowForm(true);
   };
-
 
   return (
     <Card className={classes.login}>

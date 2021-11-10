@@ -22,12 +22,12 @@
   right: 0px;
 }
 
-.control{
+.control {
   /* margin-right: 15px;
   width: 30%; */
   position: relative;
 }
-.control select{
+.control select {
   padding: 0.5rem !important;
 }
 .control label,
@@ -66,31 +66,31 @@ select,
 .actions {
   text-align: center;
 }
-@media only screen and  (min-width : 10px) and (max-width: 810px){
-  .login{
-      max-width: -webkit-fill-available !important;
-      margin: 4% !important;
+@media only screen and (min-width: 10px) and (max-width: 810px) {
+  .login {
+    max-width: -webkit-fill-available !important;
+    margin: 4% !important;
   }
 }
 
-@media only screen and  (min-width : 10px) and (max-width: 1250px){
-  .control input{
-      width: 12rem !important;
+@media only screen and (min-width: 10px) and (max-width: 1250px) {
+  .control input {
+    width: 12rem !important;
   }
 }
-@media only screen and  (min-width : 10px) and (max-width: 765px){
-  .control input{
-      width:8rem !important;    
+@media only screen and (min-width: 10px) and (max-width: 765px) {
+  .control input {
+    width: 8rem !important;
   }
 }
-@media only screen and  (min-width : 10px) and (max-width: 600px){
-  .control input{
-      width: 8rem !important;    
+@media only screen and (min-width: 10px) and (max-width: 600px) {
+  .control input {
+    width: 8rem !important;
   }
 }
-@media only screen and  (min-width : 10px) and (max-width: 500px){
-  .control input{
-      width: 16rem !important;    
+@media only screen and (min-width: 10px) and (max-width: 500px) {
+  .control input {
+    width: 16rem !important;
   }
   .labelInput input {
     width: 12rem;

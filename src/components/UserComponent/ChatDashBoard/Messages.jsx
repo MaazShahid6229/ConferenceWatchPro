@@ -1,14 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
+import BaseUrl from "../../BaseUrl";
+import axios from "axios";
+
 import classes from "./Chat.module.css";
 
-function Messages({ socket }) {
-
+function Messages(props) {
+  console.log("Message");
   const store = JSON.parse(localStorage.getItem("login"));
-  // const token = store.Token;
+  const token = store.Token;
   const username = store.username;
-  const user_email = store.email;
+  // const user_email = store.email;
 
   const [list, setList] = useState([]);
+  const [typing, setTyping] = useState(false);
+
+  const get_message =
+    BaseUrl.url + `chat/conf_chat/post_message/?conference_id=${props.id}`;
 
   const messageRef = useRef();
 
@@ -23,20 +30,54 @@ function Messages({ socket }) {
   }, [list]);
 
   useEffect(() => {
-    socket.onmessage = function (e) {
+    axios
+      .get(get_message, {
+        headers: { Authorization: `jwt ${token}` },
+      })
+      .then((response) => {
+        let objLits = [];
+        let obj = response.data.Messages;
+        for (let i in obj) {
+          let data1 = {
+            username: obj[i].name,
+            message: obj[i].msg,
+            time: obj[i].created_date,
+            recipient: obj[i].recipient,
+          };
+          objLits.push(data1);
+        }
+        setList(objLits);
+      });
+  }, [get_message, token]);
+
+  useEffect(() => {
+    props.socket.onmessage = function (e) {
       const data = JSON.parse(e.data);
-      setList((list) => [...list, data.message]);
+      if (data.message["typing"]) {
+        setTyping(data.message.username);
+        setTimeout(() => {
+          setTyping(false);
+        }, 2000);
+      }
+      if (!data.message["typing"]) {
+        setList((list) => [...list, data.message]);
+        setTyping(false);
+      }
     };
-  }, [socket]);
+  }, [props.socket]);
 
   return (
     <div className={classes.chatInfo}>
+      {typing && <span>{typing} is typing</span>}
       {list.map((message, index) => (
         <div key={index}>
           {message.username !== username && (
             <div>
-              {(message.receiver_email === user_email ||
-                message.receiver_email === "everyone") && (
+              {/* <h2>user{message.username}</h2> */}
+              {/* <h2>rec{message.recipient}</h2> */}
+              {(message.recipient === username ||
+                message.recipient === "everyone" ||
+                message.recipient === null) && (
                 <div className={classes.chatClr} ref={messageRef}>
                   <h3>{message.username}</h3>
                   <p>{message.message}</p>

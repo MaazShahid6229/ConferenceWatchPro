@@ -11,13 +11,11 @@ import NewMessage from "./InputMessage";
 import { useState, useEffect } from "react";
 
 const ChatBox = (props) => {
-
   const [ws, setWs] = useState(true);
   const [socket, setSocket] = useState(null);
   const [online, setOnline] = useState(false);
 
   useEffect(() => {
-
     const newSocket = new WebSocket(
       "ws://" + BaseUrl.chat + "/ws/chat/" + props.cid + "/"
     );
@@ -43,7 +41,6 @@ const ChatBox = (props) => {
     newSocket.onerror = function (err) {
       newSocket.close();
     };
-    
   }, [props.cid, ws]);
 
   return (
@@ -80,7 +77,7 @@ const ChatBox = (props) => {
         {socket ? (
           <div>
             <hr className={classes.box}></hr>
-            <Messages socket={socket} />
+            <Messages socket={socket} id={props.id} />
             <NewMessage socket={socket} id={props.id} />
           </div>
         ) : (

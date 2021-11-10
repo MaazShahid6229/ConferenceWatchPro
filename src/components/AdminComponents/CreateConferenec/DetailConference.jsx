@@ -242,7 +242,7 @@ const DetailConference = (props) => {
           />
         </div>
       )}
-      <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={classes.find_form} autoComplete="off">
         <div className={classes.controls}>
           <div className={classes.control}>
             <label>CID</label>
@@ -415,6 +415,7 @@ const DetailConference = (props) => {
                       value={x.email_address}
                       onChange={(e) => handleInputChange(e, i)}
                       required
+                      autoComplete="off"
                     />
                   </div>
                   <div className={classes.iconDiv}>

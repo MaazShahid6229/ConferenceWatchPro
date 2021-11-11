@@ -24,7 +24,7 @@ const NewMessage = (props) => {
   } = useForm();
   const [participants, setParticipants] = useState([]);
 
-  const messageForm = (data) => {
+  const onSubmit = (data) => {
     const message = data.message;
     props.socket.send(
       JSON.stringify({
@@ -70,16 +70,16 @@ const NewMessage = (props) => {
     setValue("message", "");
   };
 
-  const typingHandler = () => {
-    props.socket.send(
-      JSON.stringify({
-        message: {
-          username: username,
-          typing: true,
-        },
-      })
-    );
-  };
+  // const typingHandler = () => {
+  //   props.socket.send(
+  //     JSON.stringify({
+  //       message: {
+  //         username: username,
+  //         typing: true,
+  //       },
+  //     })
+  //   );
+  // };
 
   useEffect(() => {
     axios
@@ -100,7 +100,7 @@ const NewMessage = (props) => {
 
   return (
     <div className={classes.chatbox}>
-      <form onSubmit={handleSubmit(messageForm)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.chatposition}>
           <input
             {...register("message", {
@@ -113,11 +113,12 @@ const NewMessage = (props) => {
             type="text"
             placeholder="Enter Your Message"
             autoComplete="off"
-            onChange={typingHandler}
+            // onChange={typingHandler}
           />
           <input type="submit" />
+          {errors.message && <p>{errors.message.message}</p>}
         </div>
-        {errors.message && <p>{errors.message.message}</p>}
+
         <select
           name="participant"
           {...register("participant", {

@@ -55,9 +55,6 @@ function Messages(props) {
       const data = JSON.parse(e.data);
       if (data.message["typing"]) {
         setTyping(data.message.username);
-        setTimeout(() => {
-          setTyping(false);
-        }, 2000);
       }
       if (!data.message["typing"]) {
         setList((list) => [...list, data.message]);
@@ -68,13 +65,10 @@ function Messages(props) {
 
   return (
     <div className={classes.chatInfo}>
-      {typing && <span>{typing} is typing</span>}
       {list.map((message, index) => (
         <div key={index}>
           {message.username !== username && (
             <div>
-              {/* <h2>user{message.username}</h2> */}
-              {/* <h2>rec{message.recipient}</h2> */}
               {(message.recipient === username ||
                 message.recipient === "everyone" ||
                 message.recipient === null) && (
@@ -98,6 +92,7 @@ function Messages(props) {
           )}
         </div>
       ))}
+      <div>{typing && <span>{typing} is typing</span>}</div>
     </div>
   );
 }

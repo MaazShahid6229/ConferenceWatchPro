@@ -1,14 +1,15 @@
-// import QA from "./QA";
-// import AllConferenceList from "./AllConferenceList";
+import QA from "./QA";
+import Participants from "./Participants";
 import ChatBox from "./ChatBox";
 import classes from "./Chat.module.css";
 
 const ChatDashBoard = (props) => {
   return (
-    <div className={classes.pageSize}>
-      {/* <AllConferenceList /> */}
-      {/* <QA /> */}
-      {/* <h2>{props.cid}</h2> */}
+    <div className={`${classes.pageSize} ${classes.mainPadding}`}>
+      <div className={classes.formTable}>
+        <QA />
+        <Participants />
+      </div>
       <ChatBox cid={props.cid} id={props.id} />
     </div>
   );

@@ -46,6 +46,7 @@ function Messages(props) {
           };
           objLits.push(data1);
         }
+        console.log(objLits);
         setList(objLits);
       });
   }, [get_message, token]);

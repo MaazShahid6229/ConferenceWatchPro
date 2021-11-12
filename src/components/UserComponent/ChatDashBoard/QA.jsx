@@ -20,7 +20,7 @@ const QA = () => {
         <div className={`${classes.tableHead} ${classes.searchimg}`}>
           <form className={classes.checkBox}>
             <label>
-              <input type="checkbox" checked="checked" />
+              <input type="checkbox" defaultChecked />
               <span className={classes.checkmark}></span>Take Next Question
             </label>
           </form>
@@ -37,26 +37,32 @@ const QA = () => {
             <img src={printer} alt="Printer" />
           </button>
           <button type="button">
-            <img class="arrow" src={downward} alt="Downward Arrow" />
+            <img
+              className={classes.arrow}
+              src={downward}
+              alt="Downward Arrow"
+            />
           </button>
         </div>
       </div>
       <table>
-        <tr>
-          <th>Mute</th>
-          <th>Name</th>
-          <th>Company</th>
-          <th>Phone</th>
-          <th>Field 1</th>
-          <th>Field 2</th>
-          <th>Field 3</th>
-          <th>Update Order</th>
-        </tr>
-      </table>
-      <table>
-        <tr>
-          <td>There are no questions.</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Mute</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Phone</th>
+            <th>Field 1</th>
+            <th>Field 2</th>
+            <th>Field 3</th>
+            <th>Update Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>There are no questions.</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

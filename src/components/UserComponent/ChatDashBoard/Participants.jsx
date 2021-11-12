@@ -12,7 +12,7 @@ const Participants = () => {
     <div className={classes.backgroundClr}>
       <div className={classes.headPadding}>
         <div className={classes.tableHead}>
-          <img class="headImg" src={headImg} alt="Participants" />
+          <img className={classes.headImg} src={headImg} alt="Participants" />
           <h2>Participants</h2>
         </div>
         <div className={`${classes.tableHead} ${classes.searchimg}`}>
@@ -29,61 +29,68 @@ const Participants = () => {
             <img src={printer} alt="Printer" />
           </button>
           <button type="button">
-            <img class="arrow" src={downward} alt="Downward Arrow" />
+            <img
+              className={classes.arrow}
+              src={downward}
+              alt="Downward Arrow"
+            />
           </button>
         </div>
       </div>
       <table>
-        <tr>
-          <th>Mute</th>
-          <th>
-            User
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-          <th>
-            Name
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-          <th>
-            Company
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-          <th>
-            Phone
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-          <th>
-            Field 1
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-          <th>
-            Field 2
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-          <th>
-            Field 3
-            <button type="button">
-              <img src={userIcon} alt="Icon" />
-            </button>
-          </th>
-        </tr>
-      </table>
-      <table>
-        <tr>
-          <td>There are no Participants.</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Mute</th>
+            <th>
+              User
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+            <th>
+              Name
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+            <th>
+              Company
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+            <th>
+              Phone
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+            <th>
+              Field 1
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+            <th>
+              Field 2
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+            <th>
+              Field 3
+              <button type="button">
+                <img src={userIcon} alt="Icon" />
+              </button>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>There are no Participants.</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

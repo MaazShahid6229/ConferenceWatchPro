@@ -106,8 +106,13 @@ const NewMessage = (props) => {
             {...register("message", {
               required: { value: true, message: "message is Required" },
               maxLength: {
-                value: 1000,
+                value: 128,
                 message: "Value Cannot Exceed  Characters ",
+              },
+              pattern: {
+                // value: /^([A-z0-9!@#$%^&*().,<>{}[\]<>?_=+\-|;:\'\"\/])*[^\s]\1*$/,
+                value: /^[^\s]*(\s*[^\s]+)/,
+                message: "Empty Message Not Allowed",
               },
             })}
             type="text"

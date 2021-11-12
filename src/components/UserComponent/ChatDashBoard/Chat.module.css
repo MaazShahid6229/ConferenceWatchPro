@@ -358,6 +358,7 @@ textarea::-webkit-scrollbar-thumb {
 .chatClr p {
   font-size: 13px;
   color: #fff;
+  word-wrap: break-word;
 }
 .chatLight p {
   word-wrap: break-word;

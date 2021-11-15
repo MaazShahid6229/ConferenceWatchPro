@@ -13,7 +13,7 @@ import conferenceIcon from "../../../assets/conferenceIcon.png";
 import { closePopUpContext } from "../../Context/ClosePopUpContext";
 
 const HomeDataTable = (props) => {
-  console.log("render");
+  // console.log("render");
   const {
     register,
     handleSubmit,

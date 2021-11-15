@@ -5,7 +5,7 @@ import axios from "axios";
 import classes from "./Chat.module.css";
 
 function Messages(props) {
-  console.log("Message");
+  // console.log("Message");
   const store = JSON.parse(localStorage.getItem("login"));
   const token = store.Token;
   const username = store.username;
@@ -46,7 +46,7 @@ function Messages(props) {
           };
           objLits.push(data1);
         }
-        console.log(objLits);
+        // console.log(objLits);
         setList(objLits);
       });
   }, [get_message, token]);

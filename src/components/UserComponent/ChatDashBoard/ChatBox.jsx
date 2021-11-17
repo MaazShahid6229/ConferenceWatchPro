@@ -43,6 +43,26 @@ const ChatBox = (props) => {
     };
   }, [props.cid, ws]);
 
+  const PrintChat = (event) => {
+    console.log("PrintChat");
+    var divContents = document.getElementById("GFG").innerHTML;
+    var a = window.open("", "", "height=600, width=600");
+    a.document.write(
+      `<html><head> <link rel=stylesheet href=ChatPrint.css /></head>`
+    );
+    a.document.write(
+      `<body > <h1 class = h1_tag>${props.cid} Conference have following Messages </h1><br>`
+    );
+    a.document.write(divContents);
+    a.document.write("</body></html>");
+    a.document.close();
+    a.print();
+  };
+
+  const SaveChat = () => {
+    console.log("SaveChat");
+  };
+
   return (
     <div className={classes.messageForm}>
       <div className={classes.chatTxt}>
@@ -63,10 +83,10 @@ const ChatBox = (props) => {
         )}
       </div>
       <div className={classes.chatimg}>
-        <button type="button">
+        <button type="button" onClick={SaveChat}>
           <img src={printer} alt="Printer" />
         </button>
-        <button type="button">
+        <button type="button" onClick={PrintChat}>
           <img src={img1} alt="Something" />
         </button>
         <button type="button">
@@ -77,7 +97,9 @@ const ChatBox = (props) => {
         {socket ? (
           <div>
             <hr className={classes.box}></hr>
-            <Messages socket={socket} id={props.id} />
+            <div id="GFG">
+              <Messages socket={socket} id={props.id} />
+            </div>
             <NewMessage socket={socket} id={props.id} />
           </div>
         ) : (

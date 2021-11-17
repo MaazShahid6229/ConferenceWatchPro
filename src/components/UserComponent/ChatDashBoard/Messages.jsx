@@ -65,7 +65,7 @@ function Messages(props) {
   }, [props.socket]);
 
   return (
-    <div className={classes.chatInfo}>
+    <div id="GFG" className={classes.chatInfo}>
       {list.map((message, index) => (
         <div key={index}>
           {message.username !== username && (

@@ -47,11 +47,9 @@ const ChatBox = (props) => {
     console.log("PrintChat");
     var divContents = document.getElementById("GFG").innerHTML;
     var a = window.open("", "", "height=600, width=600");
+    a.document.write(`<html><head><link rel=stylesheet href=ChatPrint.css></head>`);
     a.document.write(
-      `<html><head> <link rel=stylesheet href=ChatPrint.css /></head>`
-    );
-    a.document.write(
-      `<body > <h1 class = h1_tag>${props.cid} Conference have following Messages </h1><br>`
+      `<body > <h1 class = "h1_tag">${props.cid} Conference have following Messages </h1><br>`
     );
     a.document.write(divContents);
     a.document.write("</body></html>");
